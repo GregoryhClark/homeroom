@@ -6,7 +6,7 @@ import Navbar from './components/Navbar/Navbar'
 export default class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <Navbar/>
         {routes}
       </div>
