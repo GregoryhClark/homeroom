@@ -4,6 +4,7 @@ import axios from 'axios';
 
 //CSS, ASSETS
 import './Login.css'
+import classroom from './classroom.jpg';
 
 //COMPONENT
 export default class Login extends React.Component {
@@ -42,7 +43,10 @@ export default class Login extends React.Component {
                      onChange={(e) => this.setState({password: e.target.value})}/>
                   <button>LOG IN</button>
                </form>
-               <footer>Homeroom &copy; 2018 </footer>
+            </div>
+
+
+            <div className="login-container-right">
             </div>
 
          </div>
