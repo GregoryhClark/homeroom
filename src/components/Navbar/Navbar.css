@@ -1,0 +1,13 @@
+.navbar{
+    font-size: 14px;
+    min-height: 70px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+.nav-link{
+    display: flex;
+    flex-direction: column;
+}
+.nav-link:hover{
+    background-color: #ccc !important;
+}
