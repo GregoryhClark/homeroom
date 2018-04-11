@@ -10,7 +10,7 @@ class Home extends Component {
     render() {
         
         return (
-            <div>{`The user is: ${this.props.user.username}`}</div> 
+            <h1>{`Welcome to Homeroom ${this.props.user.first_name} ${this.props.user.last_name}!`}</h1> 
         )
     }
 }

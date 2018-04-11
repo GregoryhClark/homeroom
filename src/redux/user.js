@@ -11,7 +11,7 @@ const _FULFILLED = "_FULFILLED";
 // ======= ACTION CREATORS ========
 export function getUser(){
     let userData = axios.get('/auth/me').then(res => {
-        console.log("GET USER-REDUX", res.data)
+        // console.log("GET USER-REDUX", res.data)
         return res.data
     })
     return{
