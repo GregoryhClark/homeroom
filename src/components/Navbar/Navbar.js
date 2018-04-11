@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import {getUser} from '../../redux/user';
 import './Navbar.css'
 
-class Home extends Component {
+class Navbar extends Component {
     async componentWillMount(){
         await this.props.getUser();
-        console.log("getUser: Home",this.props.user)
+        console.log("getUser: Navbar",this.props.user)
     }
     render() {
         
@@ -26,4 +26,4 @@ function mapStateToProps(state){
         user: state.user
     }
 }
-export default connect(mapStateToProps, {getUser})(Home);
+export default connect(mapStateToProps, {getUser})(Navbar);
