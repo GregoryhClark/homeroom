@@ -17,6 +17,7 @@ const {
    , CONNECTION_STRING
    , SESSION_SECRET
    , REACT_APP_LOGOUT
+   , REACT_APP_LOGIN_PAGE
 }  = process.env;
 
 // ============== MASSIVE DB CONNECTION ========
@@ -80,7 +81,7 @@ app.post('/api/login', passport.authenticate('local'), (req, res, next) => {
 
 app.get('/logout', (req,res) => {
    req.logout();
-   res.redirect(REACT_APP_LOGOUT);
+   res.redirect(REACT_APP_LOGIN_PAGE);
 })
 
 // =========== CONFIRM USER ENDPOINTS ==========
