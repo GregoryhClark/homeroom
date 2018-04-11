@@ -21,7 +21,6 @@ export default class Login extends React.Component {
       const {username, password} = this.state;
 
       axios.post('/api/login', {username, password}).then(res => {
-         console.log(res)
          this.props.history.push(res.headers.location)
       })
    }
@@ -30,14 +29,22 @@ export default class Login extends React.Component {
       let {username, password} = this.state;
 
       return(
-         <div>
-            <form onSubmit={this.handleLogin}>
-               <input type='text' value={username} 
-                  onChange={(e) => this.setState({username: e.target.value})}/>
-               <input type='password' value={password} 
-                  onChange={(e) => this.setState({password: e.target.value})}/>
-               <button>Login</button>
-            </form>
+         <div className="login-page">
+
+            <div className="login-container-left">
+               <div className="logo">Homeroom</div>
+               <form className="login-form" onSubmit={this.handleLogin}>
+                  <span>Username</span>
+                  <input type='text' value={username} 
+                     onChange={(e) => this.setState({username: e.target.value})}/>
+                  <span>Password</span>
+                  <input type='password' value={password} 
+                     onChange={(e) => this.setState({password: e.target.value})}/>
+                  <button>LOG IN</button>
+               </form>
+               <footer>Homeroom &copy; 2018 </footer>
+            </div>
+
          </div>
       )
    }
