@@ -1,4 +1,4 @@
-//MODULES
+// ================== MODULES =================== 
 require('dotenv').config();
 const express = require('express')
    , bodyParser = require('body-parser')
@@ -8,25 +8,24 @@ const express = require('express')
    , LocalStrategy = require('passport-local').Strategy
    , bcrypt = require('bcryptjs')
    , cors = require('cors')
-
-//IMPORT CONTROLLERS (NEED TO UPDATE)
-
-
-//SETUP app
+   
+// ================ INVOKE EXPRESS ============= 
 const app = express();
-
-//IMPORT VARIABLES FROM .env
-const {SESSION_PORT
+// ======== IMPORT VARIABLES FROM .env =========
+const {
+     SESSION_PORT
    , CONNECTION_STRING
    , SESSION_SECRET
-   , REACT_APP_LOGOUT} = process.env;
+   , REACT_APP_LOGOUT
+}  = process.env;
 
-//CONNECT DATABASE
+// ============== MASSIVE DB CONNECTION ========
 massive(CONNECTION_STRING).then(db => {
-   app.set('db', db)
+   app.set('db', db);
+   app.listen(SESSION_PORT, () => console.log(`Listening on port ${SESSION_PORT}`))
 })
 
-//MIDDLEWARE
+// =============== AUTH / MIDDLEWARE ===========
 app.use(bodyParser.json());
 app.use( session({
    secret: SESSION_SECRET
@@ -35,7 +34,7 @@ app.use( session({
    , cookie: {maxAge:2000000}
 }))
 
-//PASSPORT LOCAL STRATEGY
+// ============ PASSPORT LOCAL STRATEGY =======
 passport.use(new LocalStrategy(
    function(username, password, done) {
       app.get('db').get_user([username]).then(result => {
@@ -53,7 +52,7 @@ passport.use(new LocalStrategy(
       })
    }
 ))
-
+// ============ SERIALIZE / DESERIALIZE ============
 passport.serializeUser((user, done) => {
    return done(null, user);
 })
@@ -68,13 +67,13 @@ passport.deserializeUser((user, done) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
-//ENDPOINTS
-//LOGIN & LOGOUT
+
+// ========== LOGIN & LOGOUT ENDPOINTS =========
 app.post('/api/login', passport.authenticate('local'), (req, res, next) => {
    if(req.user === 'Unauthorized') {
       res.status(200).send(req.user)
    } else {
-      res.redirect(200, '/dashboard')
+      res.redirect(200, '/home')
    }
    next();
 })
@@ -84,7 +83,7 @@ app.get('/logout', (req,res) => {
    res.redirect(REACT_APP_LOGOUT);
 })
 
-//CONFIRM USER SESSION
+// =========== CONFIRM USER ENDPOINTS ==========
 app.get('/auth/me', (req, res) => {
    if (req.user) {
       res.status(200).send(req.user);
@@ -93,5 +92,4 @@ app.get('/auth/me', (req, res) => {
    }
 })
 
-//SERVER LISTENING
-app.listen(SESSION_PORT, () => console.log(`Listening on port ${SESSION_PORT}`))
+// ================== ENDPOINTS ================
