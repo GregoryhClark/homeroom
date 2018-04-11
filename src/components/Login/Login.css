@@ -1,0 +1,116 @@
+.login-page {
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+   background-color: #F0F0F0;
+}
+
+.login-container-left {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   flex: 1;
+   padding: 25px;
+}
+
+.login-container-left > .logo {
+   margin-bottom: 65px;
+   font-size: 3em;
+   text-align: center;
+}
+
+.login-container-left > #error-text-parent {
+   height: 16px;
+   margin: 0 auto 10px auto;
+}
+
+.login-container-left > #error-text-parent > #error-text-child {
+   font-weight: 300;
+   color: red;
+   animation: fade 0.75s linear;
+}
+
+@keyframes fade {
+   0%,100% { opacity: 0; }
+   100% { opacity: 1; }
+ }
+
+
+.login-container-right {
+   visibility: hidden;
+   background-image: url('./classroom.jpg');
+   background-position: 50% 50%;
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+
+.login-form {
+   display: flex;
+   flex-direction: column;
+   height: 230px;
+   padding: 30px;
+   background: white;
+   box-shadow: 0 2px 5px 1px rgba(0,0,0,0.2);
+}
+
+.login-form > span {
+   margin-bottom: 5px;
+   font-size: 1em;
+   font-weight: 300;
+   color: #7b7b7b;
+}
+
+.login-form > input {
+   margin-bottom: 30px;
+   padding: 5px;
+   border: 1px solid #cccccc;
+   border-radius: 2px;
+   font-size: 1.25em;
+   font-weight: 300;
+   color: #5a5a5a;
+   box-sizing: border-box;
+}
+
+.login-form > button {
+   width: 125px;
+   margin: 8px auto 0 auto;
+   padding: 8px;
+   background-color: #7cdcf6;
+   border: none;
+   border-radius: 3px;
+   font-size: 1.2em;
+   color: white;
+   cursor: pointer;
+}
+
+@media(min-width:768px) {
+   .login-page {
+      flex-direction: row;
+   }
+
+   .login-container-left {
+      flex-basis: 50%;
+   }
+
+   .login-container-right {
+      visibility: visible;
+      flex-basis: 50%;
+   }
+
+}
+
+@media(min-width:1024px) {
+   .login-container-left {
+      flex-basis: 40%;
+   }
+
+   .login-container-right {
+      flex-basis: 60%;
+   }
+
+   .login-form {
+      width: 275px;
+      margin: 0 auto;
+   }
+
+}
