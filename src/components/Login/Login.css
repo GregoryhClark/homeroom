@@ -19,6 +19,23 @@
    text-align: center;
 }
 
+.login-container-left > #error-text-parent {
+   height: 16px;
+   margin: 0 auto 10px auto;
+}
+
+.login-container-left > #error-text-parent > #error-text-child {
+   font-weight: 300;
+   color: red;
+   animation: fade 0.75s linear;
+}
+
+@keyframes fade {
+   0%,100% { opacity: 0; }
+   100% { opacity: 1; }
+ }
+
+
 .login-container-right {
    visibility: hidden;
    background-image: url('./classroom.jpg');
@@ -38,7 +55,8 @@
 
 .login-form > span {
    margin-bottom: 5px;
-   font-size: 1.1em;
+   font-size: 1em;
+   font-weight: 300;
    color: #7b7b7b;
 }
 
@@ -48,7 +66,9 @@
    border: 1px solid #cccccc;
    border-radius: 2px;
    font-size: 1.25em;
+   font-weight: 300;
    color: #5a5a5a;
+   box-sizing: border-box;
 }
 
 .login-form > button {
