@@ -2,9 +2,9 @@
 import axios from 'axios';
 // ======= INITIAL STATE ==========
 const initialState = {
-        user:{}
-      , grades:{}
-      , navigation: false  //CONTROLS IF NAVIGATION IS DISPLAYED
+        user:{}            // CONTAINS CURRENT USERS INFORMATION
+      , grades:[]          // CONTAINS ALL ASSIGNMENTS AND GRADES FOR SPECIFIED STUDENT/USER
+      , navigation: false  // CONTROLS IF NAVIGATION IS DISPLAYED
 }
 // ======= ACTION TYPES ===========
 const GET_USER = "GET_USER";
@@ -37,7 +37,7 @@ export function getGrades(){
 
 export function showNavigation(){
     return {
-        type: NAVIGATION
+          type: NAVIGATION
         , payload: true
     }
 }
