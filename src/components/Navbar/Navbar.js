@@ -73,10 +73,31 @@ class Navbar extends Component {
                             </li>
                             : ''}
 
+                            {/*SHOW FOR STUDENTS*/}
+                            {accountType === "Student" ? 
+                            <li onClick={this.handleMobileCollapse}>
+                                <Link to='/dashboard'>Dashboard</Link>
+                            </li>
+                            : ''}
+
                             {/*SHOW FOR ADMINISTATORS, TEACHERS, STUDENTS*/}
                             {accountType !== "Parent" ? 
                             <li onClick={this.handleMobileCollapse}>
                                 <Link to='/courses'>Courses</Link>
+                            </li>
+                            : ''}
+
+                            {/*SHOW FOR TEACHER*/}
+                            {accountType === "Teacher" ? 
+                            <li onClick={this.handleMobileCollapse}>
+                                <Link to='/assignments'>Assignments</Link>
+                            </li>
+                            : ''}
+
+                            {/*SHOW FOR TEACHERS, STUDENTS, PARENTS*/}
+                            {accountType !== "Administrator" ? 
+                            <li onClick={this.handleMobileCollapse}>
+                                <Link to='/calendar'>Calendar</Link>
                             </li>
                             : ''}
 
@@ -87,6 +108,10 @@ class Navbar extends Component {
                             </li>
                             : ''}
 
+                            {/*SHOW FOR ALL USERS*/}
+                            <li onClick={this.handleMobileCollapse}>
+                                <Link to='/account'>My Account</Link>
+                            </li>
 
                             {/*SHOW FOR ALL USERS*/}
                             <li onClick={this.handleMobileCollapse}>
@@ -99,9 +124,6 @@ class Navbar extends Component {
 
 
                     </div>
-
-{/*============TEACHER NAVIGATION============*/}
-                {accountType === 'Teacher' ? <div>Teacher</div> : ''}
 
 {/*============STUDENT NAVIGATION============*/}
                 {/* {accountType === 'Student' ? 
@@ -130,8 +152,6 @@ class Navbar extends Component {
                 </div> 
                 : ''}
                         */}
-
-{/*============PARENT NAVIGATION============*/}
 
 
             </nav>
