@@ -9,10 +9,17 @@ import Calendar from './Images/lnr-calendar-full.svg';
 import Inbox from './Images/lnr-envelope.svg';
 
 class Navbar extends Component {
+    
     async componentWillMount(){
         await this.props.getUser();
         console.log("getUser: Navbar",this.props.user)
     }
+
+    handleMobileCollapse() {
+		const checkbox = document.getElementById('menu-btn')
+		checkbox.checked = false;
+	}
+
     render() {
 
         let accountType = this.props.user.account_type_name;
@@ -34,28 +41,37 @@ class Navbar extends Component {
             <nav>
 {/*============ADMINISTRATOR NAVIGATION============*/}
                 {accountType === 'Administrator' ?
-                    <div className="navbar">
-                        <Link to="/home" style={homeStyle} type="home">H</Link>
-                        <Links type="account">
-                            <img src={this.props.user.photo} style={{borderRadius:"50%", width:"40px"}} alt=""/>
-                            Account
-                        </Links>
-                        <Links type="dashboard">
-                            <img src={Dash} style={{width:"30px", marginBottom:"3px"}} alt=""/>
-                            Dashboard
-                        </Links>
-                        <Links type="courses">
-                            <img src={Course} style={{width:"30px", marginBottom:"3px"}} alt=""/>
-                            Courses
-                        </Links>
-                        <Links type="calendar">
-                            <img src={Calendar} style={{width:"30px", marginBottom:"3px"}} alt=""/>
-                            Calendar
-                        </Links>
-                        <Links type="inbox">
-                            <img src={Inbox} style={{width:"30px", marginBottom:"3px"}} alt=""/>
-                            Inbox
-                        </Links>
+                    <div className="nav">
+                        <Link to="/home" className="logo-styling" type="home">H</Link>
+                        <input className="menu-btn" type="checkbox" id="menu-btn" />
+						<label className="menu-icon" htmlFor="menu-btn"><span className="navicon"></span></label>
+                        <ul className="menu">
+                            <li onClick={this.handleMobileCollapse}>
+                                <Link to='/dashboard'>Dashboard</Link>
+                            </li>
+                            <li onClick={this.handleMobileCollapse}>
+                                <Link to='/teachers'>Teachers</Link>
+                            </li>
+                            <li onClick={this.handleMobileCollapse}>
+                                <Link to='/students'>Students</Link>
+                            </li>
+                            <li onClick={this.handleMobileCollapse}>
+                                <Link to='/parents'>Parents</Link>
+                            </li>
+                            <li onClick={this.handleMobileCollapse}>
+                                <Link to='/classes'>Classes</Link>
+                            </li>
+                            <li onClick={this.handleMobileCollapse}>
+                                <Link to='/metrics'>Metrics</Link>
+                            </li>
+                            <li onClick={this.handleMobileCollapse}>
+                                <a href={process.env.REACT_APP_LOGOUT}>Logout</a>
+                            </li>
+                        </ul>
+
+
+
+
                     </div>
                 : ''}
 
