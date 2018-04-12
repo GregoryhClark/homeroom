@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css'; 
 import routes from './routes/routes.js';
 import Navbar from './components/Navbar/Navbar'
-import {connect} from 'react-redux';
 
 export default class App extends Component {
   render() {
