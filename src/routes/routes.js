@@ -10,7 +10,7 @@ import Dashboard from '../views/Dashboard/Dashboard';
 import Courses from '../views/Courses/Courses';
 import Calendar from '../views/Calendar/Calendar';
 import Inbox from '../views/Inbox/Inbox';
-import Chart from '../components/Chart/Chart';
+
 
 // =========== ROUTES ===============
 export default (
@@ -22,7 +22,6 @@ export default (
             <Route path='/courses' component={Courses}/>
             <Route path='/calendar' component={Calendar}/>
             <Route path='/inbox' component={Inbox}/>
-            <Route path='/chart' component={Chart}/>
         </Switch>
 
 )
