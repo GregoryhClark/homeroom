@@ -14,6 +14,9 @@ class Navbar extends Component {
         console.log("getUser: Navbar",this.props.user)
     }
     render() {
+
+        let accountType = this.props.user.account_type_name;
+
         const homeStyle = {
               backgroundColor:"#383838"
             , borderRadius:"0px 5px 5px 0px"
@@ -26,30 +29,71 @@ class Navbar extends Component {
             , alignItems:"center"
             , display:"flex"
             , textDecoration:"none"}
+
         return (
-            <div className="navbar">
-                <Link to="/home" style={homeStyle} type="home">H</Link>
-                <Links type="account">
-                    <img src={this.props.user.photo} style={{borderRadius:"50%", width:"40px"}} alt=""/>
-                    Account
-                </Links>
-                <Links type="dashboard">
-                    <img src={Dash} style={{width:"30px", marginBottom:"3px"}} alt=""/>
-                    Dashboard
-                </Links>
-                <Links type="courses">
-                    <img src={Course} style={{width:"30px", marginBottom:"3px"}} alt=""/>
-                    Courses
-                </Links>
-                <Links type="calendar">
-                    <img src={Calendar} style={{width:"30px", marginBottom:"3px"}} alt=""/>
-                    Calendar
-                </Links>
-                <Links type="inbox">
-                    <img src={Inbox} style={{width:"30px", marginBottom:"3px"}} alt=""/>
-                    Inbox
-                </Links>
-            </div> 
+            <nav>
+{/*============ADMINISTRATOR NAVIGATION============*/}
+                {accountType === 'Administrator' ?
+                    <div className="navbar">
+                        <Link to="/home" style={homeStyle} type="home">H</Link>
+                        <Links type="account">
+                            <img src={this.props.user.photo} style={{borderRadius:"50%", width:"40px"}} alt=""/>
+                            Account
+                        </Links>
+                        <Links type="dashboard">
+                            <img src={Dash} style={{width:"30px", marginBottom:"3px"}} alt=""/>
+                            Dashboard
+                        </Links>
+                        <Links type="courses">
+                            <img src={Course} style={{width:"30px", marginBottom:"3px"}} alt=""/>
+                            Courses
+                        </Links>
+                        <Links type="calendar">
+                            <img src={Calendar} style={{width:"30px", marginBottom:"3px"}} alt=""/>
+                            Calendar
+                        </Links>
+                        <Links type="inbox">
+                            <img src={Inbox} style={{width:"30px", marginBottom:"3px"}} alt=""/>
+                            Inbox
+                        </Links>
+                    </div>
+                : ''}
+
+{/*============TEACHER NAVIGATION============*/}
+                {accountType === 'Teacher' ? <div>Teacher</div> : ''}
+
+{/*============STUDENT NAVIGATION============*/}
+                {accountType === 'Student' ? 
+                <div className="navbar">
+                    <Link to="/home" style={homeStyle} type="home">H</Link>
+                    <Links type="account">
+                        <img src={this.props.user.photo} style={{borderRadius:"50%", width:"40px"}} alt=""/>
+                        Account
+                    </Links>
+                    <Links type="dashboard">
+                        <img src={Dash} style={{width:"30px", marginBottom:"3px"}} alt=""/>
+                        Dashboard
+                    </Links>
+                    <Links type="courses">
+                        <img src={Course} style={{width:"30px", marginBottom:"3px"}} alt=""/>
+                        Courses
+                    </Links>
+                    <Links type="calendar">
+                        <img src={Calendar} style={{width:"30px", marginBottom:"3px"}} alt=""/>
+                        Calendar
+                    </Links>
+                    <Links type="inbox">
+                        <img src={Inbox} style={{width:"30px", marginBottom:"3px"}} alt=""/>
+                        Inbox
+                    </Links>
+                </div> 
+                : ''}
+
+{/*============PARENT NAVIGATION============*/}
+                {accountType === 'Parent' ? <div>Parent</div> : ''}
+
+
+            </nav>
         )
     }
 }
