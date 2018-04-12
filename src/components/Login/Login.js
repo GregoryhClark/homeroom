@@ -22,6 +22,9 @@ export default class Login extends React.Component {
       let {username, password} = this.state;
       let flag = true;
 
+      //SET status ON STATE TO FALSE
+      this.setState({status: false})
+
       //CHECK IF USERNAME FIELD IS BLANK
       if(username === '') {
          const usernameField = document.getElementById("login-username");
