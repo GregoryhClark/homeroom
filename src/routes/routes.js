@@ -11,6 +11,7 @@ import Courses from '../views/Courses/Courses';
 import Calendar from '../views/Calendar/Calendar';
 import Inbox from '../views/Inbox/Inbox';
 
+
 // =========== ROUTES ===============
 export default (
         <Switch>
