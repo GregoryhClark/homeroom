@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import chart from 'chart.js'
-import { Line } from 'react-chartjs-2';
+import { Line , Bar} from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import { getUser, getGrades } from '../../redux/user';
 
@@ -16,6 +16,7 @@ class Chart extends Component {
             selectedCourseName:'*name of course*'
 
         }
+        this.selectCourse = this.selectCourse.bind(this)
     }
 
     async componentWillMount() {
@@ -28,13 +29,19 @@ class Chart extends Component {
 
     //select * from student_assignments where student_id = 2 and class_id = 3 order by due_date
 
-
+    selectCourse(courseNumber){
+        console.log(typeof courseNumber)
+        this.setState({
+            selectedCourseID:+courseNumber
+        })
+        console.log(this.state.selectedCourseID)
+    }
 
     render() {
 
         // console.log("getGrades: Chartjs",this.props.grades[0])
 
-        let assignmentList = (this.props.grades.length > 1) ? this.props.grades.map(obj => {
+        let assignmentList = (this.props.grades.length > 0) ? this.props.grades.map(obj => {
             if (obj.class_id === this.state.selectedCourseID){
                 return obj.name
             }
@@ -42,7 +49,7 @@ class Chart extends Component {
         }).filter(value => value)
         : null;
 
-        let studentScores = (this.props.grades.length > 1) ? 
+        let studentScores = (this.props.grades.length > 0) ? 
         
         this.props.grades.map(obj => {
             
@@ -87,7 +94,7 @@ class Chart extends Component {
             <div>
                 {/* <h1>{`Chart ${this.props.grades}`}</h1>  */}
                 <div className="test_chart_wrapper">
-                    <Line className="test_chart"
+                    <Bar className="test_chart"
                         data={chartData}
                         options={{
                             title: {
@@ -103,7 +110,10 @@ class Chart extends Component {
                     />
                 </div>
                 <div className="coursesButtonsWrapper">
-                        {courseButtons}
+                        {/* {courseButtons} */}
+                        <button className="course_btn" value = {1} onClick={(e)=> this.selectCourse(e.target.value)}>English 1</button>
+                        <button className="course_btn" value = {3} onClick={(e)=> this.selectCourse(e.target.value)}>Math 1</button>
+                        <button className="course_btn">Math 2</button>
                 </div>
             </div>
         )
