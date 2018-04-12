@@ -39,47 +39,72 @@ class Navbar extends Component {
 
         return (
             <nav>
-{/*============ADMINISTRATOR NAVIGATION============*/}
-                {accountType === 'Administrator' ?
+
+{/*============MOBILE NAVIGATION============*/}
                     <div className="nav">
                         <Link to="/home" className="logo-styling" type="home">H</Link>
                         <input className="menu-btn" type="checkbox" id="menu-btn" />
 						<label className="menu-icon" htmlFor="menu-btn"><span className="navicon"></span></label>
                         <ul className="menu">
+
+                            {/*SHOW FOR ALL USERS*/}
                             <li onClick={this.handleMobileCollapse}>
-                                <Link to='/dashboard'>Dashboard</Link>
+                                <Link to='/home'>Home</Link>
                             </li>
+
+                            {/*SHOW FOR ADMINISTATORS*/}
+                            {accountType === "Administrator" ? 
                             <li onClick={this.handleMobileCollapse}>
                                 <Link to='/teachers'>Teachers</Link>
                             </li>
+                            : ''}
+
+                            {/*SHOW FOR ADMINISTATORS, TEACHERS, PARENTS*/}
+                            {accountType !== "Student" ? 
                             <li onClick={this.handleMobileCollapse}>
                                 <Link to='/students'>Students</Link>
                             </li>
+                            : ''}
+
+                            {/*SHOW FOR ADMINISTATORS*/}
+                            {accountType === "Administrator" ? 
                             <li onClick={this.handleMobileCollapse}>
                                 <Link to='/parents'>Parents</Link>
                             </li>
+                            : ''}
+
+                            {/*SHOW FOR ADMINISTATORS, TEACHERS, STUDENTS*/}
+                            {accountType !== "Parent" ? 
                             <li onClick={this.handleMobileCollapse}>
-                                <Link to='/classes'>Classes</Link>
+                                <Link to='/courses'>Courses</Link>
                             </li>
+                            : ''}
+
+                            {/*SHOW FOR ADMINISTATORS*/}
+                            {accountType === "Administrator" ? 
                             <li onClick={this.handleMobileCollapse}>
                                 <Link to='/metrics'>Metrics</Link>
                             </li>
+                            : ''}
+
+
+                            {/*SHOW FOR ALL USERS*/}
                             <li onClick={this.handleMobileCollapse}>
                                 <a href={process.env.REACT_APP_LOGOUT}>Logout</a>
                             </li>
+
                         </ul>
 
 
 
 
                     </div>
-                : ''}
 
 {/*============TEACHER NAVIGATION============*/}
                 {accountType === 'Teacher' ? <div>Teacher</div> : ''}
 
 {/*============STUDENT NAVIGATION============*/}
-                {accountType === 'Student' ? 
+                {/* {accountType === 'Student' ? 
                 <div className="navbar">
                     <Link to="/home" style={homeStyle} type="home">H</Link>
                     <Links type="account">
@@ -104,9 +129,9 @@ class Navbar extends Component {
                     </Links>
                 </div> 
                 : ''}
+                        */}
 
 {/*============PARENT NAVIGATION============*/}
-                {accountType === 'Parent' ? <div>Parent</div> : ''}
 
 
             </nav>
