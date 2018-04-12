@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import chart from 'chart.js'
-import { Line , Bar} from 'react-chartjs-2';
+import {Bar} from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import { getUser, getGrades } from '../../redux/user';
 
@@ -123,7 +122,7 @@ class Chart extends Component {
 function mapStateToProps(state) {
     // console.log("Chart CURRENT STATE",state)
     return {
-        user: state.user
+          user: state.user
         , grades: state.grades
     }
 }
