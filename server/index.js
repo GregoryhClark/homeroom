@@ -8,6 +8,8 @@ const express = require('express')
    , LocalStrategy = require('passport-local').Strategy
    , bcrypt = require('bcryptjs')
    , cors = require('cors')
+// =============== CONTROLLERS ================
+   , students_ctrl = require('./controllers/students_ctrl')
    
 // ================ INVOKE EXPRESS ============= 
 const app = express();
@@ -94,3 +96,5 @@ app.get('/auth/me', (req, res) => {
 })
 
 // ================== ENDPOINTS ================
+const {getStudentGrades} = students_ctrl
+app.get('/getStudentGrades', getStudentGrades);
