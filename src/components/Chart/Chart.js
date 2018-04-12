@@ -26,12 +26,7 @@ class Chart extends Component {
                 <Line 
                     data={this.state.testData}
                 />
-
             </div>
-
-            
-
-
         </div>
         )
     }
