@@ -33,7 +33,6 @@ class Navbar extends Component {
     render() {
         let accountType = this.props.user.account_type_name;
         let {secondaryNav} = this.state;
-        console.log(secondaryNav, 'secondayNav')
 
         return (
             <nav>
