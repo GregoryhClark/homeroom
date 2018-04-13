@@ -268,30 +268,6 @@ class Navbar extends Component {
                     </div>
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    
 {/*============STUDENT NAVIGATION============*/}
                 {/* {accountType === 'Student' ? 
                 <div className="navbar">
@@ -319,7 +295,6 @@ class Navbar extends Component {
                 </div> 
                 : ''}
                         */}
-
 
             </nav>
         )
