@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import { getUser, getGrades } from '../../redux/user';
+import _ from 'underscore'
 
 //CSS, ASSETS
 import './Chart.css'
@@ -19,7 +20,12 @@ class Chart extends Component {
 
     async componentWillMount() {
         await this.props.getUser();
-        await this.props.getGrades();
+        await this.props.getGrades().then((res)=>{
+            this.setState({
+                selectedCourse:res.value[0].course_id,
+                selectedCourseName:res.value[0].course
+            })
+        });
 
     }
     selectCourse(array) {
@@ -32,6 +38,8 @@ class Chart extends Component {
     }
 
     render() {
+
+        
      
         let studentScores = this.props.grades.map(obj => {
 
@@ -39,16 +47,35 @@ class Chart extends Component {
                 return obj.points_earned
             }
         }).filter(value => value)
+
+        let averageScores = this.props.grades.map(obj => {
+
+            if (obj.course_id === this.state.selectedCourseID){
+                return obj.points_earned
+            }
+        }).filter(value => value)
+
+
+
+        var filteredArray = _.uniq(this.props.grades, "course_id")
+        
+        var courseButtons = filteredArray.map((element, index) => {
+
+            return <button className="course_btn" key = {index} value = {element.course_id}onClick={(e) =>{this.selectCourse([element.course_id, element.course])}}>{element.course}</button>
+            
+        })
         
 
-        var courseButtons = this.props.grades.map((element) => {
-            return <button className="course_btn" onClick={(e) =>{this.selectCourse([element.course_id, element.course])}}>{element.course}</button>
-        })
+
+
+
         let assignmentList = this.props.grades.map(obj => {
             if (obj.course_id === this.state.selectedCourseID){
                 return obj.name
             }
         }).filter(value => value)
+
+
 
 
         let chartData = {
@@ -63,7 +90,7 @@ class Chart extends Component {
                 {
                     label: 'Average Score',
                     //ex. data:this.props.selectedClass.avgStudentScores
-                    data: [75, 66, 80],// array average score of each student assignment from that same assignment
+                    data: averageScores,// array average score of each student assignment from that same assignment
                     backgroundColor: '#ff6384'
                 }
             ]
@@ -91,7 +118,7 @@ class Chart extends Component {
                         </div>
 
                         <div className="coursesButtonsWrapper">
-                            {courseButtons}
+                            {this.props.grades.length > 0? courseButtons :null}
                         </div>
                     </div>
 
