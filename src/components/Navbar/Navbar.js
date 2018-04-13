@@ -123,7 +123,8 @@ class Navbar extends Component {
                             {/*SHOW FOR ADMINISTATORS*/}
                             {accountType === "Administrator" ? 
                             <li onClick={this.handleMobileCollapse}>
-                                <Link to='/metrics'>Metrics</Link>
+                                <Link to='/metrics'
+                                onClick={() => this.setState({secondaryNav: 'metrics'})}>Metrics</Link>
                             </li>
                             : ''}
 
@@ -141,73 +142,71 @@ class Navbar extends Component {
                     </header>
 
                     <div className="secondary-menu">
+        {/*======== GLOBAL SECONDARY NAVIGATION OPTIONS ========*/}
+                        {/*SHOW FOR ALL USERS*/}
+                        { secondaryNav === 'home' && 
+                        <ul><li>HOME</li></ul> }
 
-                        {secondaryNav === 'home'
-                        && 
-                        <ul>
-                            <li>HOME</li>
-                        </ul>}
-
-                        {secondaryNav === 'teachers'
-                        && 
-                        <ul>
-                            <li>TEACHERS</li>
-                            <li><Link to='/teachers/create-teacher'>Create Teacher</Link></li>
-                        </ul>}
-
-                        {secondaryNav === 'students'
-                        && 
-                        <ul>
-                            <li>STUDENTS</li>
-                            <li><Link to='/students/create-student'>Create Student</Link></li>
-                        </ul>}
-
-                        {secondaryNav === 'parents'
-                        && 
-                        <ul>
-                            <li>PARENTS</li>
-                            <li><Link to='/parents/create-parent'>Create Parent</Link></li>
-                        </ul>}
-
-                        {secondaryNav === 'courses'
-                        && 
-                        <ul>
-                            <li>COURSES</li>
-                            <li><Link to='/courses/create-course'>Create Course</Link></li>
-                        </ul>}
-
+                        {/*SHOW FOR ALL USERS*/}
                         {secondaryNav === 'myAccount'
                         && 
                         <ul>
                             <li>MY ACCOUNT</li>
+                            <li><Link to='/account'>Account Settings</Link></li>
                         </ul>}
 
 
-
-
-                        {'view' === 'dashboard'
-                        && 
+        {/*======== ADMINISTRATOR SECONDARY NAVIGATION OPTIONS ========*/}
+                        {/*TEACHRERS VIEW FOR ADMINISTRATORS*/}
+                        {(secondaryNav === 'teachers' && accountType === "Administrator") && 
                         <ul>
-                            <li>DASHBOARD</li>
+                            <li>TEACHERS</li>
+                            <li><Link to='/teachers'>View Teachers</Link></li>
+                            <li><Link to='/teachers/create-teacher'>Create Teacher</Link></li>
+                        </ul> }
+
+                        {/*STUDENTS VIEW FOR ADMINISTRATORS*/}
+                        {(secondaryNav === 'students' && accountType === "Administrator") &&
+                        <ul>
+                            <li>STUDENTS</li>
+                            <li><Link to='/students'>View Students</Link></li>
+                            <li><Link to='/students/create-student'>Create Student</Link></li>
+                        </ul> }
+
+                        {/*PARENTS VIEW FOR ADMINISTRATORS*/}
+                        {(secondaryNav === 'parents' && accountType === "Administrator") && 
+                        <ul>
+                            <li>PARENTS</li>
+                            <li><Link to='/parents'>View Parents</Link></li>
+                            <li><Link to='/parents/create-parent'>Create Parent</Link></li>
+                        </ul> }
+
+                        {/*COURSES VIEW FOR ADMINISTRATORS*/}
+                        {(secondaryNav === 'courses' && accountType === "Administrator") &&
+                        <ul>
+                            <li>COURSES</li>
+                            <li><Link to='/courses'>View Courses</Link></li>
+                            <li><Link to='/courses/create-course'>Create Course</Link></li>
                         </ul>}
 
-                        {'view' === 'clients'
-                        && 
+                        {/*METRICS VIEW FOR ADMINISTRATORS*/}
+                        {(secondaryNav === 'metrics' && accountType === "Administrator") &&
                         <ul>
-                            <li>CLIENTS</li>
-                            <li><Link to='/clients'>Client List</Link></li>
-                            <li><Link to='/clients/add-new-client'>Add New Client</Link></li>
+                            <li>METRICS</li>
+                            <li><Link to='/courses'>View Metrics</Link></li>
                         </ul>}
 
-                        {'view' === 'agency'
-                        && 
+
+        {/*======== TEACHER SECONDARY NAVIGATION OPTIONS ========*/}
+                        {/*STUDENTS VIEW FOR TEACHERS*/}
+                        {(secondaryNav === 'students' && accountType === "Teacher") &&
                         <ul>
-                            <li>AGENCY</li>
-                            <li><Link to='/agency/products'>Products</Link></li>
-                            <li><Link to='/agency/tasks'>Tasks</Link></li>
-                            <li><Link to='/agency/roadmaps'>Roadmaps</Link></li>
-                            <li><Link to='/agency/users'>Users</Link></li>
-                        </ul>}
+                            <li>STUDENTS</li>
+                            <li><Link to='/students'>View Students</Link></li>
+                        </ul> }
+
+
+
                     </div>
                 </div>
 
