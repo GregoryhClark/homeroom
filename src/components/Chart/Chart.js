@@ -42,53 +42,31 @@ class Chart extends Component {
 
         let assignmentList = (this.props.grades.length > 0) ? this.props.grades.map(obj => {
             if (obj.class_id === this.state.selectedCourseID){
-                return obj.name
-            }
-            
-        }).filter(value => value)
-        : null;
+                return obj.name}
+            }).filter(value => value): null;
 
-        let studentScores = (this.props.grades.length > 0) ? 
-        
-        this.props.grades.map(obj => {
-            
+        let studentScores = (this.props.grades.length > 0) ? this.props.grades.map(obj => {
             if (obj.class_id === this.state.selectedCourseID){
-                return obj.points_earned
-            }
-        }).filter(value => value)
-            : null;
-
-
-
-    //     let selectedCourseNameID = (this.props.grades.length > 1) ? 
-    //         this.props.grades.name 
-            
-    // : null;
-    
+                return obj.points_earned}
+            }).filter(value => value): null;
 
         let chartData = {
-            //ex labels: this.props.selectedClass.completedAssignments,
-            labels: assignmentList,//This will need to be an array of a students assignment names from a specific class
+            labels: assignmentList,
             datasets: [
                 {
                     label: 'Student Score',
-                    //ex. data:this.props.selectedClass.studentScores
-                    data: studentScores//this will need to be an array of assignment scores of a student's specific class
+                    data: studentScores
                 },
                 {
                     label: 'Average Score',
-                    //ex. data:this.props.selectedClass.avgStudentScores
-                    data: [75, 66, 80],// array average score of each student assignment from that same assignment
+
+                    data: [75, 66, 80],
                     backgroundColor: '#ff6384'
                 }
 
             ]
         }
-        console.log(studentScores)
-        console.log(assignmentList)
-
         let courseButtons = <button className="course_btn"></button>
-
         return (
             <div>
                 {/* <h1>{`Chart ${this.props.grades}`}</h1>  */}
