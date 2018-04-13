@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Bar} from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import { getUser, getGrades } from '../../redux/user';
 
@@ -11,8 +11,8 @@ class Chart extends Component {
     constructor() {
         super()
         this.state = {
-            selectedCourseID:3,
-            selectedCourseName:'*name of course*'
+            selectedCourseID: 3,
+            selectedCourseName: '*name of course*'
 
         }
         this.selectCourse = this.selectCourse.bind(this)
@@ -28,43 +28,52 @@ class Chart extends Component {
 
     //select * from student_assignments where student_id = 2 and course_id = 3 order by due_date
 
-    selectCourse(courseNumber){
+    selectCourse(courseNumber) {
         console.log(typeof courseNumber)
         this.setState({
-            selectedCourseID:+courseNumber
+            selectedCourseID: +courseNumber
         })
         console.log(this.state.selectedCourseID)
     }
 
+
     render() {
 
+
+
         // console.log("getGrades: Chartjs",this.props.grades[0])
+        // var courseArray =  this.props.grades.map((value) => {
+        //     return value.course
 
-        let assignmentList = (this.props.grades.length > 0) ? this.props.grades.map(obj => {
-            if (obj.course_id === this.state.selectedCourseID){
-                return obj.name
-            }
-            
-        }).filter(value => value)
-        : null;
+        // })
 
-        let studentScores = (this.props.grades.length > 0) ? 
-        
-        this.props.grades.map(obj => {
-            
+        let studentScores = this.props.grades.map(obj => {
+
             if (obj.course_id === this.state.selectedCourseID){
                 return obj.points_earned
             }
         }).filter(value => value)
-            : null;
+        
+
+        var courseButtons = this.props.grades.map((element) => {
+            return <button className="course_btn" value = {[element.course_id, element.course]}>{element.course}</button>
+        })
+        console.log(courseButtons)
 
 
 
-    //     let selectedCourseNameID = (this.props.grades.length > 1) ? 
-    //         this.props.grades.name 
-            
-    // : null;
-    
+        let assignmentList = this.props.grades.map(obj => {
+            if (obj.course_id === this.state.selectedCourseID){
+                return obj.name
+            }
+
+        }).filter(value => value)
+
+        console.log(assignmentList)
+       
+
+
+
 
         let chartData = {
             //ex labels: this.props.selectedClass.completedAssignments,
@@ -84,36 +93,42 @@ class Chart extends Component {
 
             ]
         }
-        console.log(studentScores)
-        console.log(assignmentList)
+        // console.log(studentScores)
+        // console.log(assignmentList)
 
-        let courseButtons = <button className="course_btn"></button>
+
 
         return (
             <div>
                 {/* <h1>{`Chart ${this.props.grades}`}</h1>  */}
-                <div className="test_chart_wrapper">
-                    <Bar className="test_chart"
-                        data={chartData}
-                        options={{
-                            title: {
-                                display: true,
-                                text: `Assignment Scores for ${this.state.selectedCourseName}`, //this will need to be the selected class name
-                                fontSize: 30
-                            },
-                            legend: {
-                                display: true,
-                                position: 'right'
-                            }
-                        }}
-                    />
-                </div>
-                <div className="coursesButtonsWrapper">
-                        {/* {courseButtons} */}
-                        <button className="course_btn" value = {1} onClick={(e)=> this.selectCourse(e.target.value)}>English 1</button>
+                {this.props.grades.length > 0 ?
+                    <div>
+                        <div className="test_chart_wrapper">
+                            <Bar className="test_chart"
+                                data={chartData}
+                                options={{
+                                    title: {
+                                        display: true,
+                                        text: `Assignment Scores for ${this.state.selectedCourseName}`, //this will need to be the selected class name
+                                        fontSize: 30
+                                    },
+                                    legend: {
+                                        display: true,
+                                        position: 'right'
+                                    }
+                                }}
+                            />
+                        </div>
+
+                        <div className="coursesButtonsWrapper">
+                            {courseButtons}
+                            {/* <button className="course_btn" value = {1} onClick={(e)=> this.selectCourse(e.target.value)}>English 1</button>
                         <button className="course_btn" value = {3} onClick={(e)=> this.selectCourse(e.target.value)}>Math 1</button>
-                        <button className="course_btn">Math 2</button>
-                </div>
+                        <button className="course_btn">Math 2</button> */}
+                        </div>
+                    </div>
+
+                    : null}
             </div>
         )
     }
@@ -122,8 +137,43 @@ class Chart extends Component {
 function mapStateToProps(state) {
     // console.log("Chart CURRENT STATE",state)
     return {
-          user: state.user
+        user: state.user
         , grades: state.grades
     }
 }
 export default connect(mapStateToProps, { getUser, getGrades })(Chart);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+        // let assignmentList = studentData.map((value) => {
+        //     return value.assignmentName
+        // })
+
+
+        // const studentData = Array.from(this.props.grades, (element, i) => ({
+        //     courseName: element.course,
+        //     assignmentName: element.name,
+        //     courseID: element.course_id,
+        //     score: element.points_earned
+
+        // }));
+        // console.log('studentData is ', studentData)
+
+
+        // let studentScores = studentData.map((value) => {
+        //     return value.score
+        // })
+        // console.log(studentScores)
