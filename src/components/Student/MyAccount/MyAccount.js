@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getUser} from '../../../redux/user';
-import './StudentAccount.css'
+import './MyAccount.css'
 
 class StudentAccount extends Component{
     render(){

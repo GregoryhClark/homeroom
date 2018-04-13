@@ -11,8 +11,8 @@ export default class App extends Component {
     const currentPath = document.location.hash;
     return (
       <div className="app-outer">
-        {currentPath === "#/" ? '' : <Navbar/>}
-          <div className={currentPath === "#/" ? '' : "app-inner"}>
+        {(currentPath === "#/" || currentPath === '#/authorized') ? '' : <Navbar/>}
+          <div className={(currentPath === "#/" || currentPath === '#/authorized') ? '' : "app-inner"}>
             {routes}
           </div>
       </div>

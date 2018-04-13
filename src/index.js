@@ -7,11 +7,15 @@ import {Provider} from 'react-redux';
 import store from './store';
 import unregister from './registerServiceWorker';
 import {HashRouter} from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 ReactDOM.render(
    <HashRouter>
         <Provider store={store}>
-            <App />
+            <MuiThemeProvider>
+                <App />
+                </MuiThemeProvider>
         </Provider>
    </HashRouter>
    , document.getElementById('root'));
