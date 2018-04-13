@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getUser} from '../../redux/user';
+import {getUser} from '../../../redux/user';
 import './StudentAccount.css'
 
 class StudentAccount extends Component{
-    async componentWillMount(){
-        await this.props.getUser();
-        console.log("getUser: Account",this.props.user)
-    }
     render(){
         return(
             <div className="student-account">

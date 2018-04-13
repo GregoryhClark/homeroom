@@ -1,0 +1,14 @@
+/* ADMINS ACCOUNT CONTAINER */
+.admins-account{
+    height:calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    background-color: #FAFAFA;
+    box-sizing: border-box;
+}
+@media(min-width:1024px){
+    .admins-account{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}

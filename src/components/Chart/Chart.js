@@ -79,18 +79,16 @@ class Chart extends Component {
 
 
         let chartData = {
-            //ex labels: this.props.selectedClass.completedAssignments,
-            labels: assignmentList,//This will need to be an array of a students assignment names from a specific class
+            labels: assignmentList,
             datasets: [
                 {
                     label: 'Student Score',
-                    //ex. data:this.props.selectedClass.studentScores
-                    data: studentScores//this will need to be an array of assignment scores of a student's specific class
+                    data: studentScores
                 },
                 {
                     label: 'Average Score',
-                    //ex. data:this.props.selectedClass.avgStudentScores
-                    data: averageScores,// array average score of each student assignment from that same assignment
+
+                    data: [75, 66, 80],
                     backgroundColor: '#ff6384'
                 }
             ]
