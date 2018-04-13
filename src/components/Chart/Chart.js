@@ -6,7 +6,6 @@ import { getUser, getGrades } from '../../redux/user';
 //CSS, ASSETS
 import './Chart.css'
 
-
 class Chart extends Component {
     constructor() {
         super()
@@ -21,32 +20,19 @@ class Chart extends Component {
     async componentWillMount() {
         await this.props.getUser();
         await this.props.getGrades();
-        console.log("getUser: Chartjs", this.props.user)
-        console.log("getGrades: Chartjs", this.props.grades)
 
     }
+    selectCourse(array) {
 
-    //select * from student_assignments where student_id = 2 and course_id = 3 order by due_date
-
-    selectCourse(courseNumber) {
-        console.log(typeof courseNumber)
         this.setState({
-            selectedCourseID: +courseNumber
+            selectedCourseID: +(array[0]),
+            selectedCourseName: array[1]
         })
-        console.log(this.state.selectedCourseID)
+        
     }
-
 
     render() {
-
-
-
-        // console.log("getGrades: Chartjs",this.props.grades[0])
-        // var courseArray =  this.props.grades.map((value) => {
-        //     return value.course
-
-        // })
-
+     
         let studentScores = this.props.grades.map(obj => {
 
             if (obj.course_id === this.state.selectedCourseID){
@@ -56,23 +42,13 @@ class Chart extends Component {
         
 
         var courseButtons = this.props.grades.map((element) => {
-            return <button className="course_btn" value = {[element.course_id, element.course]}>{element.course}</button>
+            return <button className="course_btn" onClick={(e) =>{this.selectCourse([element.course_id, element.course])}}>{element.course}</button>
         })
-        console.log(courseButtons)
-
-
-
         let assignmentList = this.props.grades.map(obj => {
             if (obj.course_id === this.state.selectedCourseID){
                 return obj.name
             }
-
         }).filter(value => value)
-
-        console.log(assignmentList)
-       
-
-
 
 
         let chartData = {
@@ -90,14 +66,8 @@ class Chart extends Component {
                     data: [75, 66, 80],// array average score of each student assignment from that same assignment
                     backgroundColor: '#ff6384'
                 }
-
             ]
         }
-        // console.log(studentScores)
-        // console.log(assignmentList)
-
-
-
         return (
             <div>
                 {/* <h1>{`Chart ${this.props.grades}`}</h1>  */}
@@ -122,9 +92,6 @@ class Chart extends Component {
 
                         <div className="coursesButtonsWrapper">
                             {courseButtons}
-                            {/* <button className="course_btn" value = {1} onClick={(e)=> this.selectCourse(e.target.value)}>English 1</button>
-                        <button className="course_btn" value = {3} onClick={(e)=> this.selectCourse(e.target.value)}>Math 1</button>
-                        <button className="course_btn">Math 2</button> */}
                         </div>
                     </div>
 
@@ -135,45 +102,10 @@ class Chart extends Component {
 }
 
 function mapStateToProps(state) {
-    // console.log("Chart CURRENT STATE",state)
+   
     return {
         user: state.user
         , grades: state.grades
     }
 }
 export default connect(mapStateToProps, { getUser, getGrades })(Chart);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-        // let assignmentList = studentData.map((value) => {
-        //     return value.assignmentName
-        // })
-
-
-        // const studentData = Array.from(this.props.grades, (element, i) => ({
-        //     courseName: element.course,
-        //     assignmentName: element.name,
-        //     courseID: element.course_id,
-        //     score: element.points_earned
-
-        // }));
-        // console.log('studentData is ', studentData)
-
-
-        // let studentScores = studentData.map((value) => {
-        //     return value.score
-        // })
-        // console.log(studentScores)
