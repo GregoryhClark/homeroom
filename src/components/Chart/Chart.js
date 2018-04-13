@@ -26,7 +26,7 @@ class Chart extends Component {
 
     }
 
-    //select * from student_assignments where student_id = 2 and class_id = 3 order by due_date
+    //select * from student_assignments where student_id = 2 and course_id = 3 order by due_date
 
     selectCourse(courseNumber){
         console.log(typeof courseNumber)
@@ -41,7 +41,7 @@ class Chart extends Component {
         // console.log("getGrades: Chartjs",this.props.grades[0])
 
         let assignmentList = (this.props.grades.length > 0) ? this.props.grades.map(obj => {
-            if (obj.class_id === this.state.selectedCourseID){
+            if (obj.course_id === this.state.selectedCourseID){
                 return obj.name
             }
             
@@ -52,7 +52,7 @@ class Chart extends Component {
         
         this.props.grades.map(obj => {
             
-            if (obj.class_id === this.state.selectedCourseID){
+            if (obj.course_id === this.state.selectedCourseID){
                 return obj.points_earned
             }
         }).filter(value => value)
