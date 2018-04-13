@@ -2,7 +2,7 @@
 import React from 'react';
 
 //COMPONENTS
-import Teachers from '../../components/Teachers/Teachers.js';
+import Teachers from '../../components/Administrator/Teachers/Teachers.js';
 
 //COMPONENT
 

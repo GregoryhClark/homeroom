@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getUser} from '../../../redux/user';
-import './ParentAccount.css'
+import './MyAccount.css'
 
-class ParentAccount extends Component{
+class TeachersAccount extends Component{
     render(){
         return(
-            <div className="parent-account">
+            <div className="teacher-account">
                 <Container type="container">
                     <Titles type="titles">{`${this.props.user.first_name} ${this.props.user.last_name}'s Settings`}</Titles>
                     Teacher
@@ -21,7 +21,7 @@ function mapStateToProps(state){
         user: state.user
     }
 }
-export default connect(mapStateToProps, {getUser})(ParentAccount);
+export default connect(mapStateToProps, {getUser})(TeachersAccount);
 
 // =========== LINK ASSIGNMENT =========
 function Container(props){

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {getUser} from '../../redux/user';
-import StudentAccount from '../../components/Account Component/Students Account/StudentAccount';
-import ParentAccount from '../../components/Account Component/Parent Account/ParentAccount'
-import TeachersAccount from '../../components/Account Component/Teachers Account/TeachersAccount';
-import AdminsAccount from '../../components/Account Component/Admins Account/AdminsAccount';
+import StudentAccount from '../../components/Student/MyAccount/MyAccount.js';
+import ParentAccount from '../../components/Parent/MyAccount/MyAccount.js';
+import TeachersAccount from '../../components/Teacher/MyAccount/MyAccount.js';
+import AdminsAccount from '../../components/Administrator/MyAccount/MyAccount.js';
 import './Account.css';
 
 
