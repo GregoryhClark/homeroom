@@ -251,11 +251,19 @@ class Navbar extends Component {
                         </ul>}
                         
 
-{/*======== STUDENT SECONDARY NAVIGATION OPTIONS ========*/}
+{/*======== PARENT SECONDARY NAVIGATION OPTIONS ========*/}
+                        {/*STUDENTS VIEW FOR PARENTS*/}
+                        {(secondaryNav === 'students' && accountType === "Parent") &&
+                        <ul>
+                            <li>STUDENTS</li>
+                            <li><Link to='/students'>View Students</Link></li>
+                        </ul> }
 
-
-
-
+                        {(secondaryNav === 'calendar' && accountType === "Parent") &&
+                        <ul>
+                            <li>CALENDAR</li>
+                            <li><Link to='/calendar'>View Calendar</Link></li>
+                        </ul>}
 
                     </div>
                 </div>

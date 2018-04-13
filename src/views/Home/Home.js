@@ -6,7 +6,18 @@ export default class Home extends Component {
         return (
             <div>
             {/*<Chart/>*/}
-                lol
+                lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol 
+                lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol
+                lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol
+                lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol 
+                lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol
+                lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol
+                lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol 
+                lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol
+                lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol
+                lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol 
+                lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol
+                lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol
                 <br/>
                 lol
                 <br/>
