@@ -18,7 +18,6 @@ class Navbar extends Component {
     
     async componentWillMount(){
         await this.props.getUser();
-        // console.log("getUser: Navbar",this.props.user)
     }
 
     componentDidMount() {
@@ -32,23 +31,9 @@ class Navbar extends Component {
     
 
     render() {
-
         let accountType = this.props.user.account_type_name;
         let {secondaryNav} = this.state;
         console.log(secondaryNav, 'secondayNav')
-
-        const homeStyle = {
-              backgroundColor:"#383838"
-            , borderRadius:"0px 5px 5px 0px"
-            , color:"white"
-            , fontSize:"60px"
-            , textShadow: "0px 4px 4px black"
-            , boxShadow: "4px 0px 4px #7d7d7d"
-            , zIndex:"1"
-            , justifyContent:"center"
-            , alignItems:"center"
-            , display:"flex"
-            , textDecoration:"none"}
 
         return (
             <nav>
@@ -316,17 +301,17 @@ function Links(props){
 }
 // =========== BUTTON STYLES ===========
 const homeStyle = {
-    backgroundColor:"#383838"
-  , borderRadius:"0px 5px 5px 0px"
-  , color:"white"
-  , fontSize:"60px"
-  , textShadow: "0px 4px 4px black"
-  , boxShadow: "4px 0px 4px #7d7d7d"
-  , zIndex:"1"
-  , justifyContent:"center"
-  , alignItems:"center"
-  , display:"flex"
-  , textDecoration:"none"
+      backgroundColor:"#383838"
+    , borderRadius:"0px 5px 5px 0px"
+    , color:"white"
+    , fontSize:"60px"
+    , textShadow: "0px 4px 4px black"
+    , boxShadow: "4px 0px 4px #7d7d7d"
+    , zIndex:"1"
+    , justifyContent:"center"
+    , alignItems:"center"
+    , display:"flex"
+    , textDecoration:"none"
 }
 
 const baseStyle={
