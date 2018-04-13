@@ -89,6 +89,14 @@ class Navbar extends Component {
                             </li>
                             : ''}
 
+                            {/*SHOW FOR STUDENTS*/}
+                            {accountType === "Student" ? 
+                            <li onClick={this.handleMobileCollapse}>
+                                <Link to='/dashboard'
+                                onClick={() => this.setState({secondaryNav: 'dashboard'})}>Dashboard</Link>
+                            </li>
+                            : ''}
+
                             {/*SHOW FOR ADMINISTATORS, TEACHERS, STUDENTS*/}
                             {accountType !== "Parent" ? 
                             <li onClick={this.handleMobileCollapse}>
@@ -97,26 +105,19 @@ class Navbar extends Component {
                             </li>
                             : ''}
 
-                            {/*SHOW FOR STUDENTS*/}
-                            {accountType === "Student" ? 
-                            <li onClick={this.handleMobileCollapse}>
-                                <Link to='/dashboard'>Dashboard</Link>
-                            </li>
-                            : ''}
-
-
-
                             {/*SHOW FOR TEACHER*/}
                             {accountType === "Teacher" ? 
                             <li onClick={this.handleMobileCollapse}>
-                                <Link to='/assignments'>Assignments</Link>
+                                <Link to='/assignments'
+                                onClick={() => this.setState({secondaryNav: 'assignments'})}>Assignments</Link>
                             </li>
                             : ''}
 
                             {/*SHOW FOR TEACHERS, STUDENTS, PARENTS*/}
                             {accountType !== "Administrator" ? 
                             <li onClick={this.handleMobileCollapse}>
-                                <Link to='/calendar'>Calendar</Link>
+                                <Link to='/calendar'
+                                onClick={() => this.setState({secondaryNav: 'calendar'})}>Calendar</Link>
                             </li>
                             : ''}
 
@@ -142,7 +143,7 @@ class Navbar extends Component {
                     </header>
 
                     <div className="secondary-menu">
-        {/*======== GLOBAL SECONDARY NAVIGATION OPTIONS ========*/}
+{/*======== GLOBAL SECONDARY NAVIGATION OPTIONS ========*/}
                         {/*SHOW FOR ALL USERS*/}
                         { secondaryNav === 'home' && 
                         <ul><li>HOME</li></ul> }
@@ -156,7 +157,7 @@ class Navbar extends Component {
                         </ul>}
 
 
-        {/*======== ADMINISTRATOR SECONDARY NAVIGATION OPTIONS ========*/}
+{/*======== ADMINISTRATOR SECONDARY NAVIGATION OPTIONS ========*/}
                         {/*TEACHRERS VIEW FOR ADMINISTRATORS*/}
                         {(secondaryNav === 'teachers' && accountType === "Administrator") && 
                         <ul>
@@ -197,13 +198,62 @@ class Navbar extends Component {
                         </ul>}
 
 
-        {/*======== TEACHER SECONDARY NAVIGATION OPTIONS ========*/}
+{/*======== TEACHER SECONDARY NAVIGATION OPTIONS ========*/}
                         {/*STUDENTS VIEW FOR TEACHERS*/}
                         {(secondaryNav === 'students' && accountType === "Teacher") &&
                         <ul>
                             <li>STUDENTS</li>
                             <li><Link to='/students'>View Students</Link></li>
                         </ul> }
+
+                        {/*COURSES VIEW FOR TEACHERS*/}
+                        {(secondaryNav === 'courses' && accountType === "Teacher") &&
+                        <ul>
+                            <li>COURSES</li>
+                            <li><Link to='/courses'>View Courses</Link></li>
+                            <li><Link to='/courses/grades'>Grades</Link></li>
+                        </ul>}
+
+                        {/*COURSES VIEW FOR TEACHERS*/}
+                        {(secondaryNav === 'assignments' && accountType === "Teacher") &&
+                        <ul>
+                            <li>ASSIGNMENTS</li>
+                            <li><Link to='/assignments'>View All</Link></li>
+                            <li><Link to='/assignments/assign-assignment'>Assign</Link></li>
+                            <li><Link to='/assignments/create-assignment'>Create</Link></li>
+                        </ul>}
+
+                        {/*CALENDAR VIEW FOR TEACHERS*/}
+                        {(secondaryNav === 'calendar' && accountType === "Teacher") &&
+                        <ul>
+                            <li>CALENDAR</li>
+                            <li><Link to='/calendar'>View Calendar</Link></li>
+                        </ul>}
+
+                        
+{/*======== STUDENT SECONDARY NAVIGATION OPTIONS ========*/}
+                        {/*COURSES VIEW FOR STUDENTS*/}
+                        {(secondaryNav === 'dashboard' && accountType === "Student") &&
+                        <ul><li>DASHBOARD</li></ul> }
+
+                        {/*COURSES VIEW FOR STUDENTS*/}
+                        {(secondaryNav === 'courses' && accountType === "Student") &&
+                        <ul>
+                            <li>COURSES</li>
+                            <li><Link to='/courses'>View Courses</Link></li>
+                        </ul>}
+
+                        {/*CALENDAR VIEW FOR STUDENTS*/}
+                        {(secondaryNav === 'calendar' && accountType === "Student") &&
+                        <ul>
+                            <li>CALENDAR</li>
+                            <li><Link to='/calendar'>View Calendar</Link></li>
+                        </ul>}
+                        
+
+{/*======== STUDENT SECONDARY NAVIGATION OPTIONS ========*/}
+
+
 
 
 
