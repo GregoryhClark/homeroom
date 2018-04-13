@@ -9,20 +9,33 @@ import Calendar from './Images/lnr-calendar-full.svg';
 import Inbox from './Images/lnr-envelope.svg';
 
 class Navbar extends Component {
+    constructor() {
+        super()
+        this.state = {
+            secondaryNav: ''
+        }
+    }
     
     async componentWillMount(){
         await this.props.getUser();
         // console.log("getUser: Navbar",this.props.user)
     }
 
+    componentDidMount() {
+        this.setState({secondaryNav: 'home'})
+    }
+
     handleMobileCollapse() {
 		const checkbox = document.getElementById('menu-btn')
 		checkbox.checked = false;
-	}
+    }
+    
 
     render() {
 
         let accountType = this.props.user.account_type_name;
+        let {secondaryNav} = this.state;
+        console.log(secondaryNav, 'secondayNav')
 
         const homeStyle = {
               backgroundColor:"#383838"
@@ -39,37 +52,48 @@ class Navbar extends Component {
 
         return (
             <nav>
-
-{/*============MOBILE NAVIGATION============*/}
-                    <div className="nav">
-                        <Link to="/home" className="logo-styling" type="home">H</Link>
+                <div>
+                    <header className="header">
+                        <Link to="/home" className="h-logo" type="home">H</Link>
                         <input className="menu-btn" type="checkbox" id="menu-btn" />
-						<label className="menu-icon" htmlFor="menu-btn"><span className="navicon"></span></label>
+                        <label className="menu-icon" htmlFor="menu-btn"><span className="navicon"></span></label>
                         <ul className="menu">
 
                             {/*SHOW FOR ALL USERS*/}
                             <li onClick={this.handleMobileCollapse}>
-                                <Link to='/home'>Home</Link>
+                                <Link to='/home'
+                                onClick={() => this.setState({secondaryNav: 'home'})}>Home</Link>
                             </li>
 
                             {/*SHOW FOR ADMINISTATORS*/}
                             {accountType === "Administrator" ? 
                             <li onClick={this.handleMobileCollapse}>
-                                <Link to='/teachers'>Teachers</Link>
+                                <Link to='/teachers'
+                                onClick={() => this.setState({secondaryNav: 'teachers'})}>Teachers</Link>
                             </li>
                             : ''}
 
                             {/*SHOW FOR ADMINISTATORS, TEACHERS, PARENTS*/}
                             {accountType !== "Student" ? 
                             <li onClick={this.handleMobileCollapse}>
-                                <Link to='/students'>Students</Link>
+                                <Link to='/students'
+                                onClick={() => this.setState({secondaryNav: 'students'})}>Students</Link>
                             </li>
                             : ''}
 
                             {/*SHOW FOR ADMINISTATORS*/}
                             {accountType === "Administrator" ? 
                             <li onClick={this.handleMobileCollapse}>
-                                <Link to='/parents'>Parents</Link>
+                                <Link to='/parents'
+                                onClick={() => this.setState({secondaryNav: 'parents'})}>Parents</Link>
+                            </li>
+                            : ''}
+
+                            {/*SHOW FOR ADMINISTATORS, TEACHERS, STUDENTS*/}
+                            {accountType !== "Parent" ? 
+                            <li onClick={this.handleMobileCollapse}>
+                                <Link to='/courses'
+                                onClick={() => this.setState({secondaryNav: 'courses'})}>Courses</Link>
                             </li>
                             : ''}
 
@@ -80,12 +104,7 @@ class Navbar extends Component {
                             </li>
                             : ''}
 
-                            {/*SHOW FOR ADMINISTATORS, TEACHERS, STUDENTS*/}
-                            {accountType !== "Parent" ? 
-                            <li onClick={this.handleMobileCollapse}>
-                                <Link to='/courses'>Courses</Link>
-                            </li>
-                            : ''}
+
 
                             {/*SHOW FOR TEACHER*/}
                             {accountType === "Teacher" ? 
@@ -110,21 +129,112 @@ class Navbar extends Component {
 
                             {/*SHOW FOR ALL USERS*/}
                             <li onClick={this.handleMobileCollapse}>
-                                <Link to='/account'>My Account</Link>
+                                <Link to='/account'
+                                onClick={() => this.setState({secondaryNav: 'myAccount'})}>My Account</Link>
                             </li>
 
                             {/*SHOW FOR ALL USERS*/}
                             <li onClick={this.handleMobileCollapse}>
                                 <a href={process.env.REACT_APP_LOGOUT}>Logout</a>
                             </li>
-
                         </ul>
+                    </header>
+
+                    <div className="secondary-menu">
+
+                        {secondaryNav === 'home'
+                        && 
+                        <ul>
+                            <li>HOME</li>
+                        </ul>}
+
+                        {secondaryNav === 'teachers'
+                        && 
+                        <ul>
+                            <li>TEACHERS</li>
+                            <li><Link to='/teachers/create-teacher'>Create Teacher</Link></li>
+                        </ul>}
+
+                        {secondaryNav === 'students'
+                        && 
+                        <ul>
+                            <li>STUDENTS</li>
+                            <li><Link to='/students/create-student'>Create Student</Link></li>
+                        </ul>}
+
+                        {secondaryNav === 'parents'
+                        && 
+                        <ul>
+                            <li>PARENTS</li>
+                            <li><Link to='/parents/create-parent'>Create Parent</Link></li>
+                        </ul>}
+
+                        {secondaryNav === 'courses'
+                        && 
+                        <ul>
+                            <li>COURSES</li>
+                            <li><Link to='/courses/create-course'>Create Course</Link></li>
+                        </ul>}
+
+                        {secondaryNav === 'myAccount'
+                        && 
+                        <ul>
+                            <li>MY ACCOUNT</li>
+                        </ul>}
 
 
 
 
+                        {'view' === 'dashboard'
+                        && 
+                        <ul>
+                            <li>DASHBOARD</li>
+                        </ul>}
+
+                        {'view' === 'clients'
+                        && 
+                        <ul>
+                            <li>CLIENTS</li>
+                            <li><Link to='/clients'>Client List</Link></li>
+                            <li><Link to='/clients/add-new-client'>Add New Client</Link></li>
+                        </ul>}
+
+                        {'view' === 'agency'
+                        && 
+                        <ul>
+                            <li>AGENCY</li>
+                            <li><Link to='/agency/products'>Products</Link></li>
+                            <li><Link to='/agency/tasks'>Tasks</Link></li>
+                            <li><Link to='/agency/roadmaps'>Roadmaps</Link></li>
+                            <li><Link to='/agency/users'>Users</Link></li>
+                        </ul>}
                     </div>
+                </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    
 {/*============STUDENT NAVIGATION============*/}
                 {/* {accountType === 'Student' ? 
                 <div className="navbar">

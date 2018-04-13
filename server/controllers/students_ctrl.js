@@ -6,8 +6,8 @@ module.exports = {
             const {user_id} = req.user
             db.run(`SELECT * 
                     FROM student_assignments
-                    JOIN classes 
-                    ON student_assignments.class_id = classes.class_id
+                    JOIN courses 
+                    ON student_assignments.course_id = courses.course_id
                     WHERE student_id = ${user_id}`,
                 function(err,res){
                     var studentGrades = res;
