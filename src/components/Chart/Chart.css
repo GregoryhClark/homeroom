@@ -1,4 +1,37 @@
-.test_chart_wrapper{
-    height: 300px;
-    width: 500px;
+
+.main_wrapper{
+    display:flex;
+    flex-direction: column;
 }
+.test_chart{
+    height: 40vh;
+    width: 80vw;
+    margin:auto;
+}
+
+@media (max-width: 375px){
+    .test_chart{
+        height: 250px;
+        width: 400px;
+    }
+
+}
+/* .test_chart_wrapper {
+    position: relative;
+    margin: auto;
+    height: 50vh;
+    width: 50vw;
+  } */
+
+  .coursesButtonsWrapper{
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin:20px;
+  }
+
+  .coursesButtonsWrapper button{
+      margin:15px;
+      padding:10px
+  }
