@@ -10,6 +10,8 @@ const express = require('express')
    , cors = require('cors')
 // =============== CONTROLLERS ================
    , students_ctrl = require('./controllers/students_ctrl')
+   , teachers_ctrl = require('./controllers/teachers_ctrl')
+   , parents_ctrl = require('./controllers/parents_ctrl')
    
 // ================ INVOKE EXPRESS ============= 
 const app = express();
@@ -98,3 +100,9 @@ app.get('/auth/me', (req, res) => {
 // ================== ENDPOINTS ================
 const {getStudentGrades} = students_ctrl
 app.get('/getStudentGrades', getStudentGrades);
+
+const {getTeachersProfiles} = teachers_ctrl
+app.get('/getTeachersProfiles', getTeachersProfiles)
+
+const {getParentsProfiles} = parents_ctrl
+app.get('/getParentsProfiles', getParentsProfiles)
