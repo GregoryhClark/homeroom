@@ -15,7 +15,7 @@ class Navbar extends Component {
         let userData = this.props.getUser();
         let adminData = this.props.getAdmin();
         Promise.all([userData, adminData]).then(res=>{
-            console.log(res)
+            console.log("Protect my data",res)
             return res
         })
         this.setState({secondaryNav: 'home'})
@@ -26,7 +26,7 @@ class Navbar extends Component {
     }
 
     render() {
-        let accountType = this.props.user.account_type_name;
+        let accountType = this.props.user.account_type;
         let {secondaryNav} = this.state;
         return (
             <nav>

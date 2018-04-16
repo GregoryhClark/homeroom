@@ -10,7 +10,7 @@ import './Account.css';
 
 class Account extends Component {
     render() {
-        let accountType = this.props.user.account_type_name;
+        let accountType = this.props.user.account_type;
         return (
             accountType === "Administrator" ? <AdminsAccount/>:
             accountType === "Teacher" ? <TeachersAccount/>:

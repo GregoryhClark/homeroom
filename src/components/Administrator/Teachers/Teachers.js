@@ -22,7 +22,7 @@ export default class Teachers extends React.Component {
       //REMOVE MODAL WHEN AREA OUTSIDE OF MODAL IS CLICKED
       window.onclick = function(event) {
          const modal = document.getElementById('editTeacherModal');
-         if (event.target == modal) {
+         if (event.target === modal) {
              modal.style.display = "none";
          }
      }
