@@ -16,8 +16,8 @@ class Navbar extends Component {
         }
     }
     
-    async componentWillMount(){
-        await this.props.getUser();
+    componentDidMount(){
+        this.props.getUser();
     }
 
     componentDidMount() {
