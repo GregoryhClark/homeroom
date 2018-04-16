@@ -1,4 +1,54 @@
-.test_chart_wrapper{
-    height: 300px;
-    width: 500px;
+
+.main_wrapper{
+    display:flex;
+    flex-direction: column;
 }
+.test_chart{
+    height: 40vh;
+    width: 60vw;
+    margin:auto;
+}
+.test_chart_wrapper {
+    position: relative;
+    margin: auto;
+    height: 50vh;
+    width: 50vw;
+  }
+
+
+
+@media (min-width: 1100px){
+    .test_chart_wrapper{
+        height: 60vh;
+        width: 1000px;
+    }
+
+}
+@media (max-width: 768px){
+    .test_chart_wrapper{
+        height: 55vh;
+        width: 75vw;
+    }
+
+}
+@media (max-width: 375px){
+    .test_chart{
+        height: 250px;
+        width: 400px;
+    }
+
+}
+
+
+  .coursesButtonsWrapper{
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin:20px;
+  }
+
+  .coursesButtonsWrapper button{
+      margin:15px;
+      padding:10px
+  }

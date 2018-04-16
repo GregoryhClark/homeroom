@@ -12,9 +12,11 @@ class Chart extends Component {
         super()
         this.state = {
             selectedCourseID: 3,
-            selectedCourseName: '*name of course*'
+            selectedCourseName: '*name of course*',
+            windowWidth:0
 
         }
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         this.selectCourse = this.selectCourse.bind(this)
     }
 
@@ -28,6 +30,12 @@ class Chart extends Component {
         // });
 
     }
+    componentDidMount() {
+        window.addEventListener('resize', this.updateWindowDimensions);
+    }
+    updateWindowDimensions(){
+        this.setState({ windowWidth: window.innerWidth});
+    }
     selectCourse(array) {
 
         this.setState({
@@ -37,22 +45,31 @@ class Chart extends Component {
         
     }
 
+    beforePrintHandler () {
+        for (var id in Chart.instances) {
+          Chart.instances[id].resize()
+        }
+      }
+
     render() {
 
+        let chartTitleFont = (this.state.windowWidth > 1024) ? 30
+        : (this.state.windowWidth > 375) ? 20
+        : 10;
         
      
         let studentScores = this.props.grades.map(obj => {
 
             if (obj.course_id === this.state.selectedCourseID){
                 return obj.points_earned
-            }
+            } else return null
         }).filter(value => value)
 
         let averageScores = this.props.grades.map(obj => {
 
             if (obj.course_id === this.state.selectedCourseID){
                 return obj.points_earned
-            }
+            }else return null
         }).filter(value => value)
 
 
@@ -72,9 +89,10 @@ class Chart extends Component {
         let assignmentList = this.props.grades.map(obj => {
             if (obj.course_id === this.state.selectedCourseID){
                 return obj.name
-            }
+            }else return null
         }).filter(value => value)
 
+        
 
 
 
@@ -93,31 +111,36 @@ class Chart extends Component {
                 }
             ]
         }
+
         return (
             <div>
                 {/* <h1>{`Chart ${this.props.grades}`}</h1>  */}
                 {this.props.grades.length > 0 ?
-                    <div>
+                    <div className = "main_wrapper">
                         <div className="test_chart_wrapper">
+                            
                             <Bar className="test_chart"
                                 data={chartData}
                                 options={{
+                                    maintainAspectRatio: false,
                                     title: {
                                         display: true,
                                         text: `Assignment Scores for ${this.state.selectedCourseName}`, //this will need to be the selected class name
-                                        fontSize: 30
+                                        fontSize: chartTitleFont
                                     },
                                     legend: {
                                         display: true,
-                                        position: 'right'
+                                        position: 'top'
                                     }
                                 }}
                             />
+                            
                         </div>
 
                         <div className="coursesButtonsWrapper">
                             {this.props.grades.length > 0? courseButtons :null}
                         </div>
+                        
                     </div>
 
                     : null}
