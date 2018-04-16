@@ -9,8 +9,8 @@ import './LoadData.css';
 export default class LoadData extends React.Component {
    render() {
 
-      
 
+    
       return(
          <div className="progress">
             <CircularProgress size={150} thickness={5} color={'gray'}/>
