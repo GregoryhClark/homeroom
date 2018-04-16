@@ -30,7 +30,7 @@
 //         this.setState({secondaryNav:value})
 //     }
 //     render() {
-//         let accountType = this.props.user.account_type_name;
+//         let accountType = this.props.user.account_type;
 //         let {secondaryNav} = this.state;
 //         // console.log("RENDER", secondaryNav)
         

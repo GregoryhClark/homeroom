@@ -4,10 +4,8 @@ module.exports= {
         if(req.user){
             const {user_id} = req.user
             db.run(`SELECT * 
-                    FROM users 
-                    JOIN account_types 
-                    ON users.account_type = account_types.account_type_id
-                    WHERE users.account_type = 2`,
+                    FROM users
+                    WHERE account_type = 'Teacher'`,
                 function(err,res){
                     var teachers = res;
                 }).then(teachers=>{
@@ -24,9 +22,7 @@ module.exports= {
             const {user_id} = req.user
             db.run(`SELECT * 
                     FROM users 
-                    JOIN account_types 
-                    ON users.account_type = account_types.account_type_id
-                    WHERE users.account_type = 3`,
+                    WHERE account_type = 'Student'`,
                 function(err,res){
                     var students = res;
                 }).then(students=>{
@@ -43,9 +39,7 @@ module.exports= {
             const {user_id} = req.user
             db.run(`SELECT * 
                     FROM users 
-                    JOIN account_types 
-                    ON users.account_type = account_types.account_type_id
-                    WHERE users.account_type = 4`,
+                    WHERE account_type = 'Parent'`,
                 function(err,res){
                     var parents = res;
                 }).then(parents=>{

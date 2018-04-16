@@ -7,7 +7,7 @@ import LoadData from '../../components/LoadData/LoadData';
 
 class Home extends Component {
     render(){
-    let accountType = this.props.user.account_type_name;
+    let accountType = this.props.user.account_type;
         return (
             accountType === "Administrator" ? '':
             accountType === "Teacher" ? '<Chart/>':

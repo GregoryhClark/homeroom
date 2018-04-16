@@ -1,5 +1,5 @@
 // module.exports= {
-//     getTeachersProfiles:((req,res,next)=>{
+//     getStudents:((req,res,next)=>{
 //         const db = req.app.get('db')
 //         if(req.user){
 //             const {user_id} = req.user
@@ -11,7 +11,6 @@
 //                 function(err,res){
 //                     var teachers = res;
 //                 }).then(teachers=>{
-//                     // console.log('TEACHERS', teachers)
 //                     res.status(200).send(teachers)
 //                 })
 //         }else{
