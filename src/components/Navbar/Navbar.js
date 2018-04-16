@@ -17,7 +17,7 @@ class Navbar extends Component {
         Promise.all([userData, adminData]).then(res=>{
             console.log("Protect my data",res)
             return res
-        })
+        }).catch(err=>console.log(err))
         this.setState({secondaryNav: 'home'})
     }
     handleMobileCollapse() {

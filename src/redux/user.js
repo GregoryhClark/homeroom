@@ -32,7 +32,7 @@ export function getAdmin(){
     let getCourses = axios.get('/getAdminCourse');
     let admin = Promise.all([getTeachers, getStudents, getParents, getCourses]).then(res=>{
         return res
-    })
+    }).catch(err=>console.log(err))
     return{
           type: GET_ADMIN
         , payload: admin
