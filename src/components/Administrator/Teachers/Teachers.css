@@ -1,0 +1,44 @@
+.teachers-overflow {
+   min-width: 100%;
+   overflow-x: scroll;
+}
+
+.teachers-table {
+   width: 100%;
+   font-size: 0.9em;
+}
+
+.teachers-table > thead > tr {
+   background-color: #BEBEBE;
+}
+
+.teachers-table > thead > tr > th {
+   min-width: 120px;
+   padding: 5px 15px 5px 5px;
+   text-align: left;
+   font-weight: 600;
+   font-size: 1.05em;
+}
+
+/*===== CONTROLLING COLUMN WIDTH =====*/
+.teachers-table > thead > tr > th:nth-child(6) {
+   min-width: 50px;
+}
+
+
+
+
+
+
+.teachers-table > tbody > tr {
+   padding: 5px;
+   background-color: #F5F5F5;
+}
+
+.teachers-table > tbody > tr:nth-child(2n + 2) {
+   background-color: #DCDCDC;
+}
+
+.teachers-table > tbody > tr > td{
+   padding: 5px;
+}
