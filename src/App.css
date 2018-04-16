@@ -8,6 +8,26 @@
    padding: 130px 30px 40px 30px;
 }
 
+a {
+   color: blue;
+   text-decoration: underline;
+   cursor: pointer;
+}
+
+button {
+   cursor: pointer;
+}
+
+h1 {
+   margin-bottom: 10px;
+   font-size: 1.3em;
+}
+
+.horizontal-line{
+   width: 95%;
+   border-bottom: 1px solid black;
+}
+
 @media(min-width: 768px) {
    .app-inner {
       padding: 130px 50px 40px 50px;
