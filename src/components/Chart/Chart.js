@@ -18,14 +18,14 @@ class Chart extends Component {
         this.selectCourse = this.selectCourse.bind(this)
     }
 
-    async componentWillMount() {
-        await this.props.getUser();
-        await this.props.getGrades().then((res)=>{
-            this.setState({
-                selectedCourse:res.value[0].course_id,
-                selectedCourseName:res.value[0].course
-            })
-        });
+    componentDidMount() {
+        this.props.getGrades()
+        // .then((res)=>{
+        //     // this.setState({
+        //     //     selectedCourse:res.value[0].course_id,
+        //     //     selectedCourseName:res.value[0].course
+        //     // })
+        // });
 
     }
     selectCourse(array) {
