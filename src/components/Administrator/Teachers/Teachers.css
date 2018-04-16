@@ -12,6 +12,7 @@
 }
 
 .modal-content {
+   position: relative;
    background-color: #fefefe;
    margin: 15% auto;
    padding: 20px;
@@ -33,6 +34,32 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+
+#editTeacherModal > .modal-content > .buttons {
+   width: 150px;
+   position: absolute;
+   right: 0;
+   bottom: 20px;
+}
+
+#editTeacherModal > .modal-content > .buttons > .cancel{
+   
+}
+
+#editTeacherModal > .modal-content > .buttons > .save{
+   background-color: #7EFF7E;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 .teachers-overflow {

@@ -8,12 +8,12 @@ import './Teachers.css';
 export default class Teachers extends React.Component {
 
    handleEditTeacher() {
-      const modal = document.getElementById('myModal');
+      const modal = document.getElementById('editTeacherModal');
       modal.style.display = "block";
    }
 
    handleCloseModal() {
-      const modal = document.getElementById('myModal');
+      const modal = document.getElementById('editTeacherModal');
       modal.style.display = "none";
    }
 
@@ -21,7 +21,7 @@ export default class Teachers extends React.Component {
    render() {
       //REMOVE MODAL WHEN AREA OUTSIDE OF MODAL IS CLICKED
       window.onclick = function(event) {
-         const modal = document.getElementById('myModal');
+         const modal = document.getElementById('editTeacherModal');
          if (event.target == modal) {
              modal.style.display = "none";
          }
@@ -31,12 +31,19 @@ export default class Teachers extends React.Component {
          <div>
 
          <button onClick={this.handleEditTeacher}>Open Modal</button>
-         <div id="myModal" className="modal">
+         <div id="editTeacherModal" className="modal">
             <div className="modal-content">
-            <span className="close" onClick={this.handleCloseModal}>&#215;</span>
-            <div class="horizontal-line">
-               <h1>Edit Teacher Details</h1>
-            </div>
+               <span className="close" onClick={this.handleCloseModal}>&#215;</span>
+               <h1 className="horizontal-line">Edit Teacher Details</h1>
+               <span>First Name:</span>< br/>
+               <span>Last Name:</span>< br/>
+               <span>Username:</span>< br/>
+               <span>Email:</span>< br/>
+               <span>Photo:</span>< br/>
+               <div className="buttons">
+                  <button className="cancel">Cancel</button>
+                  <button className="save">Save</button>
+               </div>
             </div>
          </div>
 
