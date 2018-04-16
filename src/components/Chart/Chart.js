@@ -47,6 +47,12 @@ class Chart extends Component {
         
     }
 
+    beforePrintHandler () {
+        for (var id in Chart.instances) {
+          Chart.instances[id].resize()
+        }
+      }
+
     render() {
 
         let chartTitleFont = (this.state.windowWidth > 1024) ? 30
@@ -114,9 +120,11 @@ class Chart extends Component {
                 {this.props.grades.length > 0 ?
                     <div className = "main_wrapper">
                         <div className="test_chart_wrapper">
+                            
                             <Bar className="test_chart"
                                 data={chartData}
                                 options={{
+                                    maintainAspectRatio: false,
                                     title: {
                                         display: true,
                                         text: `Assignment Scores for ${this.state.selectedCourseName}`, //this will need to be the selected class name
@@ -128,6 +136,7 @@ class Chart extends Component {
                                     }
                                 }}
                             />
+                            
                         </div>
 
                         <div className="coursesButtonsWrapper">
