@@ -1,14 +1,20 @@
-import React from 'react';
-import Chart from '../../components/Chart/Chart';
+import React, {Component} from 'react';
+// import Chart from '../../components/Chart/Chart';
 import {connect} from 'react-redux';
 import {getUser} from '../../redux/user';
 import LoadData from '../../components/LoadData/LoadData';
 
 
-function Home(props) {
-    return (
-        props.user ? <Chart/> : <LoadData />
-    )
+class Home extends Component {
+    render(){
+    let accountType = this.props.user.account_type_name;
+        return (
+            accountType === "Administrator" ? '':
+            accountType === "Teacher" ? '<Chart/>':
+            accountType === "Parent"? '<Chart/>': 
+            accountType === "Student" ? '<Chart/>': <LoadData/>
+        )
+    }
 }
 
 function mapStateToProps(state){

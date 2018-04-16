@@ -52,7 +52,7 @@ export default class Login extends React.Component {
             if(res.data === "Unauthorized") {
                this.setState({status: true})
             } else {
-               console.log(res.data)
+            //    console.log(res.data)
                this.props.history.push(res.headers.location)
             }
          })
@@ -64,7 +64,6 @@ export default class Login extends React.Component {
 
       return(
          <div className="login-page">
-
             <div className="login-container-left">
                <div className="logo">Homeroom</div>
                <div id="error-text-parent">{status && <div id="error-text-child">Invalid Credentials</div>}</div>
@@ -78,11 +77,7 @@ export default class Login extends React.Component {
                   <button>LOG IN</button>
                </form>
             </div>
-
-
-            <div className="login-container-right">
-            </div>
-
+            <div className="login-container-right"></div>
          </div>
       )
    }
