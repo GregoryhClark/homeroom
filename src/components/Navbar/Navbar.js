@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import './Navbar.css'
 import {connect} from 'react-redux';
-import {getUser, getTeachers, getParents} from '../../redux/user';
+import {getUser, getAdmin} from '../../redux/user';
 
 class Navbar extends Component {
     constructor() {
@@ -11,12 +11,13 @@ class Navbar extends Component {
             secondaryNav: ''
         }
     } 
-    async componentWillMount(){
-        await this.props.getUser();
-        await this.props.getTeachers();
-        await this.props.getParents();
-    }
-    componentDidMount() {
+    componentWillMount(){
+        let userData = this.props.getUser();
+        let adminData = this.props.getAdmin();
+        Promise.all([userData, adminData]).then(res=>{
+            console.log(res)
+            return res
+        })
         this.setState({secondaryNav: 'home'})
     }
     handleMobileCollapse() {
@@ -240,8 +241,7 @@ class Navbar extends Component {
 function mapStateToProps(state){
     return{
           user: state.user
-        , teacherData: state.teacherData
-        , parentsData: state.parentsData
+        , admin: state.admin
     }
 }
-export default connect(mapStateToProps, {getUser, getTeachers, getParents})(Navbar);
+export default connect(mapStateToProps, {getUser, getAdmin})(Navbar);

@@ -9,9 +9,7 @@ const express = require('express')
    , bcrypt = require('bcryptjs')
    , cors = require('cors')
 // =============== CONTROLLERS ================
-   , students_ctrl = require('./controllers/students_ctrl')
-   , teachers_ctrl = require('./controllers/teachers_ctrl')
-   , parents_ctrl = require('./controllers/parents_ctrl')
+   , admin_ctrl = require('./controllers/admin_ctrl')
    
 // ================ INVOKE EXPRESS ============= 
 const app = express();
@@ -98,11 +96,20 @@ app.get('/auth/me', (req, res) => {
 })
 
 // ================== ENDPOINTS ================
-const {getStudentGrades} = students_ctrl
-app.get('/getStudentGrades', getStudentGrades);
 
-const {getTeachersProfiles} = teachers_ctrl
-app.get('/getTeachersProfiles', getTeachersProfiles)
-
-const {getParentsProfiles} = parents_ctrl
-app.get('/getParentsProfiles', getParentsProfiles)
+// ****************** ADMINS *******************
+//        ========== Teachers ========
+const {getTeachers} = admin_ctrl
+app.get('/getAdminTeacher', getTeachers);
+//        ========== Students ========
+const {getStudents} = admin_ctrl
+app.get('/getAdminStudent', getStudents);
+//        ========== Parents =========
+const {getParents} = admin_ctrl
+app.get('/getAdminParent', getParents);
+//        ========== Courses =========
+const {getCourses} = admin_ctrl
+app.get('/getAdminCourse', getCourses);
+// ****************** TEACHERS ******************
+// ****************** PARENTS *******************
+// ****************** STUDENTS ******************
