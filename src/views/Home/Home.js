@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Chart from '../../components/Chart/Chart';
 import {connect} from 'react-redux';
 import {getUser} from '../../redux/user';
-import LoadData from '../../components/LoadData/LoadData';
 
 
 class Home extends Component {

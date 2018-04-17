@@ -3,7 +3,6 @@ import { Bar } from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import {getUser, getStudent} from '../../redux/user';
 import LoadData from '../../components/LoadData/LoadData'
-// import _ from 'underscore'
 
 //CSS, ASSETS
 import './Chart.css'
@@ -11,23 +10,44 @@ import './Chart.css'
 class Chart extends Component {
     render() {   
         let studentData = this.props.student;
-        let getAssignment = (arg, arr)=>{for(const props in arg){typeof arg[props] === 'object' ? getAssignment(arg[props],arr) : props === 'name' ? arr.push(arg[props]) : arr;} return arr;}
-        let getGrade = (arg, arr)=>{for(const props in arg){typeof arg[props] === 'object' ? getGrade(arg[props],arr) : props === 'points_earned' ? arr.push(arg[props]) : arr;} return arr;}
-        let getCourse = (arg, arr)=>{for(const props in arg){typeof arg[props] === 'object' ? getCourse(arg[props],arr) : props === 'course' ? arr.push(arg[props]) : arr;} return arr;}
+        let getAssignment = (arg, arr)=>{
+            for(const props in arg){
+                if(typeof arg[props] === 'object'){
+                    getAssignment(arg[props],arr)}
+                if(props === 'name'){
+                    arr.push(arg[props])}
+            } return arr
+        }
+        let getGrade = (arg, arr)=>{
+            for(const props in arg){
+                if(typeof arg[props] === 'object'){
+                    getGrade(arg[props],arr)}
+                if(props === 'points_earned'){
+                    arr.push(arg[props])}
+            } return arr
+        }
+        let getCourse = (arg, arr)=>{
+            for(const props in arg){
+                if(typeof arg[props] === 'object'){
+                    getCourse(arg[props],arr)}
+                if(props === 'course'){
+                    arr.push(arg[props])}
+            } return arr;
+        }
+        let courseButtons = getCourse(studentData,[]).map((course, i)=>{
+            return <button className="course_btn" key = {i} value={course}>{course}</button>
+        }) 
         let chartData = {
-            labels: getAssignment(studentData,[]),
-            datasets: [
-                {
-                      label: 'Student Score'
-                    , data: getGrade(studentData,[])
-                    // , backgroundColor: 'lightBlue'
-                },
-                {
-                      label: 'Average Score'
-                    , data: [75, 66, 80, 76, 45]
-                    , backgroundColor: 'orange'
-                }
-            ]
+              labels: getAssignment(studentData,[])
+            , datasets: [{
+                              label: 'Student Score'
+                            , data: getGrade(studentData,[])
+                            // , backgroundColor: 'lightBlue'
+                        },{
+                              label: 'Average Score'
+                            , data: [75, 66, 80, 76, 45]
+                            , backgroundColor: 'orange'
+                        }]
         }
     return (
         <div className="test_chart_wrapper">   
@@ -44,6 +64,7 @@ class Chart extends Component {
                         , position: 'right'
                     }
                 }}/>: <LoadData/>}
+            {this.props.student.length ? <div className="coursesButtonsWrapper">{courseButtons}</div>: null}   
         </div>
         )
     }

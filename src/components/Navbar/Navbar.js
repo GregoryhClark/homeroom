@@ -17,7 +17,6 @@ class Navbar extends Component {
             let studentData = this.props.user.account_type === "Student" ? this.props.getStudent() : "Wrong User"
             let parentData = this.props.user.account_type === "Parent" ? this.props.getParent() : "Wrong User"
             Promise.all([adminData, studentData, parentData]).then(res=>{
-                console.log(res)
                 return res
             }).catch(err=>console.log(err))
         })

@@ -50,5 +50,6 @@
 
   .coursesButtonsWrapper button{
       margin:15px;
-      padding:10px
+      padding:10px;
+      border-radius: 10px;
   }
