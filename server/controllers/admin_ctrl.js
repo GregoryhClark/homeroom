@@ -1,5 +1,5 @@
 module.exports= {
-    getTeachers:((req,res,next)=>{
+    getTeachersForAdmin:((req,res,next)=>{
         const db = req.app.get('db')
         if(req.user){
             const {user_id} = req.user
@@ -16,7 +16,7 @@ module.exports= {
             res.status(401).send('Please Sign-in.')
         }
     }),
-    getStudents:((req,res,next)=>{
+    getStudentsForAdmin:((req,res,next)=>{
         const db = req.app.get('db')
         if(req.user){
             const {user_id} = req.user
@@ -33,7 +33,7 @@ module.exports= {
             res.status(401).send('Please Sign-in.')
         }
     }),
-    getParents:((req,res,next)=>{
+    getParentsForAdmin:((req,res,next)=>{
         const db = req.app.get('db')
         if(req.user){
             const {user_id} = req.user
@@ -50,7 +50,7 @@ module.exports= {
             res.status(401).send('Please Sign-in.')
         }
     }),
-    getCourses:((req,res,next)=>{
+    getCoursesForAdmin:((req,res,next)=>{
         const db = req.app.get('db')
         if(req.user){
             const {user_id} = req.user
