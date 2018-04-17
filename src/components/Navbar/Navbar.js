@@ -17,7 +17,6 @@ class Navbar extends Component {
             let studentData = this.props.user.account_type === "Student" ? this.props.getStudent() : "Wrong User"
             let parentData = this.props.user.account_type === "Parent" ? this.props.getParent() : "Wrong User"
             Promise.all([adminData, studentData, parentData]).then(res=>{
-                console.log(res)
                 return res
             }).catch(err=>console.log(err))
             
@@ -32,8 +31,7 @@ class Navbar extends Component {
     render() {
         let accountType = this.props.user.account_type;
         let {secondaryNav} = this.state;
-        console.log("STUDENT REDUX",this.props.student)
-        console.log("ADMIN REDUX",this.props.admin)
+     
         return (
             <nav>
                 <header className="header">
