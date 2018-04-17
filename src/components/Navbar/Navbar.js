@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import './Navbar.css'
 import {connect} from 'react-redux';
-import {getUser, getAdmin, getStudent, getParent} from '../../redux/user';
+import {getUser, getAdmin, getStudent, getParent, getTeacher} from '../../redux/user';
 
 class Navbar extends Component {
     constructor() {
@@ -16,10 +16,10 @@ class Navbar extends Component {
             let adminData = this.props.user.account_type === "Administrator" ? this.props.getAdmin(): "Wrong User"
             let studentData = this.props.user.account_type === "Student" ? this.props.getStudent() : "Wrong User"
             let parentData = this.props.user.account_type === "Parent" ? this.props.getParent() : "Wrong User"
-            Promise.all([adminData, studentData, parentData]).then(res=>{
+            let teacherData = this.props.user.account_type === "Teacher" ? this.props.getTeacher() : "Wrong User"
+            Promise.all([adminData, studentData, parentData, teacherData]).then(res=>{
                 return res
             }).catch(err=>console.log(err))
-            
         })
         this.setState({secondaryNav: 'home'})
     }
@@ -248,6 +248,7 @@ function mapStateToProps(state){
         , admin: state.admin
         , student: state.student
         , parent: state.parent
+        , teacher: state.teacher
     }
 }
-export default connect(mapStateToProps, {getUser, getAdmin, getStudent, getParent})(Navbar);
+export default connect(mapStateToProps, {getUser, getAdmin, getStudent, getParent, getTeacher})(Navbar);
