@@ -31,9 +31,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --watchAll",
+    "test": "jest",
     "eject": "react-scripts eject"
-
   },
   "main": "./server/index.js",
   "proxy": "http://localhost:3030"
