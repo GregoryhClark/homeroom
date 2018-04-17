@@ -13,7 +13,7 @@ class Chart extends Component {
     constructor() {
         super()
         this.state = {
-            selectedCourseID: 3,
+            selectedCourseID: -1,
             selectedCourseName: '*name of course*',
             windowWidth: 0
         }
@@ -28,7 +28,7 @@ class Chart extends Component {
     }
     render() {
         let studentData = this.props.student;
-        (console.log('this has info', studentData.getCourses))
+        (console.log('this has info', studentData))
         let getAssignment = (arg, arr) => {
             for (const props in arg) {
                 if (typeof arg[props] === 'object') {
@@ -60,26 +60,22 @@ class Chart extends Component {
 
             } return arr;
         }
-
-            // let getCourseId = (arg, arr)=>{
-            //         for(const props in arg){
-            //             if(typeof arg[props] === 'object'){
-            //                 getCourseId(arg[props],arr)}
-            //             if(props === 'course_id'){
-            //                 arr.push(arg[props])}
-
-            //         } return arr;
-            //     }
             var studentCourses = studentData.getCourses ?             
             studentData.getCourses.map(value => {
                     return { courseID: value.course_id, courseName: value.course_name }
             }) 
             :[]
-            console.log(studentCourses)
 
-            let courseButtons = studentCourses.map((element, index) => {
+            let courseButtons = _.uniq(studentCourses).map((element, index) => {
                 return <button className="course_btn" key={index} value={element.courseID} onClick={(e) => { this.selectCourse([element.courseID, element.courseName]) }} >{element.courseName}</button>
             })
+
+            let courseAssignments = () => {
+                for(let val1 in studentData){
+                    
+                }
+
+            }
         
         let chartData = {
             labels: getAssignment(studentData, [])
