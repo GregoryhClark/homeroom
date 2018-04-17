@@ -15,18 +15,19 @@ class Teachers extends React.Component {
                 ,last_name: ''
                 ,username: ''
                 ,email: ''
-                ,photo: ''
+                ,user_photo: ''
             }
         }
 
         this.handleEditTeacher = this.handleEditTeacher.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleUpdateState = this.handleUpdateState.bind(this);
     }
 
     handleEditTeacher(index) {
-        //LOAD TEACHER INFO INTO STATE
+        // LOAD TEACHER INFO INTO STATE
         this.setState({
-            editTeacher: this.props.admin[0].data[index]
+            editTeacher: this.props.admin.teachers[index]
         })
         
         //SHOW MODAL
@@ -39,10 +40,14 @@ class Teachers extends React.Component {
         modal.style.display = "none";
     }
 
+    handleUpdateState(e, field) {
+        const editTeacher = Object.assign({}, this.state.editTeacher)
+        editTeacher[field] = e.target.value;
+        this.setState({editTeacher})
+    }
 
     render() {
-            let {first_name} = this.state.editTeacher;
-            console.log(first_name);
+            let {first_name, last_name, username, email, user_photo} = this.state.editTeacher;
 
             //REMOVE MODAL WHEN AREA OUTSIDE OF MODAL IS CLICKED
             window.onclick = function(event) {
@@ -52,42 +57,59 @@ class Teachers extends React.Component {
                 }
             }
 
-            const teachers = this.props.admin[0].data.map((e, i) => {
+            const teachers = this.props.admin.teachers.map((e, i) => {
                 return (
                     <tr key={i}>
                         <td>{e.first_name}</td>
                         <td>{e.last_name}</td>
                         <td>{e.username}</td>
                         <td>{e.email}</td>
-                        <td>{e.photo === 'null' ? 'None' : <a href={e.photo} target='_blank'>View</a>}</td>
+                        <td>{e.user_photo === 'null' ? 'None' : <a href={e.user_photo} target='_blank'>View</a>}</td>
                         <td><button onClick={() => this.handleEditTeacher(i)}>Edit</button></td>
                     </tr>
                 )
             })
 
+            console.log(this.state.editTeacher);
+
         return(
             <div>
                 
-            <button onClick={this.handleEditTeacher}>Open Modal</button>
             <div id="editTeacherModal" className="modal">
                 <div className="modal-content">
                 <span className="close" onClick={this.handleCloseModal}>&#215;</span>
                 <h1 className="horizontal-line">Edit Teacher Details</h1>
-                <span>First Name:<span>{first_name}</span></span>< br/>
-                <span>Last Name:</span>< br/>
-                <span>Username:</span>< br/>
-                <span>Email:</span>< br/>
-                <span>Photo:</span>< br/>
+
+                <span>First Name:<input type='text' value={first_name} 
+                onChange={(e) => this.handleUpdateState(e, 'first_name')}/></span>< br/>
+
+                <span>Last Name:<input type='text' value={last_name} 
+                onChange={(e) => this.handleUpdateState(e, 'last_name')}/></span>< br/>
+
+                <span>Username:<input type='text' value={username} 
+                onChange={(e) => this.handleUpdateState(e, 'username')}/></span>< br/>
+
+                <span>Email:<input type='text' value={email} 
+                onChange={(e) => this.handleUpdateState(e, 'email')}/></span>< br/>
+
+                <span>Photo:{user_photo !== 'null' ? 
+                    <div className="edit-teacher-image-container">
+                        <img src={user_photo} className="teacher-photo"/>
+                        <span>X Remove</span>
+                    </div>
+                    
+                    : 'missing'}</span>
+
+
+
+                
+                
                 <div className="buttons">
                     <button className="cancel">Cancel</button>
                     <button className="save">Save</button>
                 </div>
                 </div>
             </div>
-
-            < br/>
-            < br/>
-
 
             <div className="teachers-overflow">
                 <table className="teachers-table">

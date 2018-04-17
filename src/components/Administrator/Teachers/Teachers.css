@@ -36,6 +36,12 @@
 }
 
 
+
+#editTeacherModal > .modal-content > span > .teacher-photo {
+    display: block;
+    max-width: 300px;
+}
+
 #editTeacherModal > .modal-content > .buttons {
    width: 150px;
    position: absolute;
