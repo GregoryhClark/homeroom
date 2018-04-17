@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import './Navbar.css'
 import {connect} from 'react-redux';
-import {getUser, getAdmin} from '../../redux/user';
+import {getUser, getAdmin, getStudent} from '../../redux/user';
 
 class Navbar extends Component {
     constructor() {
@@ -12,12 +12,14 @@ class Navbar extends Component {
         }
     } 
     componentWillMount(){
-        let userData = this.props.getUser();
-        let adminData = this.props.getAdmin();
-        Promise.all([userData, adminData]).then(res=>{
-            console.log("Protect my data",res)
-            return res
-        }).catch(err=>console.log(err))
+        this.props.getUser().then(()=>{
+            let adminData = this.props.user.account_type === "Administrator" ? this.props.getAdmin(): "Wrong User"
+            let studentData = this.props.user.account_type === "Student" ? this.props.getStudent() : "Wrong User"
+            Promise.all([adminData, studentData]).then(res=>{
+                return res
+            }).catch(err=>console.log(err))
+        })
+        
         this.setState({secondaryNav: 'home'})
     }
     handleMobileCollapse() {
@@ -242,6 +244,7 @@ function mapStateToProps(state){
     return{
           user: state.user
         , admin: state.admin
+        , student: state.student
     }
 }
-export default connect(mapStateToProps, {getUser, getAdmin})(Navbar);
+export default connect(mapStateToProps, {getUser, getAdmin, getStudent})(Navbar);

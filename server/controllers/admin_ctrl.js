@@ -9,7 +9,7 @@ module.exports= {
                 function(err,res){
                     var teachers = res;
                 }).then(teachers=>{
-                    console.log('Admins Teachers', teachers)
+                    // console.log('Admins Teachers', teachers)
                     res.status(200).send(teachers)
                 })
         }else{
@@ -26,7 +26,7 @@ module.exports= {
                 function(err,res){
                     var students = res;
                 }).then(students=>{
-                    console.log('Admins Students', students)
+                    // console.log('Admins Students', students)
                     res.status(200).send(students)
                 })
         }else{
@@ -43,7 +43,7 @@ module.exports= {
                 function(err,res){
                     var parents = res;
                 }).then(parents=>{
-                    console.log('Admins Parents', parents)
+                    // console.log('Admins Parents', parents)
                     res.status(200).send(parents)
                 })
         }else{
@@ -56,11 +56,11 @@ module.exports= {
             const {user_id} = req.user
             db.run(`SELECT * 
                     FROM courses 
-                    ORDER BY course`,
+                    ORDER BY course_id`,
                 function(err,res){
                     var courses = res;
                 }).then(courses=>{
-                    console.log('Admins Courses', courses)
+                    // console.log('Admins Courses', courses)
                     res.status(200).send(courses)
                 })
         }else{

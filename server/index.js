@@ -10,6 +10,7 @@ const express = require('express')
    , cors = require('cors')
 // =============== CONTROLLERS ================
    , admin_ctrl = require('./controllers/admin_ctrl')
+   , students_ctrl = require('./controllers/students_ctrl')
    
 // ================ INVOKE EXPRESS ============= 
 const app = express();
@@ -31,7 +32,7 @@ massive(CONNECTION_STRING).then(db => {
 // =============== AUTH / MIDDLEWARE ===========
 app.use(bodyParser.json());
 app.use( session({
-   secret: SESSION_SECRET
+     secret: SESSION_SECRET
    , resave: false
    , saveUninitialized: false
    , cookie: {maxAge:2000000}
@@ -113,3 +114,12 @@ app.get('/getAdminCourse', getCourses);
 // ****************** TEACHERS ******************
 // ****************** PARENTS *******************
 // ****************** STUDENTS ******************
+//        ========== Courses ========
+const {getStudentCourses} = students_ctrl
+app.get('/getStudentCourses', getStudentCourses);
+//        ========== Assignments ========
+const {getStudentAssignments} = students_ctrl
+app.get('/getStudentAssignments', getStudentAssignments);
+//        ========== Attachments ========
+const {getStudentAttachments} = students_ctrl
+app.get('/getStudentAttachments', getStudentAttachments);

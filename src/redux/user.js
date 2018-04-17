@@ -5,6 +5,7 @@ const initialState = {
         user:{}            // CONTAINS CURRENT USERS INFORMATION
       , navigation: false  // CONTROLS IF NAVIGATION IS DISPLAYED
       , admin:[]           // CONTAINS ALL CURRENT ADMIN INFO
+      , student:[]         // CONTAINS ALL CURRENT STUDENT INFO
 
 }
 // ======= ACTION TYPES ===========
@@ -12,11 +13,13 @@ const GET_USER = "GET_USER";
 const _FULFILLED = "_FULFILLED";
 const NAVIGATION = "NAVIGATION";
 const GET_ADMIN = "GET_ADMIN";
+const GET_STUDENT = "GET_STUDENT"
 
 // ======= ACTION CREATORS ========
 // ========== GET USER ===========
 export function getUser(){
     let user = axios.get('/auth/me').then(res => {
+        // console.log("GET USER", res.data)
         return res.data
     })
     return{
@@ -38,6 +41,20 @@ export function getAdmin(){
         , payload: admin
     }
 }
+// ========== GET STUDENT ========
+export function getStudent(){
+    let getStudentCourses = axios.get('/getStudentCourses');
+    let getAssignments = axios.get('/getStudentAssignments');
+    let getAttachments = axios.get('/getStudentAttachments');
+    let student = Promise.all([getStudentCourses, getAssignments, getAttachments]).then(res=>{
+        console.time("")
+        return res
+    }).catch(err=>console.log(err))
+    return{
+          type: GET_STUDENT
+        , payload: student
+    }
+}
 // ========== SHOW NAV ===========
 export function showNavigation(){
     return {
@@ -55,6 +72,8 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {navigation:action.payload})
         case GET_ADMIN + _FULFILLED:
             return Object.assign({}, state, {admin:action.payload})
+        case GET_STUDENT + _FULFILLED:
+            return Object.assign({}, state, {student:action.payload})
         default: 
             return state;
     }
