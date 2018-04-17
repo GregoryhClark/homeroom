@@ -12,18 +12,25 @@
 }
 
 .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
    position: relative;
    background-color: #fefefe;
-   margin: 15% auto;
-   padding: 20px;
+   margin: 13% auto;
+   padding: 25px;
    border: 1px solid #888;
-   width: 80%;
+   border-radius: 5px;
+   width: 400px;
 }
 
 .close {
+    position: absolute;
+    right: 12px;
+    top: 12px;
    color: black;
    float: right;
-   font-size: 2em;
+   font-size: 2.5em;
    font-weight: bold;
    line-height: 15px;
 }
@@ -36,32 +43,90 @@
 }
 
 
+/*=====FIELDS WITHIN MODAL=====*/
+#editTeacherModal > .modal-content > .field {
+    width: 310px;
+    min-height: 35px;
+}
 
-#editTeacherModal > .modal-content > span > .teacher-photo {
+#editTeacherModal > .modal-content > .field > span {
+    float: left;
+    padding-top: 5px;
+}
+
+#editTeacherModal > .modal-content > .field > input {
     display: block;
-    max-width: 300px;
+    width: 200px;
+    margin-left: 100px;
+    padding: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    font-size: 0.9em;
 }
 
+#editTeacherModal > .modal-content > .photo {
+    width: 310px;
+    margin-bottom: 20px;
+}
+
+#editTeacherModal > .modal-content > .photo > span {
+    float: left;
+    padding-top: 8px;
+}
+
+
+
+/*=====TEACHER PHOTO WITHIN MODAL=====*/
+.edit-teacher-image-container {
+    position: relative;
+    width: 175px;
+    margin: 10px 0 0 100px;
+}
+
+.edit-teacher-image-container > .teacher-photo {
+    width: 175px;
+}
+
+.edit-teacher-image-container > .remove-photo {
+    position:absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    color: rgba(255,255,255);
+    background: rgba(0,0,0,0.7);
+    font-size: 3.25em;
+    line-height: 15px;
+}
+
+
+/*=====BUTTONS WITHIN MODAL=====*/
 #editTeacherModal > .modal-content > .buttons {
-   width: 150px;
-   position: absolute;
-   right: 0;
-   bottom: 20px;
+    width: 200px;
+    margin: 15px 0 0 auto;
+ }
+
+#editTeacherModal > .modal-content > .buttons > button {
+    width: 80px;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.85em;
+    outline: none;
 }
 
-#editTeacherModal > .modal-content > .buttons > .cancel{
-   
+#editTeacherModal > .modal-content > .buttons > button:active {
+    opacity: 0.7;
 }
 
-#editTeacherModal > .modal-content > .buttons > .save{
-   background-color: #7EFF7E;
-}
-
-
-
-
-
-
+ #editTeacherModal > .modal-content > .buttons > .cancel{
+    margin-right: 15px;
+    background-color: rgb(200, 200, 200);
+ }
+ 
+ #editTeacherModal > .modal-content > .buttons > .save{
+    background-color: rgb(81, 249, 81);
+ }
+ 
 
 
 

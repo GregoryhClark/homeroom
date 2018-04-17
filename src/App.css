@@ -19,13 +19,13 @@ button {
 }
 
 h1 {
-   margin-bottom: 10px;
+   margin-bottom: 20px;
    font-size: 1.3em;
 }
 
 .horizontal-line{
    width: 95%;
-   border-bottom: 1px solid black;
+   border-bottom: 1px solid rgba(0,0,0,0.35);
 }
 
 @media(min-width: 768px) {

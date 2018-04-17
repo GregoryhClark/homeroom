@@ -80,34 +80,42 @@ class Teachers extends React.Component {
                 <span className="close" onClick={this.handleCloseModal}>&#215;</span>
                 <h1 className="horizontal-line">Edit Teacher Details</h1>
 
-                <span>First Name:<input type='text' value={first_name} 
-                onChange={(e) => this.handleUpdateState(e, 'first_name')}/></span>< br/>
+                <div className="field">
+                    <span>First Name:</span>
+                    <input type='text' value={first_name} onChange={(e) => this.handleUpdateState(e, 'first_name')}/>
+                </div>
 
-                <span>Last Name:<input type='text' value={last_name} 
-                onChange={(e) => this.handleUpdateState(e, 'last_name')}/></span>< br/>
+                <div className="field">
+                    <span>Last Name:</span>
+                    <input type='text' value={last_name} onChange={(e) => this.handleUpdateState(e, 'last_name')}/>
+                </div>
 
-                <span>Username:<input type='text' value={username} 
-                onChange={(e) => this.handleUpdateState(e, 'username')}/></span>< br/>
+                <div className="field">
+                    <span>Username:</span>
+                    <input type='text' value={username} onChange={(e) => this.handleUpdateState(e, 'username')}/>
+                </div>
 
-                <span>Email:<input type='text' value={email} 
-                onChange={(e) => this.handleUpdateState(e, 'email')}/></span>< br/>
+                <div className="field">
+                    <span>Email:</span>
+                    <input type='text' value={email} onChange={(e) => this.handleUpdateState(e, 'email')}/>
+                </div>
 
-                <span>Photo:{user_photo !== 'null' ? 
+                <div className="photo">
+                <span>Photo:</span>
+                {user_photo !== 'null' ? 
                     <div className="edit-teacher-image-container">
                         <img src={user_photo} className="teacher-photo"/>
-                        <span>X Remove</span>
+                        <span className="remove-photo">&#215;</span>
                     </div>
                     
-                    : 'missing'}</span>
-
-
-
-                
+                    : 'missing'}
+                </div>
                 
                 <div className="buttons">
                     <button className="cancel">Cancel</button>
                     <button className="save">Save</button>
                 </div>
+
                 </div>
             </div>
 
