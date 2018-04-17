@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getUser} from '../../../redux/user';
+import {getUser, getAdmin} from '../../../redux/user';
 import './MyAccount.css'
 
 class AdminsAccount extends Component{
@@ -8,8 +8,7 @@ class AdminsAccount extends Component{
         return(
             <div className="admins-account">
                 <Container type="container">
-                    <Titles type="titles">{`${this.props.user.first_name} ${this.props.user.last_name}'s Settings`}</Titles>
-                    Admin
+                    <Titles type="titles">Admin</Titles>
                 </Container>
             </div>
         )
@@ -18,10 +17,10 @@ class AdminsAccount extends Component{
 // =========== MAP STATE TO PROPS ======
 function mapStateToProps(state){
     return{
-        user: state.user
+        admin: state.admin
     }
 }
-export default connect(mapStateToProps, {getUser})(AdminsAccount);
+export default connect(mapStateToProps, {getUser, getAdmin})(AdminsAccount);
 
 // =========== LINK ASSIGNMENT =========
 function Container(props){

@@ -7,13 +7,10 @@ import './LoadData.css';
 
 //COMPONENT
 export default class LoadData extends React.Component {
-   render() {
-
-
-    
+   render() { 
       return(
          <div className="progress">
-            <CircularProgress size={150} thickness={5} color={'gray'}/>
+            <CircularProgress size={150} thickness={7} color={'lightBlue'}/>
          </div>
       )
    }
