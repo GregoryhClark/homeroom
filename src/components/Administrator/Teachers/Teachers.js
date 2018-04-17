@@ -57,6 +57,7 @@ class Teachers extends React.Component {
                 }
             }
 
+            //GERNERATE TEACHERS TABLE
             const teachers = this.props.admin.teachers.map((e, i) => {
                 return (
                     <tr key={i}>
@@ -65,81 +66,80 @@ class Teachers extends React.Component {
                         <td>{e.username}</td>
                         <td>{e.email}</td>
                         <td>{e.user_photo === 'null' ? 'None' : <a href={e.user_photo} target='_blank'>View</a>}</td>
-                        <td><button onClick={() => this.handleEditTeacher(i)}>Edit</button></td>
+                        <td><button className="edit-button" onClick={() => this.handleEditTeacher(i)}>Edit</button></td>
                     </tr>
                 )
             })
 
-            console.log(this.state.editTeacher);
-
         return(
             <div>
-                
-            <div id="editTeacherModal" className="modal">
-                <div className="modal-content">
-                <span className="close" onClick={this.handleCloseModal}>&#215;</span>
-                <h1 className="horizontal-line">Edit Teacher Details</h1>
 
-                <div className="field">
-                    <span>First Name:</span>
-                    <input type='text' value={first_name} onChange={(e) => this.handleUpdateState(e, 'first_name')}/>
-                </div>
+                {/*==========CODE FOR MODAL==========*/}
+                <div id="editTeacherModal" className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={this.handleCloseModal}>&#215;</span>
+                        <h1 className="horizontal-line">Edit Teacher Details</h1>
 
-                <div className="field">
-                    <span>Last Name:</span>
-                    <input type='text' value={last_name} onChange={(e) => this.handleUpdateState(e, 'last_name')}/>
-                </div>
+                        <div className="field">
+                            <span>First Name:</span>
+                            <input type='text' value={first_name} onChange={(e) => this.handleUpdateState(e, 'first_name')}/>
+                        </div>
 
-                <div className="field">
-                    <span>Username:</span>
-                    <input type='text' value={username} onChange={(e) => this.handleUpdateState(e, 'username')}/>
-                </div>
+                        <div className="field">
+                            <span>Last Name:</span>
+                            <input type='text' value={last_name} onChange={(e) => this.handleUpdateState(e, 'last_name')}/>
+                        </div>
 
-                <div className="field">
-                    <span>Email:</span>
-                    <input type='text' value={email} onChange={(e) => this.handleUpdateState(e, 'email')}/>
-                </div>
+                        <div className="field">
+                            <span>Username:</span>
+                            <input type='text' value={username} onChange={(e) => this.handleUpdateState(e, 'username')}/>
+                        </div>
 
-                <div className="photo">
-                <span>Photo:</span>
-                {user_photo !== 'null' ? 
-                    <div className="edit-teacher-image-container">
-                        <img src={user_photo} className="teacher-photo"/>
-                        <span className="remove-photo">&#215;</span>
+                        <div className="field">
+                            <span>Email:</span>
+                            <input type='text' value={email} onChange={(e) => this.handleUpdateState(e, 'email')}/>
+                        </div>
+
+                        <div className="photo">
+                            <span>Photo:</span>
+
+                            {/*ADD PHOTO LINK IF NO PHOTO IS AVAILABLE*/}
+                            {user_photo === 'null' ? <a href="" className="add-photo">Add Photo</a>
+                             : 
+                            <div className="edit-teacher-image-container">
+                                <img src={user_photo} className="teacher-photo"/>
+                                <span className="remove-photo">&#215;</span>
+                            </div> }
+                        </div>
+                        
+                        <div className="buttons">
+                            <button className="cancel">Cancel</button>
+                            <button className="save">Save</button>
+                        </div>
+
                     </div>
-                    
-                    : 'missing'}
-                </div>
-                
-                <div className="buttons">
-                    <button className="cancel">Cancel</button>
-                    <button className="save">Save</button>
                 </div>
 
-                </div>
-            </div>
-
+            {/*==========CODE FOR TEACHERS TABLE==========*/}
             <div className="teachers-overflow">
                 <table className="teachers-table">
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Photo</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {teachers}
-                </tbody>
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Photo</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {teachers}
+                    </tbody>
                 </table>
             </div>
-
-
-            </div>
-        )
+        </div>
+    )
 }
 }
 

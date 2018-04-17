@@ -74,6 +74,15 @@
     padding-top: 8px;
 }
 
+#editTeacherModal > .modal-content > .photo > span {
+    float: left;
+    padding-top: 8px;
+}
+
+#editTeacherModal > .modal-content > .photo > .add-photo {
+    display: block;
+    margin: 8px 0 0 100px;
+}
 
 
 /*=====TEACHER PHOTO WITHIN MODAL=====*/
@@ -99,7 +108,7 @@
 }
 
 
-/*=====BUTTONS WITHIN MODAL=====*/
+/*=====SAVE/CANCEL BUTTONS WITHIN MODAL=====*/
 #editTeacherModal > .modal-content > .buttons {
     width: 200px;
     margin: 15px 0 0 auto;
@@ -128,16 +137,13 @@
  }
  
 
-
-
-
-
-
+/*=====DIV FOR CONTROLLING TEACHER TABLE OVERFLOW=====*/
 .teachers-overflow {
    min-width: 100%;
    overflow-x: auto;
 }
 
+/*=====TEACHERS TABLE=====*/
 .teachers-table {
    width: 100%;
    font-size: 0.9em;
@@ -149,7 +155,7 @@
 
 .teachers-table > thead > tr > th {
    min-width: 120px;
-   padding: 5px 15px 5px 5px;
+   padding: 5px 15px 5px 10px;
    text-align: left;
    font-weight: 600;
    font-size: 1.05em;
@@ -164,16 +170,27 @@
    min-width: 50px;
 }
 
-
-
 .teachers-table > tbody > tr {
    background-color: #F5F5F5;
 }
 
 .teachers-table > tbody > tr:nth-child(2n + 2) {
-   background-color: #DCDCDC;
+   background-color: rgb(228, 228, 228);
 }
 
 .teachers-table > tbody > tr > td{
-   padding: 5px 15px 5px 5px;
+   padding: 6px 15px 6px 10px;
 }
+
+.teachers-table > tbody > tr > td > .edit-button {
+    padding: 3px 8px;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(200, 200, 200);
+    font-size: 0.9em;
+    outline: none;
+ }
+
+ .teachers-table > tbody > tr > td > .edit-button:active {
+    opacity: 0.8;
+ }
