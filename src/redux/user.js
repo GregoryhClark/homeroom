@@ -34,7 +34,6 @@ const GET_COURSES_FOR_ADMIN = "GET_COURSES_FOR_ADMIN";
 // ========== GET USER ===========
 export function getUser(){
     let user = axios.get('/auth/me').then(res => {
-        // console.log("GET USER", res.data)
         return res.data
     })
     return{
