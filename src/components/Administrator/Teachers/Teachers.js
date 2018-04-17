@@ -1,6 +1,8 @@
 //MODULES
 import React from 'react';
+import axios from 'axios';
 import {connect} from 'react-redux';
+import {teachersForAdmin} from '../../../redux/user.js';
 
 //CSS, ASSETS
 import './Teachers.css';
@@ -11,17 +13,19 @@ class Teachers extends React.Component {
         super()
         this.state = {
             editTeacher: {
-                first_name: ''
-                ,last_name: ''
-                ,username: ''
-                ,email: ''
-                ,user_photo: ''
+                  first_name: ''
+                , last_name: ''
+                , username: ''
+                , email: ''
+                , user_photo: ''
             }
         }
 
         this.handleEditTeacher = this.handleEditTeacher.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.handleUpdateState = this.handleUpdateState.bind(this);
+        this.handleRemovePhoto = this.handleRemovePhoto.bind(this);
+        this.handleSave = this.handleSave.bind(this);
     }
 
     handleEditTeacher(index) {
@@ -36,14 +40,47 @@ class Teachers extends React.Component {
     }
 
     handleCloseModal() {
+        //CLOSE MODAL
         const modal = document.getElementById('editTeacherModal');
         modal.style.display = "none";
+
+        //RESET editTeacher ON STATE
+        const editTeacher = {
+            first_name: ''
+          , last_name: ''
+          , username: ''
+          , email: ''
+          , user_photo: ''
+          , user_id: ''
+      }
+
+      this.setState({editTeacher})
     }
 
     handleUpdateState(e, field) {
         const editTeacher = Object.assign({}, this.state.editTeacher)
         editTeacher[field] = e.target.value;
         this.setState({editTeacher})
+    }
+
+    handleRemovePhoto() {
+        let editTeacher = Object.assign({}, this.state.editTeacher);
+        editTeacher.user_photo = 'undefined';
+        this.setState({editTeacher});
+    }
+
+    handleSave() {
+        const {editTeacher} = this.state;
+        //UPDATE TEACHERS TABLE
+        axios.put('/updateUser', editTeacher).then(res => {
+            //UPDATE TEACHERS IN REDUX TO UPDATE TEACHERS TABLE
+            this.props.teachersForAdmin();
+        
+            //CLOSE MODAL
+            this.handleCloseModal();
+
+            console.log(res)
+        })
     }
 
     render() {
@@ -57,6 +94,7 @@ class Teachers extends React.Component {
                 }
             }
 
+            console.log(this.props.admin.teachers)
             //GERNERATE TEACHERS TABLE
             const teachers = this.props.admin.teachers.map((e, i) => {
                 return (
@@ -65,7 +103,7 @@ class Teachers extends React.Component {
                         <td>{e.last_name}</td>
                         <td>{e.username}</td>
                         <td>{e.email}</td>
-                        <td>{e.user_photo === 'null' ? 'None' : <a href={e.user_photo} target='_blank'>View</a>}</td>
+                        <td>{e.user_photo === 'undefined' ? 'None' : <a href={e.user_photo} target='_blank'>View</a>}</td>
                         <td><button className="edit-button" onClick={() => this.handleEditTeacher(i)}>Edit</button></td>
                     </tr>
                 )
@@ -104,17 +142,17 @@ class Teachers extends React.Component {
                             <span>Photo:</span>
 
                             {/*ADD PHOTO LINK IF NO PHOTO IS AVAILABLE*/}
-                            {user_photo === 'null' ? <a href="" className="add-photo">Add Photo</a>
+                            {user_photo === 'undefined' ? <a href="" className="add-photo">Add Photo</a>
                              : 
                             <div className="edit-teacher-image-container">
-                                <img src={user_photo} className="teacher-photo"/>
-                                <span className="remove-photo">&#215;</span>
+                                <img src={user_photo} className="teacher-photo" alt="profile"/>
+                                <span className="remove-photo" onClick={this.handleRemovePhoto}>&#215;</span>
                             </div> }
                         </div>
                         
                         <div className="buttons">
-                            <button className="cancel">Cancel</button>
-                            <button className="save">Save</button>
+                            <button className="cancel" onClick={this.handleCloseModal}>Cancel</button>
+                            <button className="save" onClick={this.handleSave}>Save</button>
                         </div>
 
                     </div>
@@ -149,4 +187,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Teachers)
+export default connect(mapStateToProps, {teachersForAdmin})(Teachers)
