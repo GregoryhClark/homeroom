@@ -11,6 +11,7 @@ const express = require('express')
 // =============== CONTROLLERS ================
    , admin_ctrl = require('./controllers/admin_ctrl')
    , students_ctrl = require('./controllers/students_ctrl')
+   , parents_ctrl = require('./controllers/parents_ctrl')
    
 // ================ INVOKE EXPRESS ============= 
 const app = express();
@@ -113,6 +114,9 @@ const {getCourses} = admin_ctrl
 app.get('/getAdminCourse', getCourses);
 // ****************** TEACHERS ******************
 // ****************** PARENTS *******************
+//        ========== Children =========
+const {getParentsKids} = parents_ctrl
+app.get('/getParentsKids', getParentsKids);
 // ****************** STUDENTS ******************
 //        ========== Courses ========
 const {getStudentCourses} = students_ctrl

@@ -12,7 +12,7 @@ class Home extends Component {
             accountType === "Administrator" ? 'Hi!':
             accountType === "Teacher" ? 'Heyo':
             accountType === "Parent"? 'Hola': 
-            accountType === "Student" ? <Chart/>: <LoadData/>
+            accountType === "Student" ? <Chart/>: ''
         )
     }
 }

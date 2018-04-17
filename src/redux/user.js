@@ -6,6 +6,7 @@ const initialState = {
       , navigation: false  // CONTROLS IF NAVIGATION IS DISPLAYED
       , admin:[]           // CONTAINS ALL CURRENT ADMIN INFO
       , student:[]         // CONTAINS ALL CURRENT STUDENT INFO
+      , parent:[]         // CONTAINS ALL CURRENT PARENTS CHILDREN
 
 }
 // ======= ACTION TYPES ===========
@@ -13,7 +14,8 @@ const GET_USER = "GET_USER";
 const _FULFILLED = "_FULFILLED";
 const NAVIGATION = "NAVIGATION";
 const GET_ADMIN = "GET_ADMIN";
-const GET_STUDENT = "GET_STUDENT"
+const GET_PARENT = "GET_PARENT";
+const GET_STUDENT = "GET_STUDENT";
 
 // ======= ACTION CREATORS ========
 // ========== GET USER ===========
@@ -47,12 +49,21 @@ export function getStudent(){
     let getAssignments = axios.get('/getStudentAssignments');
     let getAttachments = axios.get('/getStudentAttachments');
     let student = Promise.all([getStudentCourses, getAssignments, getAttachments]).then(res=>{
-        console.time("")
         return res
     }).catch(err=>console.log(err))
     return{
           type: GET_STUDENT
         , payload: student
+    }
+}
+export function getParent(){
+    let getParentsKids = axios.get('/getParentsKids');
+    let parent = Promise.all([getParentsKids]).then(res=>{
+        return res
+    }).catch(err=>console.log(err))
+    return{
+          type: GET_STUDENT
+        , payload: parent
     }
 }
 // ========== SHOW NAV ===========
@@ -74,6 +85,8 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {admin:action.payload})
         case GET_STUDENT + _FULFILLED:
             return Object.assign({}, state, {student:action.payload})
+        case GET_PARENT + _FULFILLED:
+            return Object.assign({}, state, {parent:action.payload})
         default: 
             return state;
     }

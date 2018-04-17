@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import './Navbar.css'
 import {connect} from 'react-redux';
-import {getUser, getAdmin, getStudent} from '../../redux/user';
+import {getUser, getAdmin, getStudent, getParent} from '../../redux/user';
 
 class Navbar extends Component {
     constructor() {
@@ -15,7 +15,9 @@ class Navbar extends Component {
         this.props.getUser().then(()=>{
             let adminData = this.props.user.account_type === "Administrator" ? this.props.getAdmin(): "Wrong User"
             let studentData = this.props.user.account_type === "Student" ? this.props.getStudent() : "Wrong User"
-            Promise.all([adminData, studentData]).then(res=>{
+            let parentData = this.props.user.account_type === "Parent" ? this.props.getParent() : "Wrong User"
+            Promise.all([adminData, studentData, parentData]).then(res=>{
+                console.log(res)
                 return res
             }).catch(err=>console.log(err))
         })
@@ -245,6 +247,7 @@ function mapStateToProps(state){
           user: state.user
         , admin: state.admin
         , student: state.student
+        , parent: state.parent
     }
 }
-export default connect(mapStateToProps, {getUser, getAdmin, getStudent})(Navbar);
+export default connect(mapStateToProps, {getUser, getAdmin, getStudent, getParent})(Navbar);

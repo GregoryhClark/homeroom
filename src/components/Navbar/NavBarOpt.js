@@ -41,7 +41,10 @@
 //                     <input className="menu-btn" type="checkbox" id="menu-btn" />
 //                     <label className="menu-icon" htmlFor="menu-btn"><span className="navicon"></span></label>
 // {/*=========== ADMINISTRATOR NAVIGATION OPTIONS ===========*/}  
-//                     <MainNavUL type="Administrator" accountType={accountType}>
+//                     <MainNavUL {accountType === "Administrator" ? type="Administrator":
+//                                 accountType === "Teacher"       ? type="Teacher":
+//                                 accountType === "Parent"        ? type="Parent":
+//                                 accountType === "Student"       ? type="Student":''} accountType={accountType}>
 //                         <MainNavItem type="nav-li"><Links type="home" clickIt={this.handleOnClick}>Home</Links></MainNavItem>
 //                         <MainNavItem type="nav-li"><Links type="teachers" clickIt={this.handleOnClick}>Teachers</Links></MainNavItem>
 //                         <MainNavItem type="nav-li"><Links type="parents" clickIt={this.handleOnClick}>Parents</Links></MainNavItem>

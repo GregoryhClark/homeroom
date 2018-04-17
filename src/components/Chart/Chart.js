@@ -9,7 +9,7 @@ import LoadData from '../../components/LoadData/LoadData'
 import './Chart.css'
 
 class Chart extends Component {
-    render() {
+    render() {   
         let studentData = this.props.student;
         let getAssignment = (arg, arr)=>{for(const props in arg){typeof arg[props] === 'object' ? getAssignment(arg[props],arr) : props === 'name' ? arr.push(arg[props]) : arr;} return arr;}
         let getGrade = (arg, arr)=>{for(const props in arg){typeof arg[props] === 'object' ? getGrade(arg[props],arr) : props === 'points_earned' ? arr.push(arg[props]) : arr;} return arr;}
