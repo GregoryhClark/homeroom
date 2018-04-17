@@ -18,9 +18,7 @@ class Dashboard extends Component {
         let studentCourses = getCourse(studentData,[])
         return (
             studentCourses.map((course,i)=>{
-                return <div key={i} style={styleCard}>
-                            {course}
-                       </div>
+                return <div key={i} style={styleCard}>{course}</div>
             })
         )
     }

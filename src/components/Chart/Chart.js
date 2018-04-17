@@ -45,13 +45,14 @@ class Chart extends Component {
                             // , backgroundColor: 'lightBlue'
                         },{
                               label: 'Average Score'
-                            , data: [75, 66, 80, 76, 45]
+                            , data: [75, 66, 100, 76, 45]
                             , backgroundColor: 'orange'
                         }]
         }
+        console.log(getAssignment(studentData,[]))
     return (
         <div className="test_chart_wrapper">   
-            {this.props.student.length ? <Bar className="test_chart"
+            {this.props.student ? <Bar className="test_chart"
                 data={chartData}
                 options={{
                     title: {
@@ -61,10 +62,10 @@ class Chart extends Component {
                     },
                     legend: {
                           display: true
-                        , position: 'right'
+                        , position: 'top'
                     }
                 }}/>: <LoadData/>}
-            {this.props.student.length ? <div className="coursesButtonsWrapper">{courseButtons}</div>: null}   
+            {this.props.student ? <div className="coursesButtonsWrapper">{courseButtons}</div>: null}   
         </div>
         )
     }
