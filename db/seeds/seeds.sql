@@ -95,7 +95,7 @@ due_date date
 insert into student_assignments (
 student_id,
 course_id,
-name,
+assignment_name,
 description,
 instructions,
 topic,
@@ -146,13 +146,13 @@ CREATE TABLE users (
 
 
 INSERT INTO users (account_type, username, password, first_name, last_name, email, photo, phone_number)
-values(3, 'stud', 'stud', 'Student_First', 'Student_Last', 'stud@stud.com', 'photo_string', 12345)
+values('Student', 'stud', 'stud', 'Student_First', 'Student_Last', 'stud@stud.com', 'photo_string', 12345)
 
 INSERT INTO users (account_type, username, password, first_name, last_name, email, photo, phone_number)
-values(2, 'teach', 'teach', 'Teacher_First', 'Teacher_Last', 'teach@teach.com', 'photo_string', 12345)
+values('Teacher', 'teach', 'teach', 'Teacher_First', 'Teacher_Last', 'teach@teach.com', 'photo_string', 12345)
 
 INSERT INTO users (account_type, username, password, first_name, last_name, email, photo, phone_number)
-values(4, 'par', 'par', 'Parent_First', 'Parent_Last', 'parent@parent.com', 'photo_string', 12345)
+values('Parent', 'par', 'par', 'Parent_First', 'Parent_Last', 'parent@parent.com', 'photo_string', 12345)
 
 
 

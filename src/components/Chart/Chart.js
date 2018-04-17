@@ -8,6 +8,23 @@ import LoadData from '../../components/LoadData/LoadData'
 import './Chart.css'
 
 class Chart extends Component {
+
+    constructor() {
+        super()
+        this.state = {
+            selectedCourseID: 3,
+            selectedCourseName: '*name of course*',
+            windowWidth:0
+        }
+        this.selectCourse = this.selectCourse.bind(this)
+    }
+
+    selectCourse(courseName){
+        this.setState({
+            selectedCourseName: courseName
+        })
+    }
+
     render() {   
         let studentData = this.props.student;
         let getAssignment = (arg, arr)=>{
@@ -35,7 +52,7 @@ class Chart extends Component {
             } return arr;
         }
         let courseButtons = getCourse(studentData,[]).map((course, i)=>{
-            return <button className="course_btn" key = {i} value={course}>{course}</button>
+            return <button className="course_btn" onClick={(e) =>{this.selectCourse(course)}} key = {i} value={course}>{course}</button>
         }) 
         let chartData = {
               labels: getAssignment(studentData,[])
@@ -49,7 +66,8 @@ class Chart extends Component {
                             , backgroundColor: 'orange'
                         }]
         }
-        console.log(getAssignment(studentData,[]))
+        //console.log(getAssignment(studentData,[]))
+        console.log(getStudent())
     return (
         <div className="test_chart_wrapper">   
             {this.props.student ? <Bar className="test_chart"
