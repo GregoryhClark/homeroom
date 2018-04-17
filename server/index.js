@@ -12,6 +12,7 @@ const express = require('express')
    , admin_ctrl = require('./controllers/admin_ctrl')
    , students_ctrl = require('./controllers/students_ctrl')
    , parents_ctrl = require('./controllers/parents_ctrl')
+   , teachers_ctrl = require('./controllers/teachers_ctrl')
    
 // ================ INVOKE EXPRESS ============= 
 const app = express();
@@ -101,22 +102,32 @@ app.get('/auth/me', (req, res) => {
 
 // ****************** ADMINS *******************
 //        ========== Teachers ========
-const {getTeachers} = admin_ctrl
-app.get('/getAdminTeacher', getTeachers);
+const {getTeachersForAdmin} = admin_ctrl
+app.get('/getAdminTeacher', getTeachersForAdmin);
 //        ========== Students ========
-const {getStudents} = admin_ctrl
-app.get('/getAdminStudent', getStudents);
+const {getStudentsForAdmin} = admin_ctrl
+app.get('/getAdminStudent', getStudentsForAdmin);
 //        ========== Parents =========
-const {getParents} = admin_ctrl
-app.get('/getAdminParent', getParents);
+const {getParentsForAdmin} = admin_ctrl
+app.get('/getAdminParent', getParentsForAdmin);
 //        ========== Courses =========
-const {getCourses} = admin_ctrl
-app.get('/getAdminCourse', getCourses);
+const {getCoursesForAdmin} = admin_ctrl
+app.get('/getAdminCourse', getCoursesForAdmin);
+
+
 // ****************** TEACHERS ******************
+const {getStudentsForTeacher} = teachers_ctrl
+app.get('/getStudentTeacher', getStudentsForTeacher);
+const {getCoursesForTeacher} = teachers_ctrl
+app.get('/getCoursesTeacher', getCoursesForTeacher);
+
+
 // ****************** PARENTS *******************
 //        ========== Children =========
 const {getParentsKids} = parents_ctrl
 app.get('/getParentsKids', getParentsKids);
+
+
 // ****************** STUDENTS ******************
 //        ========== Courses ========
 const {getStudentCourses} = students_ctrl

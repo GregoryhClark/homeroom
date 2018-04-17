@@ -31,7 +31,7 @@ class Chart extends Component {
             for(const props in arg){
                 if(typeof arg[props] === 'object'){
                     getAssignment(arg[props],arr)}
-                if(props === 'name'){
+                if(props === 'assignment_name'){
                     arr.push(arg[props])}
             } return arr
         }
@@ -47,7 +47,7 @@ class Chart extends Component {
             for(const props in arg){
                 if(typeof arg[props] === 'object'){
                     getCourse(arg[props],arr)}
-                if(props === 'course'){
+                if(props === 'course_name'){
                     arr.push(arg[props])}
             } return arr;
         }

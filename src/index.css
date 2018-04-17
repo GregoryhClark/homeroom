@@ -13,3 +13,8 @@ body {
 #root {
   min-height: 100vh;
 }
+
+/* BIG CALENDAR MODULE */
+.rbc-calendar {
+  height: calc(100vh - (190px)) !important;
+}
