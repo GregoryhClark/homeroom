@@ -1,6 +1,6 @@
 module.exports = {
     updateUser:((req, res, next)=>{
-        const {first_name, last_name, username, email, photo, user_id} = req.body;
+        const {first_name, last_name, username, email, user_photo, user_id} = req.body;
         console.log(req.body);
         const db = req.app.get('db')
         if(req.body.first_name) {
@@ -11,7 +11,7 @@ module.exports = {
                 last_name = '${last_name}',
                 username = '${username}',
                 email = '${email}',
-                user_photo = '${photo}'
+                user_photo = '${user_photo}'
              WHERE user_id = ${user_id}`
             , function(err, res){const updatedTeacher = res}).then(updatedTeacher => {
                 res.status(200).send(updatedTeacher)
