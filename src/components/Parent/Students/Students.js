@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { getParent } from '../../../redux/user';
+import { getStudent } from '../../../redux/user';
 import './Students.css'
 import { Divider } from 'material-ui';
 import _ from 'underscore';
@@ -12,6 +13,7 @@ class Students extends Component {
     }
     render() {
         let parentData = this.props.parent;
+        let studentData = this.props.student;
         // var studentCourses = studentData.getCourses ?
         //     studentData.getCourses.map(value => {
         //         return { courseID: value.course_id, courseName: value.course_name, courseImage: value.courses_photo }
@@ -30,7 +32,8 @@ class Students extends Component {
         //         </div>
         //     </a>
         // })
-        console.log(parentData)
+        parentData ? console.log(parentData) : null
+        console.log(studentData)
         return (
             <div> hi
                 {/* <div className="main_card_wrapper">
@@ -43,7 +46,8 @@ class Students extends Component {
 }
 function mapStateToProps(state) {
     return {
-        parent: state.parent
+        parent: state.parent,
+        student: state.student
     }
 }
-export default connect(mapStateToProps, { getParent })(Students);
+export default connect(mapStateToProps, { getParent , getStudent})(Students);
