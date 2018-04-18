@@ -1,41 +1,49 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {getStudent} from '../../../redux/user';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
+import { getStudent } from '../../../redux/user';
+import './Dashboard.css'
+import { Divider } from 'material-ui';
+import _ from 'underscore';
 
 class Dashboard extends Component {
-    render(){
+    rerouteToCourse(courseID) {
+        //This is where we need logic for routing.
+    }
+    render() {
         let studentData = this.props.student;
-        let getCourse = (arg, arr)=>{
-            for(const props in arg){
-                if(typeof arg[props] === 'object'){
-                    getCourse(arg[props],arr)
-                } 
-                if(props === 'course_name'){
-                    arr.push(arg[props]) 
-                } 
-            }return arr;
-        }
-        let studentCourses = getCourse(studentData,[])
-        return (
-            studentCourses.map((course,i)=>{
-                return <div key={i} style={styleCard}>{course}</div>
+        var studentCourses = studentData.getCourses ?
+            studentData.getCourses.map(value => {
+                return { courseID: value.course_id, courseName: value.course_name, courseImage: value.courses_photo }
             })
+            : []
+        let courseCards = _.uniq(studentCourses).map((element, index) => {
+            return <a
+                onClick={(e) => this.rerouteToCourse(element.course_id)}
+                key={index}
+                className="dasboard_style_card">
+                <div className = "course_image_wrapper">
+                    <img className="course_card_img" alt = "course image"src={element.courseImage.length > 15 ? element.courseImage : "https://avatars3.githubusercontent.com/u/26701845?s=460&v=4"} />
+                </div>
+                <div className="course_card_name">
+                    {element.courseName}
+                </div>
+            </a>
+        })
+        console.log(studentData)
+        return (
+            <div>
+                <div className="main_card_wrapper">
+                    {courseCards}
+                </div>
+
+            </div>
         )
     }
 }
-
-function mapStateToProps(state){
-    return{
-        student:state.student
+function mapStateToProps(state) {
+    return {
+        student: state.student
     }
 }
-export default connect(mapStateToProps, {getStudent})(Dashboard);
-
-const styleCard = {
-      margin:'25px'
-    , width:'250px'
-    , height:'300px'
-    , backgroundColor:'#EEE'
-    , borderRadius:'15px'
-    , boxShadow:'2px 2px 10px 0 #CCC'
-}
+export default connect(mapStateToProps, { getStudent })(Dashboard);

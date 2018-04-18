@@ -166,3 +166,8 @@ assignment_name varchar(100)
 INSERT INTO assignment_topics (topic_name)
 values
 ('')
+
+
+--student parent
+insert into student_parent (student_id, parent_id)
+values(12,20 )
