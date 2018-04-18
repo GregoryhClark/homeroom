@@ -18,7 +18,8 @@ class Teachers extends React.Component {
         , username: ''
         , email: ''
         , user_photo: ''
-      }
+      },
+      saveStatus: ''
     }
     this.handleEditTeacher = this.handleEditTeacher.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -32,12 +33,12 @@ class Teachers extends React.Component {
     this.setState({ editTeacher: this.props.admin.teachers[index] })
     
     //SHOW MODAL
-    const modal = document.getElementById('editTeacherModal').style.display = "block";
+    document.getElementById('editTeacherModal').style.display = "block";
   }
 
   handleCloseModal() {
     //CLOSE MODAL
-    const modal = document.getElementById('editTeacherModal').style.display = "none";
+    document.getElementById('editTeacherModal').style.display = "none";
 
     //RESET editTeacher PROPERTY VALUES ON STATE
     const editTeacher = {
@@ -50,6 +51,9 @@ class Teachers extends React.Component {
     };
 
     this.setState({editTeacher});
+
+    //RESET saveStatus ON STATE
+    this.setState({saveStatus: ''})
   }
 
   handleUpdateState(e, field) {
@@ -65,29 +69,29 @@ class Teachers extends React.Component {
   }
 
   handleSave() {
-      const {editTeacher} = this.state;
+    const {editTeacher} = this.state;
 
-      //UPDATE TEACHERS TABLE IN DB
-      axios.put('/updateUser', editTeacher).then(res => {
-          //REFRESH REDUX
-          this.props.teachersForAdmin();
-          //CLOSE MODAL
-          this.handleCloseModal();
+    //UPDATE TEACHERS TABLE IN DB
+    axios.put('/updateUser', editTeacher).then(res => {
+      //REFRESH REDUX
+      this.props.teachersForAdmin();
 
-          console.log(res.status)
-      })
+      this.setState({saveStatus: true})
+
+    }).catch(this.setState({saveStatus: false}))
   }
 
-    render() {
-            let {first_name, last_name, username, email, user_photo} = this.state.editTeacher;
+  render() {
+    let {first_name, last_name, username, email, user_photo} = this.state.editTeacher;
+    let {saveStatus} = this.state;
 
-            //REMOVE MODAL WHEN AREA OUTSIDE OF MODAL IS CLICKED
-            window.onclick = function(event) {
-                const modal = document.getElementById('editTeacherModal');
-                if (event.target === modal) {
-                    modal.style.display = "none";
-                }
-            }
+    //REMOVE MODAL WHEN AREA OUTSIDE OF MODAL IS CLICKED
+    window.onclick = function(event) {
+      const modal = document.getElementById('editTeacherModal');
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
 
             //GERNERATE TEACHERS TABLE
             const teachers = this.props.admin.teachers.map((e, i) => {
@@ -111,6 +115,7 @@ class Teachers extends React.Component {
                     <div className="modal-content">
                         <span className="close" onClick={this.handleCloseModal}>&#215;</span>
                         <h1 className="horizontal-line">Edit Teacher Details</h1>
+                        {saveStatus === false ? <div className="save-status-fail">Pending...</div> : saveStatus === true ? <div className="save-status-successful">Save Successful</div> : null}
 
                         <div className="field">
                             <span>First Name:</span>
