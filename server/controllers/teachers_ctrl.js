@@ -7,8 +7,8 @@ module.exports= {
                     start_date, end_date, users.user_id, teacher_id, period, time, department, 
                     first_name, last_name, email, user_photo, phone_number 
                     FROM courses
-                    JOIN roster ON courses.course_id = roster.course_id
-                    JOIN users ON roster.user_id = users.user_id
+                    JOIN roster ON courses.course_id = roster.roster_course_id
+                    JOIN users ON roster.roster_user_id = users.user_id
                     WHERE teacher_id = ${user_id}`,
                 function(err,res){
                     var teachers = res;

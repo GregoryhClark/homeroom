@@ -10,7 +10,7 @@ class Dashboard extends Component {
                 if(typeof arg[props] === 'object'){
                     getCourse(arg[props],arr)
                 } 
-                if(props === 'course'){
+                if(props === 'course_name'){
                     arr.push(arg[props]) 
                 } 
             }return arr;
