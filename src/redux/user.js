@@ -182,7 +182,7 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {navigation:action.payload})
 // ****** FOR ADMIN ******
         case GET_ADMIN + _FULFILLED:
-                return Object.assign({}, state, {admin:action.payload})
+            return Object.assign({}, state, {admin:action.payload})
         case GET_TEACHRERS_FOR_ADMIN + _FULFILLED:
             return {...state, admin: {...state.admin, teachers: action.payload}}  
         case GET_STUDENTS_FOR_ADMIN + _FULFILLED:

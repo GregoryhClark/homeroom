@@ -8,7 +8,7 @@ class Home extends Component {
     render(){
     let accountType = this.props.user.account_type;
         return (
-            accountType === "Administrator" ? <Chart/>:
+            accountType === "Administrator" ? 'Hey':
             accountType === "Teacher" ? 'Heyo':
             accountType === "Parent"? 'Hola': 
             accountType === "Student" ? <Chart/>: ''
