@@ -8,7 +8,7 @@ import LoadData from '../views/LoadData/LoadData.js';
 import Home from '../views/Home/Home';
 import Account from '../views/Account/Account';
 import DashboardView from '../views/Dashboard/DashboardView';
-import Courses from '../views/Courses/Courses';
+import CoursesView from '../views/Courses/CoursesView';
 import CalendarView from '../views/Calendar/CalendarView';
 import Inbox from '../views/Inbox/Inbox';
 import Teachers from '../views/Teachers/Teachers.js';
