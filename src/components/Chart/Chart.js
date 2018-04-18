@@ -22,9 +22,6 @@ class Chart extends Component {
             selectedCourse: courseValues[1]
         })
     }
-    testTesting(a, b){
-        return a + b
-    }
     render() {
         let studentData = this.props.student;
         let getAssignment = (arg, arr) => {

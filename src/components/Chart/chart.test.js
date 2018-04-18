@@ -1,19 +1,9 @@
-const anything = require('./Chart');
+let fns = require('../../utils/functions');
 
-//jest.dontMock('./Chart');
+// describe('Tesest Methods:', ()=>{
 
-// describe('Chart Methods:', ()=>{
-//     test('selectCourse() should set state to have selectedCourseName equal to argument')
-//     console.log('hey')
-//     Chart.selectCourse('test_name');
-
-//     expect (Chart.selectCourse).toBe('test_name')
-// })
-
-describe('Tesest Methods:', ()=>{
-    testTesting('testTesting() should set state to have selectedCourseName equal to argument')
+//     test('testTesting() should set state to have selectedCourseName equal to argument', ()=>{
+//         expect (fns.testTesting(2,3)).toEqual(5)
+//     })
     
-    let result = anything.testMethod(2,4);
-
-    expect (anything.testMethod).toBe(result)
-})
+// })
