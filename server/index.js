@@ -12,6 +12,7 @@ const express = require('express')
    , admin_ctrl = require('./controllers/admin_ctrl')
    , students_ctrl = require('./controllers/students_ctrl')
    , parents_ctrl = require('./controllers/parents_ctrl')
+   , global_ctrl = require('./controllers/global_ctrl.js')
    , teachers_ctrl = require('./controllers/teachers_ctrl')
    
 // ================ INVOKE EXPRESS ============= 
@@ -99,7 +100,9 @@ app.get('/auth/me', (req, res) => {
 })
 
 // ================== ENDPOINTS ================
-
+//        ========== GLOBAL USER UPDATE ========
+const {updateUser} = global_ctrl
+app.put('/updateUser', updateUser);
 // ****************** ADMINS *******************
 //        ========== Teachers ========
 const {getTeachersForAdmin} = admin_ctrl
