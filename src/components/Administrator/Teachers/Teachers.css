@@ -9,6 +9,7 @@
    height: 100%;
    overflow: auto;
    background-color: rgba(0,0,0,0.4);
+   font-family: 'Open Sans', sans-serif;
 }
 
 .modal-content {
@@ -30,14 +31,13 @@
     top: 12px;
    color: black;
    float: right;
-   font-size: 2.5em;
-   font-weight: bold;
+   font-size: 2em;
    line-height: 15px;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: rgba(255, 0, 0, 0.7);;
     text-decoration: none;
     cursor: pointer;
 }
@@ -46,12 +46,13 @@
 /*=====FIELDS WITHIN MODAL=====*/
 #editTeacherModal > .modal-content > .field {
     width: 310px;
-    min-height: 35px;
+    min-height: 40px;
 }
 
 #editTeacherModal > .modal-content > .field > span {
     float: left;
     padding-top: 5px;
+    font-size: 0.9em;
 }
 
 #editTeacherModal > .modal-content > .field > input {
@@ -67,6 +68,7 @@
 #editTeacherModal > .modal-content > .photo {
     width: 310px;
     margin-bottom: 20px;
+    font-size: 0.9em;
 }
 
 #editTeacherModal > .modal-content > .photo > span {
@@ -147,19 +149,38 @@
 /*=====TEACHERS TABLE=====*/
 .teachers-table {
    width: 100%;
-   font-size: 0.9em;
+   font-size: 0.85em;
+   border-collapse: separate;
+   font-family: 'Open Sans', sans-serif;
 }
 
 .teachers-table > thead > tr {
-   background-color: #BEBEBE;
+  background-color: #454545;
+  color: white;
 }
 
 .teachers-table > thead > tr > th {
-   min-width: 120px;
-   padding: 5px 15px 5px 10px;
+   min-width: 105px;
+   padding: 10px 15px 10px 10px;
    text-align: left;
    font-weight: 600;
    font-size: 1.05em;
+}
+
+.teachers-table > thead > tr > th:nth-child(5) {
+  min-width: 60px;
+}
+
+.teachers-table > thead > tr > th:first-of-type {
+  padding: 10px 15px 10px 20px;
+  border-radius: 5px 0 0 0;
+  border: 0px solid;
+}
+
+.teachers-table > thead > tr > th:last-of-type {
+  padding: 10px 20px 10px 10px;
+  border-radius: 0 5px 0 0 ;
+  border: 0px solid;
 }
 
 /*===== CONTROLLING COLUMN WIDTH =====*/
@@ -172,19 +193,31 @@
 }
 
 .teachers-table > tbody > tr {
-   background-color: #F5F5F5;
+   background-color: #FAFAFA;
 }
 
 .teachers-table > tbody > tr:nth-child(2n + 2) {
-   background-color: rgb(228, 228, 228);
+   background-color: rgb(235, 235, 235);
 }
 
-.teachers-table > tbody > tr > td{
-   padding: 6px 15px 6px 10px;
+.teachers-table > tbody > tr:hover {
+  background-color: rgb(215, 215, 215);
+}
+
+.teachers-table > tbody > tr > td {
+   padding: 8px 5px 8px 12px;
+}
+
+.teachers-table > tbody > tr > td:first-of-type {
+  padding: 8px 5px 8px 20px;
+}
+
+.teachers-table > tbody > tr > td:last-of-type {
+  padding: 8px 20px 8px 10px;
 }
 
 .teachers-table > tbody > tr > td > .edit-button {
-    padding: 3px 8px;
+    padding: 3px 12px;
     border: none;
     border-radius: 3px;
     background-color: rgb(200, 200, 200);
@@ -192,6 +225,11 @@
     outline: none;
  }
 
+ .teachers-table > tbody > tr > td > .edit-button:hover {
+  background-color: rgb(0, 166, 237);
+  color: white;
+}
+
  .teachers-table > tbody > tr > td > .edit-button:active {
-    opacity: 0.8;
+    opacity: 0.6;
  }

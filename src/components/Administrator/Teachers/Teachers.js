@@ -94,7 +94,6 @@ class Teachers extends React.Component {
                 }
             }
 
-            console.log(this.props.admin.teachers)
             //GERNERATE TEACHERS TABLE
             const teachers = this.props.admin.teachers.map((e, i) => {
                 return (
