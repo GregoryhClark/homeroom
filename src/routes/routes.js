@@ -12,6 +12,7 @@ import CoursesView from '../views/Courses/CoursesView';
 import CalendarView from '../views/Calendar/CalendarView';
 import Inbox from '../views/Inbox/Inbox';
 import Teachers from '../views/Teachers/Teachers.js';
+import StudentsView from '../views/Students/StudentsView'
 
 
 // =========== ROUTES ===============
@@ -22,7 +23,8 @@ export default (
             <Route path='/home' component={Home}/>
             <Route path='/account' component={Account}/>
             <Route path='/dashboard' component={DashboardView}/>
-            <Route path='/courses' component={CoursesView}/>
+            <Route path='/students' component={StudentsView}/>
+            <Route path='/courses' component={Courses}/>
             <Route path='/calendar' component={CalendarView}/>
             <Route path='/inbox' component={Inbox}/>
             <Route path='/teachers' component={Teachers}/>
