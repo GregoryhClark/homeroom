@@ -16,7 +16,8 @@ const initialState = {
       , student:{
           courses: []
         , assignments: []
-        , attachments: []} 
+        , attachments: []
+        , classAverage:[]} 
       // CONTAINS ALL CURRENT PARENTS CHILDREN        
       , parent:{
           parent:[]}
@@ -120,11 +121,13 @@ export function getStudent(){
     let getStudentCourses = axios.get('/getStudentCourses');
     let getAssignments = axios.get('/getStudentAssignments');
     let getAttachments = axios.get('/getStudentAttachments');
-    let student = Promise.all([getStudentCourses, getAssignments, getAttachments]).then(res=>{
+    let classAverage = axios.get('/getStudentAverage');
+    let student = Promise.all([getStudentCourses, getAssignments, getAttachments, classAverage]).then(res=>{
         return {
               getCourses: res[0].data
             , getAssignments: res[1].data
             , getAttachments: res[2].data
+            , classAverage: res[3].data
         }
     }).catch(err=>console.log(err))
     return{

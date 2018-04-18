@@ -8,6 +8,18 @@ import LoadData from '../../components/LoadData/LoadData'
 import './Chart.css'
 
 class Chart extends Component {
+    constructor(){
+        super()
+        this.state = {
+            selectedCourse:''
+        }
+        this.selectCourse = this.selectCourse.bind(this)
+    }
+    selectCourse(course){
+        this.setState({
+            selectedCourse:course
+        })
+    }
     render() {   
         let studentData = this.props.student;
         let getAssignment = (arg, arr)=>{
@@ -35,29 +47,28 @@ class Chart extends Component {
             } return arr;
         }
         let courseButtons = getCourse(studentData,[]).map((course, i)=>{
-            return <button className="course_btn" key = {i} value={course}>{course}</button>
+            return <button className="course_btn" key = {i} value={course} onClick={()=>this.selectCourse(course)}>{course}</button>
         }) 
         let chartData = {
               labels: getAssignment(studentData,[])
             , datasets: [{
                               label: 'Student Score'
                             , data: getGrade(studentData,[])
-                            // , backgroundColor: 'lightBlue'
+                            , backgroundColor: 'orange'
                         },{
                               label: 'Average Score'
                             , data: [75, 66, 100, 76, 45]
-                            , backgroundColor: 'orange'
                         }]
         }
-        console.log(getAssignment(studentData,[]))
-    return (
+        // console.log(studentData)
+    return (     
         <div className="test_chart_wrapper">   
-            {this.props.student ? <Bar className="test_chart"
+            {getGrade(studentData,[]).length ? <Bar className="test_chart"
                 data={chartData}
                 options={{
                     title: {
                           display: true
-                        , text: `Assignment Scores for ${this.props.user.first_name} ${this.props.user.last_name}`
+                        , text: `Assignment Scores for ${this.state.selectedCourse === '' ? this.props.user.first_name : this.state.selectedCourse}`
                         , fontSize: 30
                     },
                     legend: {
@@ -65,7 +76,7 @@ class Chart extends Component {
                         , position: 'top'
                     }
                 }}/>: <LoadData/>}
-            {this.props.student ? <div className="coursesButtonsWrapper">{courseButtons}</div>: null}   
+            {getGrade(studentData,[]).length ? <div className="coursesButtonsWrapper">{courseButtons}</div>: null}   
         </div>
         )
     }

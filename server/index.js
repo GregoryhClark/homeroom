@@ -138,3 +138,6 @@ app.get('/getStudentAssignments', getStudentAssignments);
 //        ========== Attachments ========
 const {getStudentAttachments} = students_ctrl
 app.get('/getStudentAttachments', getStudentAttachments);
+//        ========== Attachments ========
+const {getStudentAverage} = students_ctrl
+app.get('/getStudentAverage', getStudentAverage);

@@ -5,8 +5,8 @@ module.exports = {
             const {user_id} = req.user
             db.run(`SELECT * 
                     FROM roster 
-                    JOIN courses ON roster.course_id = courses.course_id
-                    WHERE user_id = ${user_id}`,
+                    JOIN courses ON roster.roster_course_id = courses.course_id
+                    WHERE roster_user_id = ${user_id}`,
                 function(err,res){
                     var courses = res;
                 }).then(courses=>{
@@ -46,6 +46,29 @@ module.exports = {
                 }).then(attachments=>{
                     // console.log('CTRL - Attachments', attachments)
                     res.status(200).send(attachments)
+                })
+        }else{
+            res.status(401).send('Please Sign-in.')
+        }
+    }),
+    getStudentAverage:((req,res,next)=>{
+        const db = req.app.get('db')
+        if(req.user){
+            const {user_id} = req.user
+            db.run(`SELECT student_id, student_assignments.student_assignments_course_id, assignment_name, 
+                    student_assignment_topic, points_earned AS classmates_points_earned, possible_points
+                    FROM student_assignments 
+                    JOIN courses 
+                    ON student_assignments.student_assignments_course_id = courses.course_id
+                    JOIN users 
+                    ON student_assignments.student_id = users.user_id
+                    WHERE student_id NOT IN (SELECT student_id FROM student_assignments WHERE user_id = ${user_id})
+                    ORDER BY course_id`,
+                function(err,res){
+                    var average = res;
+                }).then(average=>{
+                    // console.log('CTRL - average', average)
+                    res.status(200).send(average)
                 })
         }else{
             res.status(401).send('Please Sign-in.')
