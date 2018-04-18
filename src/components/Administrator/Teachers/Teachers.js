@@ -9,79 +9,74 @@ import './Teachers.css';
 
 //COMPONENT
 class Teachers extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            editTeacher: {
-                  first_name: ''
-                , last_name: ''
-                , username: ''
-                , email: ''
-                , user_photo: ''
-            }
-        }
-
-        this.handleEditTeacher = this.handleEditTeacher.bind(this);
-        this.handleCloseModal = this.handleCloseModal.bind(this);
-        this.handleUpdateState = this.handleUpdateState.bind(this);
-        this.handleRemovePhoto = this.handleRemovePhoto.bind(this);
-        this.handleSave = this.handleSave.bind(this);
-    }
-
-    handleEditTeacher(index) {
-        // LOAD TEACHER INFO INTO STATE
-        this.setState({
-            editTeacher: this.props.admin.teachers[index]
-        })
-        
-        //SHOW MODAL
-        const modal = document.getElementById('editTeacherModal');
-        modal.style.display = "block";
-    }
-
-    handleCloseModal() {
-        //CLOSE MODAL
-        const modal = document.getElementById('editTeacherModal');
-        modal.style.display = "none";
-
-        //RESET editTeacher ON STATE
-        const editTeacher = {
-            first_name: ''
-          , last_name: ''
-          , username: ''
-          , email: ''
-          , user_photo: ''
-          , user_id: ''
+  constructor() {
+    super()
+    this.state = {
+      editTeacher: {
+          first_name: ''
+        , last_name: ''
+        , username: ''
+        , email: ''
+        , user_photo: ''
       }
-
-      this.setState({editTeacher})
     }
+    this.handleEditTeacher = this.handleEditTeacher.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleUpdateState = this.handleUpdateState.bind(this);
+    this.handleRemovePhoto = this.handleRemovePhoto.bind(this);
+    this.handleSave = this.handleSave.bind(this);
+  }
 
-    handleUpdateState(e, field) {
-        const editTeacher = Object.assign({}, this.state.editTeacher)
-        editTeacher[field] = e.target.value;
-        this.setState({editTeacher})
-    }
+  handleEditTeacher(index) {
+    // LOAD TEACHER INFO INTO STATE
+    this.setState({ editTeacher: this.props.admin.teachers[index] })
+    
+    //SHOW MODAL
+    const modal = document.getElementById('editTeacherModal').style.display = "block";
+  }
 
-    handleRemovePhoto() {
-        let editTeacher = Object.assign({}, this.state.editTeacher);
-        editTeacher.user_photo = 'undefined';
-        this.setState({editTeacher});
-    }
+  handleCloseModal() {
+    //CLOSE MODAL
+    const modal = document.getElementById('editTeacherModal').style.display = "none";
 
-    handleSave() {
-        const {editTeacher} = this.state;
-        //UPDATE TEACHERS TABLE
-        axios.put('/updateUser', editTeacher).then(res => {
-            //UPDATE TEACHERS IN REDUX TO UPDATE TEACHERS TABLE
-            this.props.teachersForAdmin();
-        
-            //CLOSE MODAL
-            this.handleCloseModal();
+    //RESET editTeacher PROPERTY VALUES ON STATE
+    const editTeacher = {
+        first_name: ''
+      , last_name: ''
+      , username: ''
+      , email: ''
+      , user_photo: ''
+      , user_id: ''
+    };
 
-            console.log(res)
-        })
-    }
+    this.setState({editTeacher});
+  }
+
+  handleUpdateState(e, field) {
+    const editTeacher = {...this.state.editTeacher};
+    editTeacher[field] = e.target.value;
+    this.setState({editTeacher});
+  }
+
+  handleRemovePhoto() {
+    let editTeacher = {...this.state.editTeacher};
+    editTeacher.user_photo = 'undefined';
+    this.setState({editTeacher});
+  }
+
+  handleSave() {
+      const {editTeacher} = this.state;
+
+      //UPDATE TEACHERS TABLE IN DB
+      axios.put('/updateUser', editTeacher).then(res => {
+          //REFRESH REDUX
+          this.props.teachersForAdmin();
+          //CLOSE MODAL
+          this.handleCloseModal();
+
+          console.log(res.status)
+      })
+  }
 
     render() {
             let {first_name, last_name, username, email, user_photo} = this.state.editTeacher;
