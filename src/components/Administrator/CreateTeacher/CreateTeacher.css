@@ -1,0 +1,17 @@
+.creation-form {
+  width: 100%;
+}
+
+.creation-form > .field {
+  width: 100%;
+  height: 35px;
+}
+
+.creation-form > .field > span {
+  float: left;
+}
+
+.creation-form > .field > input {
+  display: block;
+  margin-left: 100px;
+}

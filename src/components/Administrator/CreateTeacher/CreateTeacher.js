@@ -9,7 +9,20 @@ import './CreateTeacher.css';
 class CreateTeacher extends React.Component {
   render() {
     return (
-      <div>Hello!</div>
+      <div className="creation-form">
+        <h1 className="horizontal-line">Create Teacher</h1>
+
+          <div className="field">
+            <span>First Name:</span>
+            <input type="text"/>
+          </div>
+
+          <div className="field">
+            <span>Last Name:</span>
+            <input type="text"/>
+          </div>
+
+      </div>
     )
   }
 }
