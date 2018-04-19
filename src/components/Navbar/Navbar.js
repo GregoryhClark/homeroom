@@ -32,7 +32,7 @@ class Navbar extends Component {
         let accountType = this.props.user.account_type;
         let {secondaryNav} = this.state;
         let path = document.location.pathname;
-        console.log(path);
+
      
         return (
             <nav>
