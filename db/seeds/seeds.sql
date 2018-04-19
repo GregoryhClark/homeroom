@@ -171,3 +171,32 @@ values
 --student parent
 insert into student_parent (student_id, parent_id)
 values(12,20 )
+
+--calendar events
+CREATE TABLE calendar_events (
+calendar_event_id SERIAL PRIMARY KEY,
+calendar_event_assignment_id INTEGER,
+calendar_event_created_by_id INTEGER,
+calendar_event_course_id INTEGER,
+calendar_event_title varchar(100),
+calendar_event_start_date DATE,
+calendar_event_start_time TIME,
+calendar_event_end_date DATE,
+calendar_event_end_time TIME,
+calendar_event_all_day boolean,
+calendar_event_visible boolean DEFAULT true,
+calendar_event_id_deleted boolean DEFAULT false
+)
+
+insert into calendar_events (
+    calendar_event_assignment_id,
+calendar_event_created_by_id ,
+calendar_event_course_id ,
+calendar_event_title ,
+calendar_event_start_date ,
+calendar_event_start_time ,
+calendar_event_end_date ,
+calendar_event_end_time ,
+calendar_event_all_day 
+)
+values(5,9,3,'Test Event', '04/05/2018','06:00:00', '04/05/2018','08:30:00', false)
