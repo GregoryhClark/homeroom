@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom';
 import { getParent } from '../../../redux/user';
 import { getStudent } from '../../../redux/user';
 import './Students.css'
-import { Divider } from 'material-ui';
-import _ from 'underscore';
+// import { Divider } from 'material-ui';
+// import _ from 'underscore';
 
 class Students extends Component {
     rerouteToCourse(courseID) {
         //This is where we need logic for routing.
     }
     render() {
-        let parentData = this.props.parent;
+        // let parentData = this.props.parent;
         let studentData = this.props.student;
         // var studentCourses = studentData.getCourses ?
         //     studentData.getCourses.map(value => {
@@ -32,7 +32,7 @@ class Students extends Component {
         //         </div>
         //     </a>
         // })
-        parentData ? console.log(parentData) : null
+        // parentData ? console.log(parentData) : null
         console.log(studentData)
         return (
             <div> hi
