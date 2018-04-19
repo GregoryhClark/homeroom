@@ -32,15 +32,18 @@ const _FULFILLED = "_FULFILLED";
 const NAVIGATION = "NAVIGATION";
 // ****** FOR USERS ******
 const GET_USER = "GET_USER";
+const UPDATE_USER = "UPDATE_USER"
 // ****** FOR ADMIN ******
 const GET_ADMIN = "GET_ADMIN";
-// ===== UPDATE FOR ADMIN =====
+// ===== UPDATE FOR ADMIN ========
 const GET_TEACHERS_FOR_ADMIN = "GET_TEACHERS_FOR_ADMIN";
 const GET_STUDENTS_FOR_ADMIN = "GET_STUDENTS_FOR_ADMIN";
 const GET_PARENTS_FOR_ADMIN = "GET_PARENTS_FOR_ADMIN";
 const GET_COURSES_FOR_ADMIN = "GET_COURSES_FOR_ADMIN";
 // ****** FOR STUDENT ******
 const GET_STUDENT = "GET_STUDENT";
+// ===== UPDATE FOR STUDENT =======
+
 // ****** FOR PARENT ******
 const GET_PARENT = "GET_PARENT";
 // ****** FOR TEACHER ******
@@ -55,6 +58,15 @@ export function getUser(){
     return{
           type: GET_USER
         , payload: user
+    }
+}
+export function updateUser(updates){
+    let userUpdate = axios.put('/updateUser', updates).then(res=>{
+        return res.data
+    })
+    return{
+          type:UPDATE_USER
+        , payload: userUpdate
     }
 }
 // ************************** GET ADMIN **************************
@@ -177,6 +189,8 @@ export default function reducer(state = initialState, action){
     switch (action.type) {
 // ****** FOR USERS ******
         case GET_USER + _FULFILLED:
+            return Object.assign({}, state, {user:action.payload})
+        case UPDATE_USER  + _FULFILLED:
             return Object.assign({}, state, {user:action.payload})
         case NAVIGATION:
             return Object.assign({}, state, {navigation:action.payload})
