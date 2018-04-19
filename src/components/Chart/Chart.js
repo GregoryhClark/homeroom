@@ -14,8 +14,17 @@ class Chart extends Component {
             selectedCourse: '',
             windowWidth: 0
         }
-        this.selectCourse = this.selectCourse.bind(this)
+        this.selectCourse = this.selectCourse.bind(this);
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+        
     }
+    componentDidMount() {
+        window.addEventListener('resize', this.updateWindowDimensions);
+    }
+    updateWindowDimensions(){
+        this.setState({ windowWidth: window.innerWidth});
+    }
+
     selectCourse(courseValues) {
         this.setState({
             selectedCourseID: courseValues[0],
@@ -23,37 +32,37 @@ class Chart extends Component {
         })
     }
     render() {
+        let chartTitleFont = (this.state.windowWidth > 1024) ? 30
+        : (this.state.windowWidth > 375) ? 20
+        : 10;
         let studentData = this.props.student;
-        let getAssignment = (arg, arr) => {
-            for (const props in arg) {
-                if (typeof arg[props] === 'object') {
-                    getAssignment(arg[props], arr)
-                }
-                if (props === 'assignment_name') {
-                    arr.push(arg[props])
-                }
-            } return arr
-        }
-        let getGrade = (arg, arr) => {
-            for (const props in arg) {
-                if (typeof arg[props] === 'object') {
-                    getGrade(arg[props], arr)
-                }
-                if (props === 'points_earned') {
-                    arr.push(arg[props])
-                }
-            } return arr
-        }
-        let getCourseName = (arg, arr) => {
-            for (const props in arg) {
-                if (typeof arg[props] === 'object') {
-                    getCourseName(arg[props], arr)
-                }
-                if (props === 'course_name') {
-                    arr.push(arg[props])
-                }
-            } return arr;
-        }
+
+            let studentAssignmentScores = studentData.getAssignments ? studentData.getAssignments.map(obj => {
+
+                if (obj.student_assignments_course_id === this.state.selectedCourseID){
+                    return (obj.points_earned/obj.possible_points)*100
+                } else return null
+            }).filter(value => value)
+            :[]
+
+            let assignmentIDs = studentData.getAssignments ? studentData.getAssignments.map(obj => {
+
+                if (obj.student_assignments_course_id === this.state.selectedCourseID){
+                    return obj.student_assignment_id
+                } else return null
+            }).filter(value => value)
+            :[]
+
+            let assignmentNames = studentData.getAssignments ? (assignmentArray)=> studentData.getAssignments.map(obj => {
+
+                if (assignmentArray.indexOf(obj.student_assignment_id) > -1 ){
+                    return obj.assignment_name
+                } else return null
+            }).filter(value => value)
+            :(placeholder)=>{
+                return []
+            }
+
             var studentCourses = studentData.getCourses ?             
             studentData.getCourses.map(value => {
                     return { courseID: value.course_id, courseName: value.course_name }
@@ -62,39 +71,42 @@ class Chart extends Component {
             let courseButtons = _.uniq(studentCourses).map((element, index) => {
                 return <button className="course_btn" key={index} value={element.courseID} onClick={(e) => { this.selectCourse([element.courseID, element.courseName]) }} >{element.courseName}</button>
             })
-            // let courseAssignments = () => {
-            //     for(let val1 in studentData){
-                    
-            //     }
-            // }
-        console.log(getAssignment(studentData, []))
+
+            let averageScores =  (assignmentArray)=> studentData.classAverage.map(obj => {
+
+                if (assignmentArray.indexOf(obj.student_assignment_id) > -1){//This might need to change to classmate_assignment_id or something depending on how the data is updated.
+                    return (obj.classmates_points_earned/obj.possible_points)*100
+                } else return null
+            }).filter(value => value)
+        
         let chartData = {
-            labels: getAssignment(studentData, [])
+            labels: assignmentNames(assignmentIDs)
             , datasets: [{
                 label: 'Student Score'
-                , data: getGrade(studentData, [])
+                , data: studentAssignmentScores
                 , backgroundColor: 'orange'
             }, {
                 label: 'Average Score'
-                , data: [75, 66, 100, 76, 45]
+                , data: averageScores(assignmentIDs)
             }]
         }
         return (     
             <div className="test_chart_wrapper">   
-                {getGrade(studentData,[]).length ? <Bar className="test_chart"
+                {studentData.getCourses ? <Bar className="test_chart"
                     data={chartData}
                     options={{
+                        //onElementsClick: (elems) => {console.log(elems)},
                         title: {
                               display: true
                             , text: `${this.state.selectedCourse === '' ? "Please select a course" : `Assignment Scores for ${this.state.selectedCourse}`}`
-                            , fontSize: 30
+                            , fontSize: chartTitleFont
                         },
                         legend: {
                               display: true
                             , position: 'top'
                         }
                     }}/>: <LoadData/>}
-                {getGrade(studentData,[]).length ? <div className="coursesButtonsWrapper">{courseButtons}</div>: null}      
+                {studentData.getCourses ? <div className="coursesButtonsWrapper">{courseButtons}</div>: null}      
             </div>
             )
         }

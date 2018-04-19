@@ -144,7 +144,7 @@ export function getParent(){
         }
     }).catch(err=>console.log(err))
     return{
-          type: GET_STUDENT
+          type: GET_PARENT
         , payload: parent
     }
 }
