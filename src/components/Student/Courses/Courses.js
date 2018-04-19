@@ -5,10 +5,8 @@ import {getUser, getStudent} from '../../../redux/user';
 class Courses extends Component {
   render() {
     let titleNames = ["Course", "Teacher","Term","Enrolled as"];
+    let titleMap = titleNames.map((e,i)=>{return <th key={i}>{`${e}`}</th>})
     // let studentCourses = this.props.student.getCourses
-    let titleMap = titleNames.map((e,i)=>{
-      return <th>{`${e}`}</th>
-    })
     // let gradeTotal = studentCourses.map((e,i)=>{
     //   return console.log(e)
     // })

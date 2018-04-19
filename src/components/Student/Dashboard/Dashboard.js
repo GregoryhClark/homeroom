@@ -30,7 +30,6 @@ class Dashboard extends Component {
                 </div>
             </a>
         })
-        console.log(studentData)
         return (
             <div>
                 <div className="main_card_wrapper">
