@@ -24,5 +24,4 @@ let Basic = () => (
     defaultDate={new Date()}
   />
 )
-
 export default Basic

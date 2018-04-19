@@ -2,43 +2,36 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import { getParent } from '../../../redux/user';
-import { getStudent } from '../../../redux/user';
 import './Students.css'
 // import { Divider } from 'material-ui';
 // import _ from 'underscore';
 
 class Students extends Component {
-    rerouteToCourse(courseID) {
+    rerouteToChild(courseID) {
         //This is where we need logic for routing.
     }
     render() {
-        // let parentData = this.props.parent;
-        let studentData = this.props.student;
-        // var studentCourses = studentData.getCourses ?
-        //     studentData.getCourses.map(value => {
-        //         return { courseID: value.course_id, courseName: value.course_name, courseImage: value.courses_photo }
-        //     })
-        //     : []
-        // let courseCards = _.uniq(studentCourses).map((element, index) => {
-        //     return <a
-        //         onClick={(e) => this.rerouteToCourse(element.course_id)}
-        //         key={index}
-        //         className="dasboard_style_card">
-        //         <div className = "course_image_wrapper">
-        //             <img className="course_card_img" alt = "course image"src={element.courseImage.length > 15 ? element.courseImage : "https://avatars3.githubusercontent.com/u/26701845?s=460&v=4"} />
-        //         </div>
-        //         <div className="course_card_name">
-        //             {element.courseName}
-        //         </div>
-        //     </a>
-        // })
-        // parentData ? console.log(parentData) : null
-        console.log(studentData)
+        let parentData = this.props.parent.getParent        
+        let childrenCards = parentData ? parentData.map((element, index) => {
+            return <a
+                onClick={(e) => this.rerouteToChild(element.student_id)}
+                key={index}
+                className="dasboard_style_card">
+                <div className = "course_image_wrapper">
+                    <img className="student_card_img" alt = "profile" src={element.user_photo.length > 15 ? element.user_photo : "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gnome-stock_person.svg/500px-Gnome-stock_person.svg.png"} />
+                </div>
+                <div className="course_card_name">
+                    {`${element.first_name} ${element.last_name}`}
+                </div>
+            </a>
+        })
+        :null
+        console.log(parentData)
         return (
-            <div> hi
-                {/* <div className="main_card_wrapper">
-                    {courseCards}
-                </div> */}
+            <div>
+                <div className="main_card_wrapper">
+                    {childrenCards}
+                </div>
 
             </div>
         )
@@ -47,7 +40,6 @@ class Students extends Component {
 function mapStateToProps(state) {
     return {
         parent: state.parent,
-        student: state.student
     }
 }
-export default connect(mapStateToProps, { getParent , getStudent})(Students);
+export default connect(mapStateToProps, { getParent })(Students);
