@@ -12,8 +12,8 @@ import CoursesView from '../views/Courses/CoursesView';
 import CalendarView from '../views/Calendar/CalendarView';
 import Inbox from '../views/Inbox/Inbox';
 import Teachers from '../views/Teachers/Teachers.js';
-import StudentsView from '../views/Students/StudentsView'
-
+import StudentsView from '../views/Students/StudentsView.js';
+import ParentsView from '../views/Parents/ParentsView.js';
 
 // =========== ROUTES ===============
 export default (
@@ -28,6 +28,7 @@ export default (
             <Route path='/calendar' component={CalendarView}/>
             <Route path='/inbox' component={Inbox}/>
             <Route path='/teachers' component={Teachers}/>
+            <Route path='/parents' component={ParentsView}/>
         </Switch>
 
 )

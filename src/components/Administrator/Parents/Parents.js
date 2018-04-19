@@ -2,18 +2,18 @@
 import React from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {teachersForAdmin} from '../../../redux/user.js';
+import {parentsForAdmin} from '../../../redux/user.js';
 
 //CSS, ASSETS
-import './Teachers.css';
+import './Parents.css';
 import '../../TableStyling/Table.css';
 
 //COMPONENT
-class Teachers extends React.Component {
+class Parents extends React.Component {
   constructor() {
     super()
     this.state = {
-      editTeacher: {
+      editParent: {
           first_name: ''
         , last_name: ''
         , username: ''
@@ -22,16 +22,16 @@ class Teachers extends React.Component {
       },
       saveStatus: ''
     }
-    this.handleEditTeacher = this.handleEditTeacher.bind(this);
+    this.handleEditParent = this.handleEditParent.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleUpdateState = this.handleUpdateState.bind(this);
     this.handleRemovePhoto = this.handleRemovePhoto.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
 
-  handleEditTeacher(index) {
-    // LOAD TEACHER INFO INTO STATE
-    this.setState({ editTeacher: this.props.admin.teachers[index] })
+  handleEditParent(index) {
+    // LOAD PARENT INFO INTO STATE
+    this.setState({ editParent: this.props.admin.parents[index] })
     
     //SHOW MODAL
     document.getElementById('modal').style.display = "block";
@@ -41,8 +41,8 @@ class Teachers extends React.Component {
     //CLOSE MODAL
     document.getElementById('modal').style.display = "none";
 
-    //RESET editTeacher PROPERTY VALUES ON STATE
-    const editTeacher = {
+    //RESET editParent PROPERTY VALUES ON STATE
+    const editParent = {
         first_name: ''
       , last_name: ''
       , username: ''
@@ -50,39 +50,39 @@ class Teachers extends React.Component {
       , user_photo: ''
       , user_id: ''
     };
-    this.setState({editTeacher});
+    this.setState({editParent});
 
     //RESET saveStatus ON STATE
     this.setState({saveStatus: ''})
   }
 
   handleUpdateState(e, field) {
-    const editTeacher = {...this.state.editTeacher};
-    editTeacher[field] = e.target.value;
-    this.setState({editTeacher});
+    const editParent = {...this.state.editParent};
+    editParent[field] = e.target.value;
+    this.setState({editParent});
   }
 
   handleRemovePhoto() {
-    let editTeacher = {...this.state.editTeacher};
-    editTeacher.user_photo = 'undefined';
-    this.setState({editTeacher});
+    let editParent = {...this.state.editParent};
+    editParent.user_photo = 'undefined';
+    this.setState({editParent});
   }
 
   handleSave() {
-    const {editTeacher} = this.state;
+    const {editParent} = this.state;
     this.setState({saveStatus: 'pending'})
 
-    //UPDATE TEACHERS TABLE IN DB
-    axios.put('/updateUser', editTeacher).then(res => {
+    //UPDATE parents TABLE IN DB
+    axios.put('/updateUser', editParent).then(res => {
       //REFRESH REDUX
-      this.props.teachersForAdmin();
+      this.props.parentsForAdmin();
       //UPDATE saveStatus ON STATE TO TRUE - TRIGGERS SAVE CONFIRMATION IN MODAL
       this.setState({saveStatus: true})
     })
   }
 
   render() {
-    let {first_name, last_name, username, email, user_photo} = this.state.editTeacher;
+    let {first_name, last_name, username, email, user_photo} = this.state.editParent;
     let {saveStatus} = this.state;
 
     //REMOVE MODAL WHEN AREA OUTSIDE OF MODAL IS CLICKED
@@ -93,8 +93,8 @@ class Teachers extends React.Component {
       }
     }
 
-    //GERNERATE TEACHER TABLE ROWS
-    const teachers = this.props.admin.teachers.map((e, i) => {
+    //GERNERATE parents TABLE ROWS
+    const parents = this.props.admin.parents.map((e, i) => {
       return (
         <tr key={i}>
           <td>{e.first_name}</td>
@@ -102,7 +102,7 @@ class Teachers extends React.Component {
           <td>{e.username}</td>
           <td>{e.email}</td>
           <td>{e.user_photo === 'undefined' ? 'None' : <a href={e.user_photo} target='_blank'>View</a>}</td>
-          <td><button className="edit-button" onClick={() => this.handleEditTeacher(i)}>Edit</button></td>
+          <td><button className="edit-button" onClick={() => this.handleEditParent(i)}>Edit</button></td>
         </tr>
       )
     })
@@ -110,7 +110,7 @@ class Teachers extends React.Component {
     return(
       <div>
         
-        {/*==========TEACHERS TABLE==========*/}
+        {/*==========parents TABLE==========*/}
         <div className="table-overflow">
           <table className="table">
             <thead>
@@ -124,7 +124,7 @@ class Teachers extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {teachers}
+              {parents}
             </tbody>
           </table>
         </div>
@@ -133,7 +133,7 @@ class Teachers extends React.Component {
         <div id="modal" className="modal">
           <div className="modal-content">
             <span className="close" onClick={this.handleCloseModal}>&#215;</span>
-            <h1 className="horizontal-line">Edit Teacher Details</h1>
+            <h1 className="horizontal-line">Edit Parent Details</h1>
             {saveStatus === 'pending' ? <div className="save-status pending">Pending...</div> : saveStatus === true ? <div className="save-status successful">Save Successful</div> : null}
 
             {/*ADD PHOTO PLACEHOLDER IF NO PHOTO IS AVAILABLE*/}
@@ -188,4 +188,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {teachersForAdmin})(Teachers)
+export default connect(mapStateToProps, {parentsForAdmin})(Parents)
