@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { getStudent } from '../../../redux/user';
 import './Dashboard.css'
-import { Divider } from 'material-ui';
+// import { Divider } from 'material-ui';
 import _ from 'underscore';
 
 class Dashboard extends Component {
@@ -23,7 +23,7 @@ class Dashboard extends Component {
                 key={index}
                 className="dasboard_style_card">
                 <div className = "course_image_wrapper">
-                    <img className="course_card_img" alt = "course image"src={element.courseImage.length > 15 ? element.courseImage : "https://avatars3.githubusercontent.com/u/26701845?s=460&v=4"} />
+                    <img className="course_card_img" alt = "Course Display"src={element.courseImage.length > 15 ? element.courseImage : "https://avatars3.githubusercontent.com/u/26701845?s=460&v=4"} />
                 </div>
                 <div className="course_card_name">
                     {element.courseName}

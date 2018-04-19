@@ -38,7 +38,7 @@ class CourseAssignment extends Component {
                 <th>Total</th>
                 <th></th>
                 <th>{gradeAvg.toFixed(2)}%</th>
-                <th>{gradeTotal}/{gradePossibleTotal}</th>
+                <th>{gradeTotal} / {gradePossibleTotal}</th>
             </tr>
           </thead>
       </table>
