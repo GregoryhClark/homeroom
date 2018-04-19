@@ -10,7 +10,13 @@ class CreateTeacher extends React.Component {
   render() {
     return (
       <div className="creation-form">
-        <h1 className="horizontal-line">Create Teacher</h1>
+        <h1>Create Teacher</h1>
+
+          <div className="photo-container">
+            <div className="photo">
+              <a href="" className="add-photo">Add Photo</a>
+            </div>
+          </div>
 
           <div className="field">
             <span>First Name:</span>
@@ -20,6 +26,21 @@ class CreateTeacher extends React.Component {
           <div className="field">
             <span>Last Name:</span>
             <input type="text"/>
+          </div>
+
+          <div className="field">
+            <span>Username:</span>
+            <input type="text"/>
+          </div>
+
+          <div className="field">
+            <span>Email:</span>
+            <input type="text"/>
+          </div>
+
+          <div className="buttons">
+            <button className="clear">Clear</button>
+            <button className="create">Create</button>
           </div>
 
       </div>

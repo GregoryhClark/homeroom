@@ -1,17 +1,98 @@
 .creation-form {
+  max-width: 400px;
+  margin: auto;
+  background: rgb(242, 242, 242);
+  padding: 20px;
+  box-shadow: 0 3px 5px 2px rgb(220, 220, 220);
+  border-radius: 5px;
+}
+
+.creation-form > h1 {
   width: 100%;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgb(200,200,200);
+}
+
+.creation-form > .photo-container {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  margin-bottom: 20px;
+  font-size: 0.9em;
+}
+
+.creation-form > .photo-container > .photo {
+  display: block;
+  position: relative;
+  width: 175px;
+  height: 175px;
+  margin: auto;
+  border-radius: 50%;
+  background: rgb(220,220,220);
+}
+
+.creation-form > .photo-container > .photo > .add-photo {
+  position: absolute;
+  top: 65px;
+  left: 46px;
+  width: 80px;
+  font-size: 1.5em;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  color: rgb(180,180,180);
+}
+
+.creation-form > .photo-container > .photo > .add-photo:hover {
+  color: rgb(0, 166, 237);
 }
 
 .creation-form > .field {
-  width: 100%;
-  height: 35px;
+  max-width: 350px;
+  height: 45px;
+  margin: auto;
 }
 
 .creation-form > .field > span {
   float: left;
+  padding-top: 5px;
 }
 
 .creation-form > .field > input {
   display: block;
+  width: calc(100% - 112px);
   margin-left: 100px;
+  padding: 3px 5px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.creation-form > .buttons {
+  width: 225px;
+  margin: 20px auto;
+}
+
+.creation-form > .buttons > button {
+  width: 100px;
+  padding: 7px;
+  border: none;
+  border-radius: 3px;
+  font-size: 0.85em;
+  cursor: pointer;
+  outline: none;
+}
+
+.creation-form > .buttons > button:active {
+  opacity: 0.8;
+}
+
+.creation-form > .buttons > .clear {
+  margin-right: 25px;
+  background: rgb(200, 200, 200);
+}
+
+.creation-form > .buttons > .create {
+  background: rgb(0, 166, 237);
+  color: white;
 }
