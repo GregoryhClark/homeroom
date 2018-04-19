@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { getStudent } from '../../../redux/user';
 import './Dashboard.css'
-import { Divider } from 'material-ui';
+// import { Divider } from 'material-ui';
 import _ from 'underscore';
 
 class Dashboard extends Component {

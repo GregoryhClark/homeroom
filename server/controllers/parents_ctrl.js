@@ -4,10 +4,10 @@ module.exports= {
         if(req.user){
             const {user_id} = req.user
             db.run(`SELECT relationship_id, student_id, parent_id, account_type, first_name, last_name, email, user_photo
-            FROM student_parent
-            JOIN users 
-            ON user_id = student_id  
-            WHERE parent_id = ${user_id}`,
+                    FROM student_parent
+                    JOIN users 
+                    ON user_id = student_id  
+                    WHERE parent_id = ${user_id}`,
                 function(err,res){
                     var children = res;
                 }).then(children=>{

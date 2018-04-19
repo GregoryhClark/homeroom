@@ -35,7 +35,7 @@ const GET_USER = "GET_USER";
 // ****** FOR ADMIN ******
 const GET_ADMIN = "GET_ADMIN";
 // ===== UPDATE FOR ADMIN =====
-const GET_TEACHRERS_FOR_ADMIN = "GET_TEACHRERS_FOR_ADMIN";
+const GET_TEACHERS_FOR_ADMIN = "GET_TEACHERS_FOR_ADMIN";
 const GET_STUDENTS_FOR_ADMIN = "GET_STUDENTS_FOR_ADMIN";
 const GET_PARENTS_FOR_ADMIN = "GET_PARENTS_FOR_ADMIN";
 const GET_COURSES_FOR_ADMIN = "GET_COURSES_FOR_ADMIN";
@@ -82,7 +82,7 @@ export function teachersForAdmin() {
         return res.data
     })
     return {
-          type: GET_TEACHRERS_FOR_ADMIN
+          type: GET_TEACHERS_FOR_ADMIN
         , payload: teachers
     }
 }
@@ -183,7 +183,7 @@ export default function reducer(state = initialState, action){
 // ****** FOR ADMIN ******
         case GET_ADMIN + _FULFILLED:
             return Object.assign({}, state, {admin:action.payload})
-        case GET_TEACHRERS_FOR_ADMIN + _FULFILLED:
+        case GET_TEACHERS_FOR_ADMIN + _FULFILLED:
             return {...state, admin: {...state.admin, teachers: action.payload}}  
         case GET_STUDENTS_FOR_ADMIN + _FULFILLED:
             return {...state, admin: {...state.admin, students: action.payload}}

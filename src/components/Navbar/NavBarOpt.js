@@ -12,14 +12,16 @@
 //         }
 //         this.handleOnClick = this.handleOnClick.bind(this)
 //     }
-//     async componentWillMount(){
-//         await this.props.getUser();
-//         await this.props.getTeachers();
-//         await this.props.getParents();
-//         console.log(this.props.teacherData)
-//         console.log(this.props.parentsData)
-//     }
-//     componentDidMount() {
+//     componentWillMount(){
+//         this.props.getUser().then(()=>{
+//             let adminData = this.props.user.account_type === "Administrator" ? this.props.getAdmin(): "Wrong User"
+//             let studentData = this.props.user.account_type === "Student" ? this.props.getStudent() : "Wrong User"
+//             let parentData = this.props.user.account_type === "Parent" ? this.props.getParent() : "Wrong User"
+//             let teacherData = this.props.user.account_type === "Teacher" ? this.props.getTeacher() : "Wrong User"
+//             Promise.all([adminData, studentData, parentData, teacherData]).then(res=>{
+//                 return res
+//             }).catch(err=>console.log(err))
+//         })
 //         this.setState({secondaryNav: 'home'})
 //     }
 //     handleMobileCollapse() {
@@ -41,10 +43,9 @@
 //                     <input className="menu-btn" type="checkbox" id="menu-btn" />
 //                     <label className="menu-icon" htmlFor="menu-btn"><span className="navicon"></span></label>
 // {/*=========== ADMINISTRATOR NAVIGATION OPTIONS ===========*/}  
-//                     <MainNavUL {accountType === "Administrator" ? type="Administrator":
-//                                 accountType === "Teacher"       ? type="Teacher":
-//                                 accountType === "Parent"        ? type="Parent":
-//                                 accountType === "Student"       ? type="Student":''} accountType={accountType}>
+//                     <MainNavUL {...accountType === "Administrator" ? type="Administrator":
+//                                    accountType === "Teacher"       ? type="Teacher":
+//                                    accountType === "Parent"        ? type="Parent": type="Student"} accountType={accountType}>
 //                         <MainNavItem type="nav-li"><Links type="home" clickIt={this.handleOnClick}>Home</Links></MainNavItem>
 //                         <MainNavItem type="nav-li"><Links type="teachers" clickIt={this.handleOnClick}>Teachers</Links></MainNavItem>
 //                         <MainNavItem type="nav-li"><Links type="parents" clickIt={this.handleOnClick}>Parents</Links></MainNavItem>
