@@ -1,0 +1,4 @@
+/*=====SHRINK ACTION COLUMN=====*/
+thead > tr > th:nth-child(6) {
+  min-width: 60px !important;
+}

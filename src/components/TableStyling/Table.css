@@ -26,7 +26,7 @@
 }
 
 .table > thead > tr > th:first-of-type {
-  padding: 10px 15px 10px 20px;
+  padding: 10px 10px 10px 20px;
   border-radius: 5px 0 0 0;
 }
 
@@ -160,7 +160,7 @@
 .modal-content > .photo-container > .photo > .add-photo {
   position: absolute;
   top: 65px;
-  left: 45px;
+  left: 46px;
   width: 80px;
   font-size: 1.5em;
   font-weight: 600;
