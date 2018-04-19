@@ -24,7 +24,7 @@ export default (
             <Route path='/account' component={Account}/>
             <Route path='/dashboard' component={DashboardView}/>
             <Route path='/students' component={StudentsView}/>
-            <Route path='/courses' component={Courses}/>
+            <Route path='/courses' component={CoursesView}/>
             <Route path='/calendar' component={CalendarView}/>
             <Route path='/inbox' component={Inbox}/>
             <Route path='/teachers' component={Teachers}/>
