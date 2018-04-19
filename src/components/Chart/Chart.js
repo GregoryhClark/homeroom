@@ -67,7 +67,6 @@ class Chart extends Component {
                     
             //     }
             // }
-        console.log(getAssignment(studentData, []))
         let chartData = {
             labels: getAssignment(studentData, [])
             , datasets: [{

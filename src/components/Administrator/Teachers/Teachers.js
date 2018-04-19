@@ -127,62 +127,52 @@ class Teachers extends React.Component {
               </tbody>
           </table>
         </div>
-        
+    {/*==========CODE FOR MODAL==========*/}
+    <div id="editTeacherModal" className="modal">
+        <div className="modal-content">
+            <span className="close" onClick={this.handleCloseModal}>&#215;</span>
+            <h1 className="horizontal-line">Edit Teacher Details</h1>
+            {saveStatus === 'pending' ? <div className="save-status-pending">Pending...</div> : saveStatus === true ? <div className="save-status-successful">Save Successful</div> : null}
 
+            <div className="photo">
+                {/*ADD PHOTO LINK IF NO PHOTO IS AVAILABLE*/}
+                {user_photo === 'undefined' ? <div className="no-photo"><a href="" className="add-photo">Add Photo</a></div>
+                  : 
+                <div className="edit-teacher-image-container">
+                    <img src={user_photo} className="teacher-photo" alt="profile"/>
+                    <span className="remove-photo" onClick={this.handleRemovePhoto}>&#215;</span>
+                </div> }
+            </div>
 
+            <div className="field">
+                <span>First Name:</span>
+                <input type='text' value={first_name} onChange={(e) => this.handleUpdateState(e, 'first_name')}/>
+            </div>
 
+            <div className="field">
+                <span>Last Name:</span>
+                <input type='text' value={last_name} onChange={(e) => this.handleUpdateState(e, 'last_name')}/>
+            </div>
 
+            <div className="field">
+                <span>Username:</span>
+                <input type='text' value={username} onChange={(e) => this.handleUpdateState(e, 'username')}/>
+            </div>
 
+            <div className="field">
+                <span>Email:</span>
+                <input type='text' value={email} onChange={(e) => this.handleUpdateState(e, 'email')}/>
+            </div>
 
+            
+            <div className="buttons">
+                <button className="cancel" onClick={this.handleCloseModal}>Cancel</button>
+                <button className="save" onClick={this.handleSave}>Save</button>
+            </div>
 
-
-
-                {/*==========CODE FOR MODAL==========*/}
-                <div id="editTeacherModal" className="modal">
-                    <div className="modal-content">
-                        <span className="close" onClick={this.handleCloseModal}>&#215;</span>
-                        <h1 className="horizontal-line">Edit Teacher Details</h1>
-                        {saveStatus === 'pending' ? <div className="save-status-pending">Pending...</div> : saveStatus === true ? <div className="save-status-successful">Save Successful</div> : null}
-
-                        <div className="photo">
-                            {/*ADD PHOTO LINK IF NO PHOTO IS AVAILABLE*/}
-                            {user_photo === 'undefined' ? <div className="no-photo"><a href="" className="add-photo">Add Photo</a></div>
-                             : 
-                            <div className="edit-teacher-image-container">
-                                <img src={user_photo} className="teacher-photo" alt="profile"/>
-                                <span className="remove-photo" onClick={this.handleRemovePhoto}>&#215;</span>
-                            </div> }
-                        </div>
-
-                        <div className="field">
-                            <span>First Name:</span>
-                            <input type='text' value={first_name} onChange={(e) => this.handleUpdateState(e, 'first_name')}/>
-                        </div>
-
-                        <div className="field">
-                            <span>Last Name:</span>
-                            <input type='text' value={last_name} onChange={(e) => this.handleUpdateState(e, 'last_name')}/>
-                        </div>
-
-                        <div className="field">
-                            <span>Username:</span>
-                            <input type='text' value={username} onChange={(e) => this.handleUpdateState(e, 'username')}/>
-                        </div>
-
-                        <div className="field">
-                            <span>Email:</span>
-                            <input type='text' value={email} onChange={(e) => this.handleUpdateState(e, 'email')}/>
-                        </div>
-
-                        
-                        <div className="buttons">
-                            <button className="cancel" onClick={this.handleCloseModal}>Cancel</button>
-                            <button className="save" onClick={this.handleSave}>Save</button>
-                        </div>
-
-                    </div>
-                </div>
-                </div>
+        </div>
+    </div>
+    </div>
             
     )
 }
