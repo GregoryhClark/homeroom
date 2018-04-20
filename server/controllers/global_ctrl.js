@@ -9,5 +9,24 @@ module.exports = {
         } else {
             res.status(401).send('Update Unsuccessful.')
         }
+    }),
+    createUser: ((req,res,next) => {
+      let {username, } = req.body;
+      username = username.toLowerCase(); //Force username to lowercase
+      // const db = req.app.get('db');
+
+
+
+      // db.run(`SELECT * 
+      //         FROM users 
+      //         WHERE username = '${username}'`).then(res => {
+      //           if(res.length !== 0) {
+      //             res.status(200).send('Username Available')
+      //           } else {
+      //             console.log('taken')
+      //           }
+      //         }
+      //         )
+
     })
 }

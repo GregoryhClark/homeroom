@@ -4,8 +4,6 @@ import axios from 'axios';
 const initialState = {
     // CONTAINS CURRENT USERS INFORMATION
         user:{}            
-    // CONTROLS IF NAVIGATION IS DISPLAYED    
-      , navigation: false  
     // CONTAINS ALL CURRENT ADMIN INFO
       , admin:{
           teachers: []
@@ -19,7 +17,8 @@ const initialState = {
         , assignments: []
         , attachments: []
         , classAverage:[]
-        , calendar:[]} 
+        , calendar:[]
+        , myTeacher:[]} 
     // CONTAINS ALL CURRENT PARENTS CHILDREN        
       , parent:{
           parent:[]
@@ -28,11 +27,12 @@ const initialState = {
       , teacher:{
           students:[]
         , courses:[]
-        , calendar:[]}             
+        , calendar:[]}
+      , currentCourseID:{}   
 }
 // ======= ACTION TYPES ===========
 const _FULFILLED = "_FULFILLED";
-const NAVIGATION = "NAVIGATION";
+const CURRENT_COURSE = "CURRENT_COURSE";
 // ****** FOR USERS ******
 // ==== GET USER ====
 const GET_USER = "GET_USER";
@@ -140,13 +140,15 @@ export function getStudent(){
     let getAttachments = axios.get('/getStudentAttachments');
     let classAverage = axios.get('/getStudentAverage');
     let getUserCalendar = axios.get('/getUserCalendar');
-    let student = Promise.all([getStudentCourses, getAssignments, getAttachments, classAverage, getUserCalendar]).then(res=>{
+    let studentTeacher = axios.get('/getAdminTeacher');
+    let student = Promise.all([getStudentCourses, getAssignments, getAttachments, classAverage, getUserCalendar, studentTeacher]).then(res=>{
         return {
               getCourses: res[0].data
             , getAssignments: res[1].data
             , getAttachments: res[2].data
             , classAverage: res[3].data
             , calendar:res[4].data
+            , myTeacher:res[5].data
         }
     }).catch(err=>console.log(err))
     return{
@@ -188,10 +190,10 @@ export function getTeacher(){
 }
 
 // ========== SHOW NAV ===========
-export function showNavigation(){
+export function selectedCourse(course){
     return {
-          type: NAVIGATION
-        , payload: true
+          type: CURRENT_COURSE
+        , payload: course
     }
 }
 
@@ -203,8 +205,6 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {user:action.payload})
         case UPDATE_USER  + _FULFILLED:
             return Object.assign({}, state, {user:action.payload})
-        case NAVIGATION:
-            return Object.assign({}, state, {navigation:action.payload})
 // ****** FOR ADMIN ******
         case GET_ADMIN + _FULFILLED:
             return Object.assign({}, state, {admin:action.payload})
@@ -222,6 +222,8 @@ export default function reducer(state = initialState, action){
 // ****** FOR PARENT ******
         case GET_PARENT + _FULFILLED:
             return Object.assign({}, state, {parent:action.payload})
+        case CURRENT_COURSE:
+            return Object.assign({}, state, {currentCourseID:action.payload})
         default: 
             return state;
     }

@@ -1,24 +1,10 @@
-.navbar{
-  font-size: 14px;
-  min-height: 70px;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-}
-.nav-link{
-  display: flex;
-  flex-direction: column;
-}
-.nav-link:hover{
-  background-color: #ccc !important;
-}
-
 /*===== PRIMARY NAVIGATION =====*/
 nav {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 5;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .header {
@@ -44,10 +30,13 @@ nav {
   overflow: hidden;
   background-color: rgb(220, 220, 220);
   text-align: center;
+  font-weight: 300;
+  font-size: 1.05em;
+  letter-spacing: 0.3px;
 }
 
 .header li {
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 
 .header li a {
@@ -134,7 +123,6 @@ transform: rotate(45deg);
 top: 0;
 }
 
-
 /* SECONDARY MENU */
 .secondary-menu {
   width: 100%;
@@ -149,7 +137,9 @@ top: 0;
   display: flex;
   align-items: center;
   margin-left: 15px;
-  font-family: raleway;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
 }
 
 .secondary-menu ul li {
@@ -160,74 +150,6 @@ top: 0;
   color: rgb(77, 77, 77);
   text-decoration: none;
 }
-
-
-/* MENU ICON*/
-.profile-dropdown .menu-icon {
-  cursor: pointer;
-  display: inline-block;
-  padding: 20px 5px 15px 0px;
-  position: relative;
-  user-select: none;
-}
-
-.profile-dropdown .profile-menu {
-  background-color: rgb(245, 245, 245);
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  top: 50px;
-  right: 29px;
-  width: 120px;
-}
-
-.profile-menu li a {
-  font-size: 0.9em;
-  color: rgb(61, 61, 61);
-}
-
-.profile-dropdown .menu-icon .navicon {
-  background: rgb(240, 240, 240);
-  display: block;
-  height: 2px;
-  position: relative;
-  transition: background .3s ease-out;
-  width: 18px;
-}
-
-.profile-dropdown .menu-icon .navicon:before {
-  top: 5px;
-}
-  
-.profile-dropdown .menu-icon .navicon:after {
-top: -5px;
-}
-
-.profile-dropdown .menu-btn {
-display: none;
-}
-
-.profile-dropdown .menu-btn:checked ~ .profile-menu {
-max-height: 240px;
-}
-
-.profile-dropdown .menu-btn:checked ~ .menu-icon .navicon {
-background: transparent;
-}
-
-.profile-dropdown .menu-btn:checked ~ .menu-icon .navicon:before {
-transform: rotate(-45deg);
-}
-
-.profile-dropdown .menu-btn:checked ~ .menu-icon .navicon:after {
-transform: rotate(45deg);
-}
-
-.profile-dropdown .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
-.profile-dropdown .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
-top: 0;
-}
-
 
 /* MEDIA QUERIES */
 @media (min-width: 840px) {
@@ -277,10 +199,6 @@ top: 0;
   .header li .selected:hover {
     background: rgb(220, 220, 220);
     color:black;
-  }
-
-  .header-profile-container {
-     display: flex;
   }
 
   .header-link-mobile {
