@@ -12,14 +12,20 @@ class Chart extends Component {
         this.state = {
             selectedCourseID: -1,
             selectedCourse: '',
-            windowWidth: 0
+            windowWidth: -1,
+            selectedAssignmentTemplateID:-1
         }
         this.selectCourse = this.selectCourse.bind(this);
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         
     }
-    updateWindowDimensions(){
+
+    componentDidMount(){
         window.addEventListener('resize', this.updateWindowDimensions);
+        this.setState({ windowWidth: window.innerWidth});
+    }
+    updateWindowDimensions(){
+        
         this.setState({ windowWidth: window.innerWidth});
     }
 
@@ -34,11 +40,19 @@ class Chart extends Component {
         : (this.state.windowWidth > 375) ? 20
         : 10;
         let studentData = this.props.student;
+        //console.log(studentData)
 
             let studentAssignmentScores = studentData.getAssignments ? studentData.getAssignments.map(obj => {
 
                 if (obj.student_assignments_course_id === this.state.selectedCourseID){
                     return (obj.points_earned / obj.possible_points)*100
+                } else return null
+            }).filter(value => value)
+            :[]
+            let averageScores = studentData.getAssignments ? studentData.classAverage.map(obj => {
+
+                if (obj.assignment_name === this.state.selectedAssignmentTemplateID){
+                    return (obj.classmates_points_earned / obj.possible_points)*100
                 } else return null
             }).filter(value => value)
             :[]
@@ -70,12 +84,12 @@ class Chart extends Component {
                 return <button className="course_btn" key={index} value={element.courseID} onClick={(e) => { this.selectCourse([element.courseID, element.courseName]) }} >{element.courseName}</button>
             })
 
-            let averageScores =  (assignmentArray)=> studentData.classAverage.map(obj => {
+            // let averageScores =  (assignmentArray)=> studentData.classAverage.map(obj => {
 
-                if (assignmentArray.indexOf(obj.student_assignment_id) > -1){//This might need to change to classmate_assignment_id or something depending on how the data is updated.
-                    return (obj.classmates_points_earned / obj.possible_points)*100
-                } else return null
-            }).filter(value => value)
+            //     if (assignmentArray.indexOf(obj.assignment_name) === this.state.selectedCourse){//This might need to change to classmate_assignment_id or something depending on how the data is updated.
+            //         return (obj.classmates_points_earned / obj.possible_points)*100
+            //     } else return null
+            // }).filter(value => value)
         
         let chartData = {
             labels: assignmentNames(assignmentIDs)
@@ -85,7 +99,7 @@ class Chart extends Component {
                 , backgroundColor: 'orange'
             }, {
                 label: 'Average Score'
-                , data: averageScores(assignmentIDs)
+                , data: averageScores
             }]
         }
         return (     

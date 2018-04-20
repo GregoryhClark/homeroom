@@ -23,13 +23,15 @@ class Dashboard extends Component {
                 key={index}
                 className="dasboard_style_card">
                 <div className = "course_image_wrapper">
-                    <img className="course_card_img" alt = "course"src={element.courseImage.length > 15 ? element.courseImage : "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gnome-stock_person.svg/500px-Gnome-stock_person.svg.png"} />
+                    <img className="course_card_img" alt = "course"src={element.courseImage ? element.courseImage : "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gnome-stock_person.svg/500px-Gnome-stock_person.svg.png"} />
                 </div>
                 <div className="course_card_name">
                     {element.courseName}
                 </div>
             </a>
         })
+
+        console.log(studentCourses)
         return (
             <div>
                 <div className="main_card_wrapper">
