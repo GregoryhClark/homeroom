@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import BigCalendar from 'react-big-calendar';
 import {connect} from 'react-redux';
-import {getUser} from '../../redux/user';
+import {getUser, getStudent} from '../../redux/user';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 class CalendarComp extends Component{
   
   render(){
+    console.log(this.props.student)
     let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
     BigCalendar.momentLocalizer(moment);
       let events = [
@@ -32,7 +33,8 @@ class CalendarComp extends Component{
 }
 function mapStateToProps(state){
   return{
-        user: state.user
+          user: state.user
+        , student:state.student
   }
 }
-export default connect(mapStateToProps, {getUser})(CalendarComp);
+export default connect(mapStateToProps, {getUser, getStudent})(CalendarComp);

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {getUser, getStudent} from '../../../redux/user';
+import {getUser, getStudent, selectedCourse} from '../../../redux/user';
 import Moment from 'react-moment';
 
 class CourseAssignment extends Component {
   render() {
-    let assignments = this.props.student.getAssignments;
+    let currentCourse = this.props.currentCourseID;
+    let currentAssignments = this.props.student.getAssignments;
+    let assignments = currentAssignments ? currentAssignments.filter((e,i)=> e.student_assignments_course_id === currentCourse):null
     let gradeAvg = assignments.map((e,i)=>e.points_earned).reduce((a,c)=>(a+c)) / assignments.length;
     let gradeTotal = assignments.map((e,i)=>e.points_earned).reduce((a,c)=>(a+c));
     let gradePossibleTotal = assignments.map((e,i)=>e.possible_points).reduce((a,c)=>(a+c));
@@ -21,6 +23,7 @@ class CourseAssignment extends Component {
     
     return (
       <div className="table-overflow">
+      <h1>{`Grades for ${this.props.user.first_name}`}</h1>
       <table className="table">
           <thead>
               <tr>
@@ -53,4 +56,4 @@ function mapStateToProps(state){
       , student: state.student
   }
 }
-export default connect(mapStateToProps, {getUser, getStudent})(CourseAssignment);
+export default connect(mapStateToProps, {getUser, getStudent, selectedCourse})(CourseAssignment);
