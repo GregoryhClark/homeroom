@@ -11,8 +11,8 @@ class Courses extends Component {
     //   return console.log(e)
     // })
     return (
-      <div className="teachers-overflow">
-      <table className="teachers-table">
+      <div className="table-overflow">
+      <table className="table">
           <thead>
               <tr>
                   {titleMap}

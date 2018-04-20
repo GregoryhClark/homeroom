@@ -18,10 +18,8 @@ class Chart extends Component {
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         
     }
-    componentDidMount() {
-        window.addEventListener('resize', this.updateWindowDimensions);
-    }
     updateWindowDimensions(){
+        window.addEventListener('resize', this.updateWindowDimensions);
         this.setState({ windowWidth: window.innerWidth});
     }
 
