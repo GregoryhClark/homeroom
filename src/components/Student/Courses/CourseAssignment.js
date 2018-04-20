@@ -20,8 +20,8 @@ class CourseAssignment extends Component {
     });
     
     return (
-      <div className="teachers-overflow">
-      <table className="teachers-table">
+      <div className="table-overflow">
+      <table className="table">
           <thead>
               <tr>
                   <th>Name</th>
