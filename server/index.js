@@ -104,6 +104,9 @@ app.get('/auth/me', (req, res) => {
 //        ========== GLOBAL USER UPDATE ========
 const {updateUser} = global_ctrl
 app.put('/updateUser', updateUser);
+//        ========== Create New User ========
+const {createUser} = global_ctrl;
+app.post('/createUser', createUser);
 
 // ****************** CALENDAR *****************
 const {getUsersCalendar} = calendar_ctrl
@@ -113,9 +116,6 @@ app.get('/getUserCalendar', getUsersCalendar);
 //        ========== Teachers ========
 const {getTeachersForAdmin} = admin_ctrl
 app.get('/getAdminTeacher', getTeachersForAdmin);
-//        ========== Create Teacher ========
-const {createTeacherForAdmin} = admin_ctrl;
-app.post('/createTeacher', createTeacherForAdmin);
 //        ========== Students ========
 const {getStudentsForAdmin} = admin_ctrl
 app.get('/getAdminStudent', getStudentsForAdmin);

@@ -45,7 +45,7 @@ class CreateTeacher extends React.Component {
 
   handleCreate() {
     const newTeacher = this.state.newTeacher;
-    axios.post('/createTeacher', newTeacher).then()
+    axios.post('/createUser', newTeacher).then()
   }
 
   render() {
