@@ -200,3 +200,8 @@ calendar_event_end_time ,
 calendar_event_all_day 
 )
 values(5,9,3,'Test Event', '04/05/2018','06:00:00', '04/05/2018','08:30:00', false)
+
+insert into assignment_templates
+(author_id, assignment_template_name, assignment_template_description, assignment_template_instructions, assignment_template_topic, possible_points, assignment_template_date_created, assignment_template_last_updated)
+values
+(9, 'Math Test 3', 'description here for the template description','instructions go here okay', 'Algebra 1', 100, '2018-04-11', '2018-04-11');
