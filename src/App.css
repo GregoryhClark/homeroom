@@ -6,6 +6,7 @@
 
 .app-inner {
    padding: 130px 30px 40px 30px;
+   position: relative;
 }
 
 a {
