@@ -113,6 +113,9 @@ app.get('/getUserCalendar', getUsersCalendar);
 //        ========== Teachers ========
 const {getTeachersForAdmin} = admin_ctrl
 app.get('/getAdminTeacher', getTeachersForAdmin);
+//        ========== Create Teacher ========
+const {createTeacherForAdmin} = admin_ctrl;
+app.post('/createTeacher', createTeacherForAdmin);
 //        ========== Students ========
 const {getStudentsForAdmin} = admin_ctrl
 app.get('/getAdminStudent', getStudentsForAdmin);

@@ -14,6 +14,7 @@ import Inbox from '../views/Inbox/Inbox';
 import Teachers from '../views/Teachers/Teachers.js';
 import StudentsView from '../views/Students/StudentsView.js';
 import ParentsView from '../views/Parents/ParentsView.js';
+import CreateTeacherView from '../views/CreateTeacher/CreateTeacherView.js';
 
 // =========== ROUTES ===============
 export default (
@@ -27,7 +28,8 @@ export default (
             <Route path='/courses' component={CoursesView}/>
             <Route path='/calendar' component={CalendarView}/>
             <Route path='/inbox' component={Inbox}/>
-            <Route path='/teachers' component={Teachers}/>
+            <Route exact path='/teachers' component={Teachers}/>
+            <Route path='/teachers/create-teacher' component={CreateTeacherView}/>
             <Route path='/parents' component={ParentsView}/>
         </Switch>
 

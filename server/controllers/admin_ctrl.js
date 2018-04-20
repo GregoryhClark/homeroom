@@ -66,5 +66,13 @@ module.exports= {
         }else{
             res.status(401).send('Please Sign-in.')
         }
+    }),
+    createTeacherForAdmin: ((req,res,next) => {
+      const {username} = req.body;
+      const db = req.app.get('db');
+      db.run(`SELECT * 
+              FROM users 
+              WHERE username = '${username}'`).then(res => console.log(res))
+
     })
 }
