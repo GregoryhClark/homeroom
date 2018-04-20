@@ -1,8 +1,8 @@
 module.exports = {
     updateUser:((req, res, next)=>{
-        const {user_id} = req.user
         const db = req.app.get('db')
-        if(req.body.first_name) {
+        if(req.user) {
+            const {user_id} = req.body
             db.users.update({user_id}, req.body).then(update => {
                 res.status(200).send(update[0])
             })

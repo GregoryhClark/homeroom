@@ -14,6 +14,7 @@ const express = require('express')
    , parents_ctrl = require('./controllers/parents_ctrl')
    , global_ctrl = require('./controllers/global_ctrl.js')
    , teachers_ctrl = require('./controllers/teachers_ctrl')
+   , calendar_ctrl = require('./controllers/calendar_ctrl')
    
 // ================ INVOKE EXPRESS ============= 
 const app = express();
@@ -103,6 +104,11 @@ app.get('/auth/me', (req, res) => {
 //        ========== GLOBAL USER UPDATE ========
 const {updateUser} = global_ctrl
 app.put('/updateUser', updateUser);
+
+// ****************** CALENDAR *****************
+const {getUsersCalendar} = calendar_ctrl
+app.get('/getUserCalendar', getUsersCalendar);
+
 // ****************** ADMINS *******************
 //        ========== Teachers ========
 const {getTeachersForAdmin} = admin_ctrl

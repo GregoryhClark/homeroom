@@ -40,7 +40,7 @@ class Chart extends Component {
             let studentAssignmentScores = studentData.getAssignments ? studentData.getAssignments.map(obj => {
 
                 if (obj.student_assignments_course_id === this.state.selectedCourseID){
-                    return (obj.points_earned/obj.possible_points)*100
+                    return (obj.points_earned / obj.possible_points)*100
                 } else return null
             }).filter(value => value)
             :[]
@@ -75,7 +75,7 @@ class Chart extends Component {
             let averageScores =  (assignmentArray)=> studentData.classAverage.map(obj => {
 
                 if (assignmentArray.indexOf(obj.student_assignment_id) > -1){//This might need to change to classmate_assignment_id or something depending on how the data is updated.
-                    return (obj.classmates_points_earned/obj.possible_points)*100
+                    return (obj.classmates_points_earned / obj.possible_points)*100
                 } else return null
             }).filter(value => value)
         
