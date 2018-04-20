@@ -73,8 +73,7 @@ class Teachers extends React.Component {
     this.setState({saveStatus: 'pending'})
 
     //UPDATE TEACHERS TABLE IN DB
-    axios.put('/updateUser', editTeacher).then(res => {
-      //REFRESH REDUX
+    axios.put('/updateUser', editTeacher).then(update => {
       this.props.teachersForAdmin();
       //UPDATE saveStatus ON STATE TO TRUE - TRIGGERS SAVE CONFIRMATION IN MODAL
       this.setState({saveStatus: true})
@@ -187,5 +186,4 @@ function mapStateToProps(state) {
         admin: state.admin
     }
 }
-
 export default connect(mapStateToProps, {teachersForAdmin})(Teachers)

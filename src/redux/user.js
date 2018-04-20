@@ -11,27 +11,32 @@ const initialState = {
           teachers: []
         , students: []
         , parents: []
-        , courses: []} 
+        , courses: []
+        , calendar:[]} 
     // CONTAINS ALL CURRENT STUDENT INFO          
       , student:{
           courses: []
         , assignments: []
         , attachments: []
-        , classAverage:[]} 
-      // CONTAINS ALL CURRENT PARENTS CHILDREN        
+        , classAverage:[]
+        , calendar:[]} 
+    // CONTAINS ALL CURRENT PARENTS CHILDREN        
       , parent:{
-          parent:[]}
+          parent:[]
+        , calendar:[]}
+    // CONTAINS ALL CURRENT TEACHERS INFO   
       , teacher:{
           students:[]
         , courses:[]
-      }       
-
+        , calendar:[]}             
 }
 // ======= ACTION TYPES ===========
 const _FULFILLED = "_FULFILLED";
 const NAVIGATION = "NAVIGATION";
 // ****** FOR USERS ******
+// ==== GET USER ====
 const GET_USER = "GET_USER";
+// ==== UPDATE USER ====
 const UPDATE_USER = "UPDATE_USER"
 // ****** FOR ADMIN ******
 const GET_ADMIN = "GET_ADMIN";
@@ -42,8 +47,6 @@ const GET_PARENTS_FOR_ADMIN = "GET_PARENTS_FOR_ADMIN";
 const GET_COURSES_FOR_ADMIN = "GET_COURSES_FOR_ADMIN";
 // ****** FOR STUDENT ******
 const GET_STUDENT = "GET_STUDENT";
-// ===== UPDATE FOR STUDENT =======
-
 // ****** FOR PARENT ******
 const GET_PARENT = "GET_PARENT";
 // ****** FOR TEACHER ******
@@ -75,12 +78,14 @@ export function getAdmin(){
     let getStudents = axios.get('/getAdminStudent');
     let getParents = axios.get('/getAdminParent');
     let getCourses = axios.get('/getAdminCourse');
-    let admin = Promise.all([getTeachers, getStudents, getParents, getCourses]).then(res=>{
+    let getUserCalendar = axios.get('/getUserCalendar');
+    let admin = Promise.all([getTeachers, getStudents, getParents, getCourses, getUserCalendar]).then(res=>{
         return {
               teachers: res[0].data
             , students: res[1].data
             , parents: res[2].data
             , courses: res[3].data
+            , calendar: res[4].data
         }
     }).catch(err=>console.log(err))
     return{
@@ -89,8 +94,8 @@ export function getAdmin(){
     }
 }
 // ========== UPDATE ADMIN ===========
-export function teachersForAdmin() {
-    const teachers = axios.get('/getAdminTeacher').then(res => {
+export function teachersForAdmin(teachers) {
+    if (!teachers) teachers = axios.get('/getAdminTeacher').then(res => {
         return res.data
     })
     return {
@@ -134,12 +139,14 @@ export function getStudent(){
     let getAssignments = axios.get('/getStudentAssignments');
     let getAttachments = axios.get('/getStudentAttachments');
     let classAverage = axios.get('/getStudentAverage');
-    let student = Promise.all([getStudentCourses, getAssignments, getAttachments, classAverage]).then(res=>{
+    let getUserCalendar = axios.get('/getUserCalendar');
+    let student = Promise.all([getStudentCourses, getAssignments, getAttachments, classAverage, getUserCalendar]).then(res=>{
         return {
               getCourses: res[0].data
             , getAssignments: res[1].data
             , getAttachments: res[2].data
             , classAverage: res[3].data
+            , calendar:res[4].data
         }
     }).catch(err=>console.log(err))
     return{
@@ -150,9 +157,11 @@ export function getStudent(){
 // ************************** GET PARENT **************************
 export function getParent(){
     let getParentsKids = axios.get('/getParentsKids');
-    let parent = Promise.all([getParentsKids]).then(res=>{
+    let getUserCalendar = axios.get('/getUserCalendar');
+    let parent = Promise.all([getParentsKids, getUserCalendar]).then(res=>{
         return {
-            getParent:res[0].data
+              getParent:res[0].data
+            , calendar:res[1].data
         }
     }).catch(err=>console.log(err))
     return{
@@ -160,14 +169,16 @@ export function getParent(){
         , payload: parent
     }
 }
-// ************************** GET Teacher **************************
+// ************************** GET TEACHER **************************
 export function getTeacher(){
     let getTeachers = axios.get('/getStudentTeacher');
     let getCourses = axios.get('/getCoursesTeacher');
-    let teacher = Promise.all([getTeachers, getCourses]).then(res=>{
+    let getUserCalendar = axios.get('/getUserCalendar');
+    let teacher = Promise.all([getTeachers, getCourses, getUserCalendar]).then(res=>{
         return {
               getStudent:res[0].data
             , getCourses:res[1].data
+            , calendar:res[2].data
         }
     }).catch(err=>console.log(err))
     return{
