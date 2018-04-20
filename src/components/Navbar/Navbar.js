@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import './Navbar.css'
 import {connect} from 'react-redux';
-import {getUser, getAdmin, getStudent, getParent, getTeacher} from '../../redux/user';
+import {getUser, getAdmin, getStudent, getParent, getTeacher, selectedCourse} from '../../redux/user';
 
 class Navbar extends Component {
     constructor() {
@@ -32,8 +32,7 @@ class Navbar extends Component {
         let accountType = this.props.user.account_type;
         let {secondaryNav} = this.state;
         let path = document.location.pathname;
-
-     
+        // let currentCourse = this.props.currentCourseID 
         return (
             <nav>
                 <header className="header">
@@ -211,7 +210,7 @@ class Navbar extends Component {
                     {/*COURSES VIEW FOR STUDENTS*/}
                     {(secondaryNav === 'courses' && accountType === "Student") &&
                     <ul>
-                        <li><Link to='/courses'>Course Home</Link></li>
+                        <li><Link to={`/courses`}>Course Home</Link></li>
                         <li><Link to='/courses/assignments'>View Assignments</Link></li>
                     </ul>}
 
@@ -247,6 +246,7 @@ function mapStateToProps(state){
         , student: state.student
         , parent: state.parent
         , teacher: state.teacher
+        , currentCourseID:state.currentCourseID
     }
 }
-export default connect(mapStateToProps, {getUser, getAdmin, getStudent, getParent, getTeacher})(Navbar);
+export default connect(mapStateToProps, {getUser, getAdmin, getStudent, getParent, getTeacher, selectedCourse})(Navbar);
