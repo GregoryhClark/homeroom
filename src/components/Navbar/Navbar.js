@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import './Navbar.css'
 import {connect} from 'react-redux';
 import {getUser, getAdmin, getStudent, getParent, getTeacher, selectedCourse} from '../../redux/user';
+import CoursesModal from './CouresModal/CoursesModal.js';
 
 class Navbar extends Component {
     constructor() {
@@ -10,7 +11,9 @@ class Navbar extends Component {
         this.state = {
             secondaryNav: ''
         }
+      this.handleUpdateSecondaryNav = this.handleUpdateSecondaryNav.bind(this);
     } 
+
     componentWillMount(){
         this.props.getUser().then(()=>{
             let adminData = this.props.user.account_type === "Administrator" ? this.props.getAdmin(): "Wrong User"
@@ -23,16 +26,40 @@ class Navbar extends Component {
         })
         this.setState({secondaryNav: 'home'})
     }
+
     handleMobileCollapse() {
-		const checkbox = document.getElementById('menu-btn')
-		checkbox.checked = false;
+      const checkbox = document.getElementById('menu-btn')
+      checkbox.checked = false;
+    }
+
+    handleShowCoursesModal() {
+      //CLOSE MODAL
+      document.getElementById('courses-modal').style.display = "block";
+    }
+
+    handleHideCoursesModal() {
+      //CLOSE MODAL
+      document.getElementById('courses-modal').style.display = "none";
+    }
+
+    handleUpdateSecondaryNav() {
+      this.setState({secondaryNav: 'courses'});
     }
 
     render() {
-        let accountType = this.props.user.account_type;
-        let {secondaryNav} = this.state;
-        let path = document.location.pathname;
-        // let currentCourse = this.props.currentCourseID 
+      let accountType = this.props.user.account_type;
+      let {secondaryNav} = this.state;
+      let path = document.location.pathname;
+      // let currentCourse = this.props.currentCourseID 
+
+      //REMOVE MODAL WHEN AREA OUTSIDE OF MODAL IS CLICKED
+      window.onclick = (e) => {
+        const modal = document.getElementById('courses-modal');
+        if (e.target === modal) {
+          this.handleHideCoursesModal();
+        }
+      }
+
         return (
             <nav>
                 <header className="header">
@@ -79,11 +106,22 @@ class Navbar extends Component {
                         </li>
                         : ''}
 
-                        {/*SHOW FOR ADMINISTATORS, TEACHERS, STUDENTS*/}
-                        {accountType !== "Parent" ? 
+                        {/*SHOW FOR ADMINISTATORS*/}
+                        {accountType === "Administrator" ? 
                         <li onClick={this.handleMobileCollapse}>
                             <Link to='/courses' className={path === '/courses' ? "selected" : null}
                             onClick={() => this.setState({secondaryNav: 'courses'})}>Courses</Link>
+                        </li>
+                        : ''}
+
+                        {/*SHOW FOR TEACHERS, STUDENTS*/}
+                        {accountType === "Student" || accountType === "Teacher" ? 
+                        <li onClick={this.handleMobileCollapse}>
+                            <a className={path === '/courses' ? "selected" : null}
+                            onClick={() => {
+                              this.handleShowCoursesModal();
+                            }
+                          }>Courses</a>
                         </li>
                         : ''}
 
@@ -234,6 +272,8 @@ class Navbar extends Component {
                     </ul>}
 
                 </div>
+
+                <CoursesModal updateSecondNav={this.handleUpdateSecondaryNav}/>
             </nav>
         )
     }
