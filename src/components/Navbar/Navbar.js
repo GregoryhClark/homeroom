@@ -44,6 +44,7 @@ class Navbar extends Component {
 
     handleUpdateSecondaryNav() {
       this.setState({secondaryNav: 'courses'});
+      this.handleHideCoursesModal();
     }
 
     render() {
