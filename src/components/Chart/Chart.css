@@ -55,3 +55,7 @@
       border-radius: 10px;
       outline:none;
   }
+  .coursesButtonsWrapper button:hover{
+    background-color:rgb(0, 166, 237);
+    color: white;
+}

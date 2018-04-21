@@ -21,12 +21,11 @@ class Chart extends Component {
     }
 
     componentDidMount(){
-        window.addEventListener('resize', this.updateWindowDimensions);
         this.setState({ windowWidth: window.innerWidth});
     }
     updateWindowDimensions(){
-        
-        this.setState({ windowWidth: window.innerWidth});
+        window.addEventListener('resize', this.updateWindowDimensions);
+        // this.setState({ windowWidth: window.innerWidth});
     }
 
     selectCourse(courseValues) {

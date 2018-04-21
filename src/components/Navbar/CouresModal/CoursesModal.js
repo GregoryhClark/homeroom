@@ -1,19 +1,24 @@
 //COMPONENTS
 import React from 'react';
-import {connect} from 'react-redux';
-
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
+import {getUser, getStudent, selectedCourse} from '../../../redux/user';
 //CSS, ASSETS
 import './CoursesModal.css';
 
 //COMPONENT
 class CoursesModal extends React.Component {
   render() {
+    let studentData = this.props.student;
+    let courseCards = studentData.getCourses ? studentData.getCourses.map((element, index) => {
+          return <Link key={index} className="class-link" onClick={()=>this.props.selectedCourse(element.course_id)} to="courses">
+                      {element.course_name}
+                 </Link>
+      }) : null;
     console.log(this.updateSecondNav)
     return (
       <div id="courses-modal" className="modal">
-          <div className="modal-content">
-            <span onClick={this.props.updateSecondNav}>Hello</span>
-          </div>
+            <div className="modal-content" onClick={this.props.updateSecondNav}>{courseCards}</div>
       </div>
     )
   }
@@ -22,8 +27,9 @@ class CoursesModal extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    courseID: state.currentCourseID
+      student: state.student
+    , currentCourseID:state.currentCourseID
   }
 }
 
-export default connect(mapStateToProps)(CoursesModal)
+export default connect(mapStateToProps,{getUser, getStudent, selectedCourse})(CoursesModal)
