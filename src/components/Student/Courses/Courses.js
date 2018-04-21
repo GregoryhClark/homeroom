@@ -7,7 +7,7 @@ class Courses extends Component {
   render() {
 // ============== TITLES ==============
     let titleNames = ["Course", "Teacher","Term","Enrolled as"];
-    let titleMap = titleNames.map((e,i)=>{return <th key={i}>{`${e}`}</th>});
+    let titleMap = titleNames.map((e,i)=>{return <div key={i}>{`${e}`}</div>});
 // ========== CURRENT COURSE ==========
     let currentCourse = this.props.currentCourseID;
 // ====== FIND CLASS ASSIGNMENTS ======

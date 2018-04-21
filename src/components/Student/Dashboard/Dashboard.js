@@ -14,16 +14,14 @@ class Dashboard extends Component {
                     </Link>
         }) : null;
         return (
-                <div className="main_card_wrapper">
-                    {courseCards}
-                </div>
+                <div className="main_card_wrapper" onClick={this.props.updateSecondNav}>{courseCards}</div>
         )
     }
 }
 function mapStateToProps(state) {
     return {
           student: state.student
-        , course:state.course
+        , currentCourseID:state.currentCourseID
     }
 }
 export default connect(mapStateToProps, { getStudent, selectedCourse })(Dashboard);

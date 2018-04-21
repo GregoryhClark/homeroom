@@ -249,7 +249,7 @@ class Navbar extends Component {
                     {/*COURSES VIEW FOR STUDENTS*/}
                     {(secondaryNav === 'courses' && accountType === "Student") &&
                     <ul>
-                        <li><Link to={`/courses`}>Course Home</Link></li>
+                        <li><Link to="/courses">Course Home</Link></li>
                         <li><Link to='/courses/assignments'>View Assignments</Link></li>
                     </ul>}
 

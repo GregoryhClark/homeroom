@@ -54,6 +54,7 @@ function mapStateToProps(state){
   return{
         user: state.user
       , student: state.student
+      , currentCourseID: state.currentCourseID
   }
 }
 export default connect(mapStateToProps, {getUser, getStudent, selectedCourse})(CourseAssignment);
