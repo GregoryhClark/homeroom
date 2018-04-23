@@ -1,5 +1,13 @@
+/* COURSE */
 .course-container > .left-column{
-  visibility: hidden;
+    display: none;
+}
+.course-title{
+    margin-top:20px;
+    border-bottom: 1px solid #7d7d7d;
+}
+.assignment-list{
+    padding-bottom:8px
 }
 
 @media(min-width: 1024px) {
@@ -10,7 +18,7 @@
   }
 
   .course-container > .left-column{
-    visibility: visible;
+    display:block;
     width: 25%;
     padding: 25px;
     background: rgb(220, 220, 220);
@@ -20,4 +28,32 @@
     width: 70%;
     padding: 25px;
   }
+}
+
+/* COURSE ASSIGNMENTS */
+.table-container{
+    display: flex;
+    flex-direction: column;
+    flex-flow: row warp;
+    justify-content: space-around
+}
+.align-assign{
+    flex: 1;
+    justify-content: center;
+}
+.check-total{
+    padding:10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.table-width{
+    min-width: 50% !important;
+}
+
+@media(min-width:1024px){
+    .table-container{
+        flex-direction: row;
+        justify-content: space-around;
+    }
 }

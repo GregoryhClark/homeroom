@@ -11,22 +11,39 @@ module.exports = {
         }
     }),
     createUser: ((req,res,next) => {
-      let {username, } = req.body;
+      let {account_type, first_name, last_name, username, password, email, user_photo} = req.body;
+      const db = req.app.get('db');
       username = username.toLowerCase(); //Force username to lowercase
-      // const db = req.app.get('db');
+      
+      //CHECK IF USERNAME EXISTS
+      db.run(`SELECT * 
+        FROM users 
+        WHERE username = '${username}'`).then(result => {
+        if(result.length !== 0) {
+          res.send('Username Unavailable');
+        } else {
 
+          //USERNAME IS UNIQUE, NOW CHECK EMAIL ADDRESS
+          db.run(`SELECT * 
+          FROM users 
+          WHERE email = '${email}'`).then(result => {
+          if(result.length !== 0) {
+            res.send('Email Unavailable');
+          } else {
 
-
-      // db.run(`SELECT * 
-      //         FROM users 
-      //         WHERE username = '${username}'`).then(res => {
-      //           if(res.length !== 0) {
-      //             res.status(200).send('Username Available')
-      //           } else {
-      //             console.log('taken')
-      //           }
-      //         }
-      //         )
-
+          //USERNAME AND EMAIL ARE UNIQUE, CREATE USER
+            db.users.insert(
+              {   account_type: account_type
+                , first_name: first_name
+                , last_name: last_name
+                , username: username
+                , password: password
+                , email: email
+                , user_photo: user_photo
+              }).then(result => res.send('Success'))
+          }
+        })
+        }
+      })    
     })
 }
