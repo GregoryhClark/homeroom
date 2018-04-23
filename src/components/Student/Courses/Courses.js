@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {getUser, getStudent, selectedCourse} from '../../../redux/user';
-import './Courses.css'
+
 
 class Courses extends Component {
   render() {
@@ -20,7 +20,6 @@ class Courses extends Component {
     let teacher = teachers ? findTeacher[0] : null;
     
     console.log(teacher)
-    // console.log(course)
     return (
         <div>
             {titleMap}

@@ -63,7 +63,7 @@ class CalendarComp extends Component {
       }
     })    
 
-    console.log(studentData)
+    console.log(events)
 
     return (
       <BigCalendar
