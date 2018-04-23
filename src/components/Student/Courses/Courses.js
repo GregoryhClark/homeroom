@@ -20,9 +20,10 @@ class Courses extends Component {
     let teacher = teachers ? findTeacher[0] : null;
     
     return (
-        <div>
-            {titleMap}
-        </div>
+      <div className="course-container">
+        <div className="left-column">Left</div>
+        <div className="right-column">Right</div>
+      </div>
     );
   }
 }
