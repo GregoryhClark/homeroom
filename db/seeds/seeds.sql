@@ -94,20 +94,17 @@ due_date date
 
 insert into student_assignments (
 student_id,
-course_id,
+student_assignments_course_id,
 assignment_name,
-description,
-instructions,
-topic,
-points_earned,
+student_assignment_description,
+student_assignment_instructions,
+student_assignment_topic,
 possible_points,
-submitted,
-completed,
 due_date,
 subject
 )
 
-values(1, 3, 'Math Test 3', 'This is the description of the assignment...', 'Instructions for the assignment here...', 'Algebra 1', 96, 100, '2018-04-09', '2018-04-09', '2018-04-09', 'Math')
+values(2, 3, 'Math Test 4', 'This is the description.', 'Instructions for assignment.', 'Algebra 1', 100, '2018-04-25', 'Math')
 
 --student_attachments
 create table student_attachments(
