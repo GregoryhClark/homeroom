@@ -152,7 +152,7 @@ top: 0;
 }
 
 /* MEDIA QUERIES */
-@media (min-width: 840px) {
+@media (min-width: 860px) {
   .header .menu {
     height: 51px;
     clear: none;
