@@ -7,6 +7,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 class CalendarComp extends Component {
 
+
+
   getHours(time) {
     let splitTime = time.split('')
 
@@ -32,10 +34,18 @@ class CalendarComp extends Component {
     return minutes
 
   }
+  
+  handleSelectEvent(event){
+    //let eventTitle = event.title
+    for (let value in event){//This is where routing will take place
+    console.log(`${event[value]}`)
+    }
+  }
 
   render() {
     let studentData = this.props.student
     let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
+    
     BigCalendar.momentLocalizer(moment);
 
     let events = studentData.calendar.map((event, index) => {
@@ -53,7 +63,7 @@ class CalendarComp extends Component {
       let endDateSet = studentData.calendar[index].calendar_event_end_date;
       let endDateWithH = new Date(endDateSet).setHours(endHour, endMinutes);
      
-
+     
       return {
         id: event.calendar_event_id,
         title: event.calendar_event_title,
@@ -65,13 +75,28 @@ class CalendarComp extends Component {
 
     console.log(studentData)
 
+    
+
     return (
       <BigCalendar
+        selectable
         events={events}
+        // startAccessor={'startDate'}
+        // endAccessor={'endDate'}
         views={allViews}
         step={60}
         showMultiDayTimes
+        onSelectEvent={(event) =>this.handleSelectEvent(event)}
+
         defaultDate={new Date()}
+        timeslots={10}
+        onSelectSlot={slotInfo =>
+          alert(
+            `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
+              `\nend: ${slotInfo.end.toLocaleString()}` +
+              `\naction: ${slotInfo.action}`
+          )
+        }
       />
     )
   }
