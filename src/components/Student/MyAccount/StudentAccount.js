@@ -131,10 +131,8 @@ const containerStyle={
 // =========== TITLE STYLE =============
 const titleStyle={
       fontSize:"24px"
-    , color:"#7d7d7d"
     , paddingBottom:"3px"
     , borderBottom:"1px solid #7D7D7D"
-    , textAlign:"center"
 }
 // =======INNER CONTAINER STYLE ========
 const innerContainerStyle={
@@ -147,7 +145,6 @@ const innerContainerStyle={
 // ======= INNER TITLE STYLE ===========
 const innerTitleStyle={
       fontSize:"1em"
-    , color:"#7d7d7d"
     , padding:"8px"
 }
 // ============ BUTTON STYLES ==========
