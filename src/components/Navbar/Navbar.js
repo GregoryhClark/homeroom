@@ -24,7 +24,6 @@ class Navbar extends Component {
                 return res
             }).catch(err=>console.log(err))
         })
-        this.setState({secondaryNav: 'home'})
     }
 
     handleMobileCollapse() {
@@ -166,11 +165,11 @@ class Navbar extends Component {
                 <div className="secondary-menu">
 {/*======== GLOBAL SECONDARY NAVIGATION OPTIONS ========*/}
                     {/*SHOW FOR ALL USERS*/}
-                    { secondaryNav === 'home' && 
+                    {document.location.pathname === '/home' && 
                     <ul><li>{`Welcome back, ${this.props.user.first_name}!`}</li></ul> }
 
                     {/*SHOW FOR ALL USERS*/}
-                    {secondaryNav === 'myAccount'
+                    {document.location.pathname === '/account'
                     && 
                     <ul>
                         <li><Link to='/account'>Account Settings</Link></li>
@@ -178,35 +177,35 @@ class Navbar extends Component {
 
 {/*======== ADMINISTRATOR SECONDARY NAVIGATION OPTIONS ========*/}
                     {/*TEACHRERS VIEW FOR ADMINISTRATORS*/}
-                    {(secondaryNav === 'teachers' && accountType === "Administrator") && 
+                    {(document.location.pathname === '/teachers' && accountType === "Administrator") && 
                     <ul>
                         <li><Link to='/teachers'>View Teachers</Link></li>
                         <li><Link to='/teachers/create-teacher'>Create Teacher</Link></li>
                     </ul> }
 
                     {/*STUDENTS VIEW FOR ADMINISTRATORS*/}
-                    {(secondaryNav === 'students' && accountType === "Administrator") &&
+                    {(document.location.pathname === '/students' && accountType === "Administrator") &&
                     <ul>
                         <li><Link to='/students'>View Students</Link></li>
                         <li><Link to='/students/create-student'>Create Student</Link></li>
                     </ul> }
 
                     {/*PARENTS VIEW FOR ADMINISTRATORS*/}
-                    {(secondaryNav === 'parents' && accountType === "Administrator") && 
+                    {(document.location.pathname === '/parents' && accountType === "Administrator") && 
                     <ul>
                         <li><Link to='/parents'>View Parents</Link></li>
                         <li><Link to='/parents/create-parent'>Create Parent</Link></li>
                     </ul> }
 
                     {/*COURSES VIEW FOR ADMINISTRATORS*/}
-                    {(secondaryNav === 'courses' && accountType === "Administrator") &&
+                    {(document.location.pathname === '/courses' && accountType === "Administrator") &&
                     <ul>
                         <li><Link to='/courses'>View Courses</Link></li>
                         <li><Link to='/courses/create-course'>Create Course</Link></li>
                     </ul>}
 
                     {/*METRICS VIEW FOR ADMINISTRATORS*/}
-                    {(secondaryNav === 'metrics' && accountType === "Administrator") &&
+                    {(document.location.pathname === '/metrics' && accountType === "Administrator") &&
                     <ul>
                         <li><Link to='/courses'>View Metrics</Link></li>
                     </ul>}
@@ -214,20 +213,20 @@ class Navbar extends Component {
 
 {/*======== TEACHER SECONDARY NAVIGATION OPTIONS ========*/}
                     {/*STUDENTS VIEW FOR TEACHERS*/}
-                    {(secondaryNav === 'students' && accountType === "Teacher") &&
+                    {(document.location.pathname === '/students' && accountType === "Teacher") &&
                     <ul>
                         <li><Link to='/students'>View Students</Link></li>
                     </ul> }
 
                     {/*COURSES VIEW FOR TEACHERS*/}
-                    {(secondaryNav === 'courses' && accountType === "Teacher") &&
+                    {(document.location.pathname === '/courses' && accountType === "Teacher") &&
                     <ul>
                         <li><Link to='/courses'>View Courses</Link></li>
                         <li><Link to='/courses/grades'>Grades</Link></li>
                     </ul>}
 
                     {/*COURSES VIEW FOR TEACHERS*/}
-                    {(secondaryNav === 'assignments' && accountType === "Teacher") &&
+                    {(document.location.pathname === '/assignments' && accountType === "Teacher") &&
                     <ul>
                         <li><Link to='/assignments'>View All</Link></li>
                         <li><Link to='/assignments/assign-assignment'>Assign</Link></li>
@@ -235,7 +234,7 @@ class Navbar extends Component {
                     </ul>}
 
                     {/*CALENDAR VIEW FOR TEACHERS*/}
-                    {(secondaryNav === 'calendar' && accountType === "Teacher") &&
+                    {(document.location.pathname === '/calendar' && accountType === "Teacher") &&
                     <ul>
                         <li><Link to='/calendar'>View Calendar</Link></li>
                     </ul>}
@@ -243,18 +242,18 @@ class Navbar extends Component {
                     
 {/*======== STUDENT SECONDARY NAVIGATION OPTIONS ========*/}
                     {/*COURSES VIEW FOR STUDENTS*/}
-                    {(secondaryNav === 'dashboard' && accountType === "Student") &&
+                    {(document.location.pathname === '/dashboard' && accountType === "Student") &&
                     <ul></ul> }
 
                     {/*COURSES VIEW FOR STUDENTS*/}
-                    {(secondaryNav === 'courses' && accountType === "Student") &&
+                    {(document.location.pathname === '/courses' && accountType === "Student") &&
                     <ul>
                         <li><Link to="/courses">Course Home</Link></li>
                         <li><Link to='/courses/assignments'>View Assignments</Link></li>
                     </ul>}
 
                     {/*CALENDAR VIEW FOR STUDENTS*/}
-                    {(secondaryNav === 'calendar' && accountType === "Student") &&
+                    {(document.location.pathname === '/calendar' && accountType === "Student") &&
                     <ul>
                         <li><Link to='/calendar'>View Calendar</Link></li>
                     </ul>}
@@ -262,12 +261,12 @@ class Navbar extends Component {
 
 {/*======== PARENT SECONDARY NAVIGATION OPTIONS ========*/}
                     {/*STUDENTS VIEW FOR PARENTS*/}
-                    {(secondaryNav === 'students' && accountType === "Parent") &&
+                    {(document.location.pathname === '/students' && accountType === "Parent") &&
                     <ul>
                         <li><Link to='/students'>View Students</Link></li>
                     </ul> }
 
-                    {(secondaryNav === 'calendar' && accountType === "Parent") &&
+                    {(document.location.pathname === '/courses' && accountType === "Parent") &&
                     <ul>
                         <li><Link to='/calendar'>View Calendar</Link></li>
                     </ul>}
@@ -290,4 +289,5 @@ function mapStateToProps(state){
         , currentCourseID:state.currentCourseID
     }
 }
+
 export default connect(mapStateToProps, {getUser, getAdmin, getStudent, getParent, getTeacher, selectedCourse})(Navbar);

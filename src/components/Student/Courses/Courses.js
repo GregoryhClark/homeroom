@@ -19,12 +19,11 @@ class Courses extends Component {
     let findTeacher = teachers ? teachers.filter((e,i)=> e.user_id === course.teacher_id):null
     let teacher = teachers ? findTeacher[0] : null;
     
-    console.log(teacher)
-    // console.log(course)
     return (
-        <div>
-            {titleMap}
-        </div>
+      <div className="course-container">
+        <div className="left-column">Left</div>
+        <div className="right-column">Right</div>
+      </div>
     );
   }
 }
