@@ -23,3 +23,26 @@
         justify-content: space-around;
     }
 }
+.course-container > .left-column{
+  visibility: hidden;
+}
+
+@media(min-width: 1024px) {
+  .course-container {
+    display: flex;
+    height: calc(100vh - 97px);
+    margin: -33px -60px -100px -60px;
+  }
+
+  .course-container > .left-column{
+    visibility: visible;
+    width: 25%;
+    padding: 25px;
+    background: rgb(220, 220, 220);
+  }
+
+  .course-container > .right-column{
+    width: 70%;
+    padding: 25px;
+  }
+}

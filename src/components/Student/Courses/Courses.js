@@ -21,9 +21,10 @@ class Courses extends Component {
     
     console.log(teacher)
     return (
-        <div>
-            {titleMap}
-        </div>
+      <div className="course-container">
+        <div className="left-column">Left</div>
+        <div className="right-column">Right</div>
+      </div>
     );
   }
 }

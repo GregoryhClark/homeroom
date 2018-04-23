@@ -13,6 +13,7 @@ class Dashboard extends Component {
                         {element.course_name}
                     </Link>
         }) : null;
+
         return (
                 <div className="main_card_wrapper" onClick={this.props.updateSecondNav}>{courseCards}</div>
         )
