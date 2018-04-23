@@ -15,10 +15,9 @@ class CoursesModal extends React.Component {
                       {element.course_name}
                  </Link>
       }) : null;
-
     return (
       <div id="courses-modal" className="modal">
-            <div className="modal-content" onClick={this.props.updateSecondNav}>{courseCards}</div>
+            <div className="modal-content" onClick={this.props.updateSecondNav}> <h1>Select a Course</h1>{courseCards}</div>
       </div>
     )
   }

@@ -1,3 +1,28 @@
+.table-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around
+}
+.align-assign{
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+}
+.align-assign{
+    flex: 1;
+    justify-content: center;
+ 
+}
+.table-width{
+    min-width: 50% !important;
+}
+
+@media(min-width:1024px){
+    .table-container{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
 .course-container > .left-column{
   visibility: hidden;
 }
