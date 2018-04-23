@@ -15,7 +15,7 @@ class CoursesModal extends React.Component {
                       {element.course_name}
                  </Link>
       }) : null;
-    console.log(this.updateSecondNav)
+
     return (
       <div id="courses-modal" className="modal">
             <div className="modal-content" onClick={this.props.updateSecondNav}>{courseCards}</div>
