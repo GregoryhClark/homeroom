@@ -1,10 +1,12 @@
 .creation-form {
+  position: relative;
   max-width: 400px;
   margin: auto;
   background: rgb(242, 242, 242);
   padding: 20px;
   box-shadow: 0 3px 5px 2px rgb(220, 220, 220);
   border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .creation-form > h1 {
@@ -12,6 +14,35 @@
   padding-bottom: 5px;
   border-bottom: 1px solid rgb(200,200,200);
 }
+
+.creation-form > .status {
+  display: block;
+  margin: -11px 0 10px 130px;
+  border-radius: 0 0 3px 3px;
+  box-sizing: border-box;
+  animation: fade 0.25s linear;
+  color: red;
+  font-weight: 600;
+  font-size: 0.75em;
+}
+
+.creation-form > .creation-status {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 440px;
+  padding: 6px;
+  border-radius: 0 0 3px 3px;
+  text-align:center;
+  box-sizing: border-box;
+  animation: fade 0.25s linear;
+}
+
+.creation-form > .success {
+  background-color: rgb(0, 166, 237);
+  color: white;
+}
+
 
 .creation-form > .photo-container {
   position: relative;
@@ -49,13 +80,14 @@
 
 .creation-form > .field {
   max-width: 350px;
-  height: 45px;
-  margin: auto;
+  height: 25px;
+  margin: 0 auto 15px auto ;
 }
 
 .creation-form > .field > span {
   float: left;
   padding-top: 5px;
+  font-size: 0.95em;
 }
 
 .creation-form > .field > input {
@@ -68,9 +100,13 @@
   font-size: 0.9em;
 }
 
+.creation-form > .field > .flag {
+  border: 1px solid red;
+}
+
 .creation-form > .buttons {
   width: 225px;
-  margin: 20px auto 0 auto;
+  margin: 15px auto 5px auto;
 }
 
 .creation-form > .buttons > button {
@@ -99,6 +135,6 @@
 
 @media(min-width: 768px) {
   .creation-form {
-    padding: 30px 20px;
+    padding: 35px 20px;
   }
 }
