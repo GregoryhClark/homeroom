@@ -213,7 +213,7 @@ top: 0;
      margin-left: 35px;
   }
 
-  .secondary-menu a:active {
+  .secondary-menu a:hover {
     color:rgb(0, 166, 237);
   }
 

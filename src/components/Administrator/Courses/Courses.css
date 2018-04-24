@@ -1,0 +1,17 @@
+/*===== Custom CSS For Courses Table =====*/
+
+.course-modal > .modal-content {
+  width: 600px;
+}
+
+.course-modal .field {
+  width: 450px !important;
+}
+
+.course-modal .field > input {
+  width: 340px !important;
+}
+
+.course-modal .field > textArea {
+  width: 340px !important;
+}
