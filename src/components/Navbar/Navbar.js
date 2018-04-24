@@ -184,7 +184,7 @@ class Navbar extends Component {
                     </ul> }
 
                     {/*STUDENTS VIEW FOR ADMINISTRATORS*/}
-                    {(document.location.pathname === '/students' && accountType === "Administrator") &&
+                    {((document.location.pathname === '/students' || document.location.pathname === '/students/create-student') && accountType === "Administrator") &&
                     <ul>
                         <li><Link to='/students'>View Students</Link></li>
                         <li><Link to='/students/create-student'>Create Student</Link></li>

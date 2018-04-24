@@ -11,7 +11,7 @@ export default class CreateNewUser extends React.Component {
     super()
     this.state = {
       newUser: {
-          account_type: 'Teacher'
+          account_type: ''
         , user_photo: 'undefined'
         , first_name: ''
         , last_name: ''
@@ -34,8 +34,8 @@ export default class CreateNewUser extends React.Component {
 
   componentDidMount() {
     let newUser = {...this.state.newUser};
-    newUser.account_type = this.props.accountType;
-    this.setState(newUser);
+    newUser.account_type = this.props.account_type;
+    this.setState({newUser});
   }
 
   handleFieldChange(e, field) {
