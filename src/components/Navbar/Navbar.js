@@ -177,7 +177,7 @@ class Navbar extends Component {
 
 {/*======== ADMINISTRATOR SECONDARY NAVIGATION OPTIONS ========*/}
                     {/*TEACHRERS VIEW FOR ADMINISTRATORS*/}
-                    {(document.location.pathname === '/teachers' && accountType === "Administrator") && 
+                    {((document.location.pathname === '/teachers' || document.location.pathname === '/teachers/create-teacher') && accountType === "Administrator") && 
                     <ul>
                         <li><Link to='/teachers'>View Teachers</Link></li>
                         <li><Link to='/teachers/create-teacher'>Create Teacher</Link></li>

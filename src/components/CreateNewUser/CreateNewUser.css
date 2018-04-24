@@ -43,6 +43,10 @@
   color: white;
 }
 
+.creation-form > .pending {
+  background-color: rgb(225, 225, 225);
+  color: rgb(244, 147, 30);
+}
 
 .creation-form > .photo-container {
   position: relative;
