@@ -48,7 +48,7 @@ class Navbar extends Component {
 
     render() {
       let accountType = this.props.user.account_type;
-      let {secondaryNav} = this.state;
+    //   let {secondaryNav} = this.state;
       let path = document.location.pathname;
       // let currentCourse = this.props.currentCourseID 
 
