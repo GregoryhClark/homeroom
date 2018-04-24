@@ -191,7 +191,7 @@ class Navbar extends Component {
                     </ul> }
 
                     {/*PARENTS VIEW FOR ADMINISTRATORS*/}
-                    {(document.location.pathname === '/parents' && accountType === "Administrator") && 
+                    {((document.location.pathname === '/parents' || document.location.pathname === '/parents/create-parent') && accountType === "Administrator") && 
                     <ul>
                         <li><Link to='/parents'>View Parents</Link></li>
                         <li><Link to='/parents/create-parent'>Create Parent</Link></li>
