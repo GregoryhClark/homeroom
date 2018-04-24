@@ -31,9 +31,9 @@ class CourseAssignment extends Component {
     let gradePossibleTotal   = isChecked ? assignments.map((e,i)=>e.points_earned !== null ? e.possible_points:null ).reduce((a,c)=>(a+c)): assignments.map((e,i)=>e.possible_points).reduce((a,c)=>(a+c));
     let gradeAvg             = isChecked ? gradeSubmitAverage / gradeTotal.length : gradeSubmitAverage / assignments.length;
 // ========== FIND TEACHER ============
-    let teachers = this.props.student.myTeacher
-    let findTeacher = teachers ? teachers.filter((e,i)=> e.user_id === course.teacher_id):null
-    let teacher = teachers ? findTeacher[0] : null;
+    let teachers             = this.props.student.myTeacher
+    let findTeacher          = teachers ? teachers.filter((e,i)=> e.user_id === course.teacher_id):null
+    let teacher              = teachers ? findTeacher[0] : null;
     let sorted               = assignments.sort((a,b)=>{return a.student_assignment_id - b.student_assignment_id})
 // ===== GET UPCOMING ASSIGNMENTS ======
     let filterCalendar = sorted.filter(e=> Date.parse(e.due_date) >= new Date().getTime()).map((e,i)=>{
