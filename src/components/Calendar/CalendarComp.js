@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import BigCalendar from 'react-big-calendar';
+import CalendarModal from './CalendarModal'
 import { connect } from 'react-redux';
 import { getUser, getStudent } from '../../redux/user';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 class CalendarComp extends Component {
+  constructor(){
+    super()
+    this.state={
+      slotStart:''
+    }
+  }
 
 
 //This takes in the time passed in from the db and returns only the hours
@@ -41,12 +48,11 @@ class CalendarComp extends Component {
     }
   }
   handleSelectSlot(slotInfo){
-    //This is where we will want to allow them to create a new event
-    alert(
-      `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
-      `\nend: ${slotInfo.end.toLocaleString()}` +
-      `\naction: ${slotInfo.action}`
-    )
+    
+      let startTime = slotInfo.start.toString()
+      this.setState({
+        slotStart:startTime
+      })
   }
   render() {
     let studentData = this.props.student
@@ -82,19 +88,27 @@ class CalendarComp extends Component {
       }
     })
 
+
     return (
+      <div>
       <BigCalendar
         selectable
         events={events}
         views={allViews}
         step={15}
         showMultiDayTimes
-        onSelectEvent={(event) => this.handleSelectEvent(event)}
+        onSelectEvent={(event) => {
+          this.handleSelectEvent(event)
+          
+          }}
 
         defaultDate={new Date()}
         timeslots={1}
         onSelectSlot={slotInfo => this.handleSelectSlot(slotInfo)}
       />
+      <CalendarModal slotInfo={this.state.slotStart}
+        />
+      </div>
     )
   }
 }
