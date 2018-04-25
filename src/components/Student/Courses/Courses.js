@@ -17,7 +17,7 @@ class Courses extends Component {
     let findTeacher        = teachers ? teachers.filter((e,i)=> e.user_id === course.teacher_id):null
     let teacher            = teachers ? findTeacher[0] : null;
 // ===== GET UPCOMING ASSIGNMENTS ======
-    let currentAssignments = this.props.student.getAssignments;
+    let currentAssignments = this.props.student.getAssignments; 
     let calendar           = currentAssignments ? currentAssignments.filter((e,i)=> e.student_assignments_course_id === currentCourse):null;
     let sorted             = calendar.sort((a,b)=>{return a.student_assignment_id - b.student_assignment_id})
     let filterCalendar     = sorted.filter(e=> Date.parse(e.due_date) >= new Date().getTime()).map((e,i)=>{
@@ -50,7 +50,7 @@ class Courses extends Component {
     );
   }
 }
-function mapStateToProps(state){
+function mapStateToProps(state){  
   return{
         user: state.user
       , student: state.student

@@ -138,6 +138,18 @@
   font-size: inherit;
 }
 
+.modal-content > .field > textarea {
+  display: block;
+  width: 200px;
+  height: 5.5em;
+  margin-left: 100px;
+  margin-bottom: 20px;
+  padding: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  font-size: inherit;
+}
+
 /*=====MODAL PHOTO=====*/
 .modal-content > .photo-container {
   position: relative;
