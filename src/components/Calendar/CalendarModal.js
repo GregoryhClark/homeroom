@@ -127,49 +127,64 @@ class CalendarModal extends Component {
           <span className="start-date-time"><Moment format="MM-DD-YYYY h:mma">{timeSlotStartString}</Moment></span>
           <Calendar onChange = {date => this.setState({startDate:date})}/>
 
-          <span>Start Hour:</span>
-          <select onChange={(e)=>{this.setStartHour(e.target.value)}}name="" id="end_hours_select" className="month_option">
-        <option value="">Select</option>
-       {hoursOptions}
-      </select>
-      <br/>
-      Start Minute:
-      <select onChange={(e)=>{this.setStartMin(e.target.value)}}name="" id="end_min_select" className="month_option">
-        <option value="">Select</option>
-        <option >00</option>
-        <option >15</option>
-        <option >30</option>
-      </select>
-         
+          <div className="time">
+
+            <div className="hour">
+              <span>Start Hour:</span>
+              <select onChange={(e)=>{this.setStartHour(e.target.value)}}name="" id="end_hours_select" className="month_option">
+              <option value="">Select</option>{hoursOptions}</select>
+            </div>
+
+            <div className="minute">
+              <span>Start Minute:</span>
+              <select onChange={(e)=>{this.setStartMin(e.target.value)}}name="" id="end_min_select" className="month_option">
+              <option value="">Select</option>
+              <option >00</option>
+              <option >15</option>
+              <option >30</option>
+              <option >45</option>
+              </select>
+            </div>
+
+          </div>
 
         </div>
+
 
         <div className="end-date">
           <h2>End Date</h2>
           {/* activeStartDate = {new Date(startDateNumericString)} */}
           <Calendar onChange={date=> this.setState({endDate:date}) }/>
-          End hour:
-          <select onChange={(e)=>{this.setEndHour(e.target.value)}}name="" id="end_hours_select" className="month_option">
-          <option value="">Select</option>
-            {hoursOptions}
-          </select>
-          <br/>
-          End minute:
-          <select onChange={(e)=>{this.setEndMin(e.target.value)}}name="" id="end_min_select" className="month_option">
-            <option value="">Select</option>
-            <option value="00">00</option>
-            <option value="15">15</option>
-            <option value="30">30</option>
-          </select>
 
+          <div className="time">
+
+            <div className="hour">
+              <span>End Hour:</span>
+              <select onChange={(e)=>{this.setEndHour(e.target.value)}}name="" id="end_hours_select" className="month_option">
+                <option value="">Select</option>
+                {hoursOptions}
+              </select>
+            </div>
+
+            <div className="minute">
+              <span>End Minute:</span>
+              <select onChange={(e)=>{this.setEndMin(e.target.value)}}name="" id="end_min_select" className="month_option">
+                <option value="">Select</option>
+                <option value="00">00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+              </select>
+            </div>
+
+          </div>
 
         </div>
       
       </div>
 
       <div className="buttons">
-        <button onClick={()=>{this.createEvent()}}>create event</button>
-        <button onClick={()=>this.refreshState()}>refresh state</button>
+        {/*<button onClick={()=>this.refreshState()}>refresh state</button> */}
+        <button onClick={()=>{this.createEvent()}}>Create Event</button>
       </div>
 
     </div>
