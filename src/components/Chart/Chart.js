@@ -42,7 +42,7 @@ class Chart extends Component {
 // ====== DISPLAY BUTTONS TO SELECT CHART ======
         let buttonType = ["Bar", "Line", "Horizontal Bar"];
         let chartButtons = buttonType.map((element, index) => {
-            return <button className="course_btn" key={index} onClick={() => {this.setState({chartType:element})}}>{element}</button>
+            return <button className="course_btn" key={index} id={`course_button${index}`} onClick={() => {this.setState({chartType:element})}}>{element}</button>
         })
 // ====== FIND STUDENT ASSIGNMENTS SCORES ======
         let studentAssignmentScores = studentData.getAssignments ? studentData.getAssignments.map(obj => {
