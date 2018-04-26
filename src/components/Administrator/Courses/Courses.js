@@ -114,7 +114,7 @@ class Courses extends React.Component {
       <div>
         
         {/*==========Courses TABLE==========*/}
-        <div className="table-overflow">
+        <div id="courses-table" className="table-overflow">
           <table className="table">
             <thead>
               <tr>
