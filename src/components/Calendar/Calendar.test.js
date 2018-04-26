@@ -31,3 +31,16 @@ let testDate = new Date (2018,3,10)
 test('changeToString(testDate)', ()=>{
     expect (fns.changeToString(testDate)).toBe('Tue Apr 10 2018 00:00:00 GMT-0600 (Mountain Daylight Time)')
 })
+
+ 
+ test('getHoursList() should return list of 23 hours', ()=>{
+     let hours = fns.getHoursList();
+     expect (hours).toEqual([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23])
+ })
+
+ test('checkIsEqual(5,"5") should return false', ()=>{
+     expect (fns.checkIsEqual(5,"5")).toBe(false)
+ })
+ test('checkIsEqual(5,5) should return false', ()=>{
+    expect (fns.checkIsEqual(5,5)).toBe(true)
+})

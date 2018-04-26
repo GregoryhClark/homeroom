@@ -29,6 +29,19 @@ getMinutes(time) {
   },
   changeToString(slotInfo){
       return slotInfo.toString()
+  },
+  getHoursList(){
+    let hoursArray =[]
+    for (let i = 0; i<24; i++){
+      hoursArray.push(i)
+    }
+    return hoursArray;
+  },
+  checkIsEqual(param1, param2){
+      return (param1 === param2)
+  },
+  concatenateDate(year, month, day){
+      return `${year}-${month}-${day}`
   }
 
 
