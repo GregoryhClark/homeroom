@@ -17,6 +17,7 @@ import ParentsView from '../views/Parents/ParentsView.js';
 import CreateTeacherView from '../views/CreateTeacher/CreateTeacherView.js';
 import CreateStudentView from '../views/CreateStudent/CreateStudentView.js';
 import CreateParentView from '../views/CreateParent/CreateParentView.js';
+import AssignmentsView from '../views/Assignments/AssignmentsView';
 
 // =========== ROUTES ===============
 export default (
@@ -29,6 +30,7 @@ export default (
             <Route exact path='/students' component={StudentsView}/>
             <Route path='/students/create-student' component={CreateStudentView} />
             <Route path='/courses' component={CoursesView}/>
+            <Route path='/assignments' component={AssignmentsView}/>
             <Route path='/calendar' component={CalendarView}/>
             <Route path='/inbox' component={Inbox}/>
             <Route exact path='/teachers' component={Teachers}/>
