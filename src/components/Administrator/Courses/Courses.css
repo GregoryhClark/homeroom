@@ -17,15 +17,15 @@
 
 /*===== Customize Column Width =====*/
 #courses-table thead > tr > th:nth-child(1) {
-  min-width: 110px;
+  min-width: 95px;
 }
 
 #courses-table thead > tr > th:nth-child(2) {
-  min-width: 175px;
+  min-width: 185px;
 }
 
 #courses-table thead > tr > th:nth-child(3) {
-  min-width: 100px;
+  min-width: 65px;
 }
 
 #courses-table thead > tr > th:nth-child(4) {
@@ -33,7 +33,7 @@
 }
 
 #courses-table thead > tr > th:nth-child(5) {
-  min-width: 80px !important;
+  min-width: 75px !important;
 }
 
 #courses-table thead > tr > th:nth-child(6) {
@@ -50,4 +50,18 @@
 
 #courses-table thead > tr > th:nth-child(9) {
   min-width: 75px !important;
+}
+
+#courses-table tbody > tr > td {
+  vertical-align: top;
+}
+
+#courses-table tbody > tr > td:nth-child(2) {
+  display: inline-block;
+  max-height: 79px;
+  margin-bottom: 15px;
+  margin-top: 8px;
+  padding: 0 12px 8px 12px !important;
+  box-sizing: border-box;
+  overflow-y: auto;
 }

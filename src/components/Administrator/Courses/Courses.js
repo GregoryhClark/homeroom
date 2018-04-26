@@ -101,7 +101,12 @@ class Courses extends React.Component {
           <td>{e.course_description}</td>
           <td>{e.department}</td>
           <td>{`${e.first_name} ${e.last_name}`}</td>
-          <td>#</td>
+          <td>
+          {this.props.admin.getStudentsPerCourse
+            .filter(s => s.course_id === e.course_id).length}
+
+          
+          </td>
           <td><Moment format="MM-DD-YYYY">{e.start_date}</Moment></td>
           <td><Moment format="MM-DD-YYYY">{e.end_date}</Moment></td>
           <td>{e.courses_photo === 'undefined' ? 'None' : <a href={e.courses_photo} target='_blank'>View</a>}</td>
@@ -120,7 +125,7 @@ class Courses extends React.Component {
               <tr>
                 <th>Course Name</th>
                 <th>Course Description</th>
-                <th>Department</th>
+                <th>Dept</th>
                 <th>Teacher</th>
                 <th>Students</th>
                 <th>Start Date</th>

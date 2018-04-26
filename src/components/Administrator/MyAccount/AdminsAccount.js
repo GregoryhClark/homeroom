@@ -181,11 +181,10 @@ const inputTextStyle={
     , padding:"5px"
     , marginRight:'10px'
     , marginLeft:'10px'
-    , border:"1px solid #eee"
+    , border: "1px solid lightgray"
     , borderRadius:"3px"
     , width:"calc(100% - (20px))"
     , boxSizing:"border-box"
-    , border: "1px solid lightgray"
 }
 // ======== PROFILE PICTURE ============
 const profilePicture ={
