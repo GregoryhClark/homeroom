@@ -6,11 +6,12 @@ const initialState = {
         user:{}            
     // CONTAINS ALL CURRENT ADMIN INFO
       , admin:{
-          teachers:    []
-        , students:    []
-        , parents:     []
-        , courses:     []
-        , calendar:    []} 
+          teachers:          []
+        , students:          []
+        , parents:           []
+        , courses:           []
+        , calendar:          []
+        , studentsPerCourse: []} 
     // CONTAINS ALL CURRENT STUDENT INFO          
       , student:{
           courses:     []
@@ -45,6 +46,7 @@ const GET_TEACHERS_FOR_ADMIN = "GET_TEACHERS_FOR_ADMIN";
 const GET_STUDENTS_FOR_ADMIN = "GET_STUDENTS_FOR_ADMIN";
 const GET_PARENTS_FOR_ADMIN  = "GET_PARENTS_FOR_ADMIN";
 const GET_COURSES_FOR_ADMIN  = "GET_COURSES_FOR_ADMIN";
+const GET_STUDENTS_PER_COURSE  = "GET_STUDENTS_PER_COURSE";
 // ****** FOR STUDENT ******
 const GET_STUDENT            = "GET_STUDENT";
 // ****** FOR PARENT ******
@@ -74,18 +76,20 @@ export function updateUser(updates){
 }
 // ************************** GET ADMIN **************************
 export function getAdmin(){
-    let getTeachers     = axios.get('/getAdminTeacher');
-    let getStudents     = axios.get('/getAdminStudent');
-    let getParents      = axios.get('/getAdminParent');
-    let getCourses      = axios.get('/getAdminCourse');
-    let getUserCalendar = axios.get('/getUserCalendar');
-    let admin = Promise.all([getTeachers, getStudents, getParents, getCourses, getUserCalendar]).then(res=>{
+    let getTeachers          = axios.get('/getAdminTeacher');
+    let getStudents          = axios.get('/getAdminStudent');
+    let getParents           = axios.get('/getAdminParent');
+    let getCourses           = axios.get('/getAdminCourse');
+    let getUserCalendar      = axios.get('/getUserCalendar');
+    let getStudentsPerCourse = axios.get('/getStudentsPerCourse');
+    let admin = Promise.all([getTeachers, getStudents, getParents, getCourses, getUserCalendar, getStudentsPerCourse]).then(res=>{
         return {
-              teachers: res[0].data
-            , students: res[1].data
-            , parents:  res[2].data
-            , courses:  res[3].data
-            , calendar: res[4].data
+              teachers:            res[0].data
+            , students:            res[1].data
+            , parents:             res[2].data
+            , courses:             res[3].data
+            , calendar:            res[4].data
+            , getStudentsPerCourse:res[5].data
         }
     }).catch(err=>console.log(err))
     return{
@@ -216,6 +220,8 @@ export default function reducer(state = initialState, action){
             return {...state, admin: {...state.admin, parents: action.payload}}
         case GET_COURSES_FOR_ADMIN + _FULFILLED:
             return {...state, admin: {...state.admin, courses: action.payload}}
+        case GET_STUDENTS_PER_COURSE + _FULFILLED:
+            return {...state, admin: {...state.admin, studentsPerCourse: action.payload}}
 // ****** FOR STUDENT ******
         case GET_STUDENT + _FULFILLED:
             return Object.assign({}, state, {student:action.payload})

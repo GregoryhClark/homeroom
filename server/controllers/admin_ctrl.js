@@ -67,5 +67,25 @@ module.exports= {
         }else{
             res.status(401).send('Please Sign-in.')
         }
+    }),
+    getStudentsPerCourse:((req,res,next)=>{
+        const db = req.app.get('db')
+        if(req.user){
+            const {user_id} = req.user
+            db.run(`SELECT courses.course_id, course_name, courses_photo, 
+                    start_date, end_date, users.user_id, teacher_id, period, time, department, 
+                    first_name, last_name, email, user_photo, phone_number 
+                    FROM courses
+                    JOIN roster ON courses.course_id = roster.roster_course_id
+                    JOIN users ON roster.roster_user_id = users.user_id`,
+                function(err,res){
+                    var student = res;
+                }).then(student=>{
+                    // console.log('Admins student', student)
+                    res.status(200).send(student)
+                })
+        }else{
+            res.status(401).send('Please Sign-in.')
+        }
     })
 }

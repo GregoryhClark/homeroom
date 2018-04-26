@@ -125,6 +125,9 @@ app.get('/getAdminParent', getParentsForAdmin);
 //        ========== Courses =========
 const {getCoursesForAdmin} = admin_ctrl
 app.get('/getAdminCourse', getCoursesForAdmin);
+//        === STUDENTS PER COURSE ====
+const {getStudentsPerCourse} = admin_ctrl
+app.get('/getStudentsPerCourse', getStudentsPerCourse);
 
 
 // ****************** TEACHERS ******************
