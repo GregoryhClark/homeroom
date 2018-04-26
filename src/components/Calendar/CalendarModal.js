@@ -2,6 +2,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Calendar from 'react-calendar';
+import Moment from 'react-moment';
+
 //import { Link } from 'react-router-dom'
 import {getUser, getStudent, selectedCourse} from './../../redux/user';
 //CSS, ASSETS
@@ -106,22 +108,27 @@ class CalendarModal extends Component {
 
  
   return(
-    <div>
-      <div id="top_div"></div>
-      <button onClick={()=>this.refreshState()}>refresh state</button>
-      <br/>
-      
-      
-      Start: {timeSlotStartString}
-      <Calendar 
-        onChange = {date => this.setState({startDate:date})}
-      />
-      All Day Event?
-      <input onChange={()=>{this.changeCheck()}}id="all_day_checkBox" type="checkbox" />
-      <br/>
-      <br/>
-      Start Hour:
-      <select onChange={(e)=>{this.setStartHour(e.target.value)}}name="" id="end_hours_select" className="month_option">
+    <div className="add-event">
+
+      <div className="event-details">
+        <span className>Event Name:</span>
+        <input type="text" onChange={(e)=>{this.setTitle(e.target.value)}}/>
+      </div>
+
+      <div className="event-details">
+        <span className>All Day Event:</span>
+        <input onChange={()=>{this.changeCheck()}}id="all_day_checkBox" type="checkbox" />
+      </div>
+
+      <div className="calendars">
+
+        <div className="start-date">
+          <h2>State Date</h2>
+          <span className="start-date-time"><Moment format="MM-DD-YYYY h:mma">{timeSlotStartString}</Moment></span>
+          <Calendar onChange = {date => this.setState({startDate:date})}/>
+
+          <span>Start Hour:</span>
+          <select onChange={(e)=>{this.setStartHour(e.target.value)}}name="" id="end_hours_select" className="month_option">
         <option value="">Select</option>
        {hoursOptions}
       </select>
@@ -133,35 +140,38 @@ class CalendarModal extends Component {
         <option >15</option>
         <option >30</option>
       </select>
-      End: 
-      <Calendar
-        // activeStartDate = {new Date(startDateNumericString)}
-        onChange = {date=> this.setState({endDate:date}) }
-      
-      />
-      <br/>
-      
-      End hour:
-      <select onChange={(e)=>{this.setEndHour(e.target.value)}}name="" id="end_hours_select" className="month_option">
-      <option value="">Select</option>
-        {hoursOptions}
-      </select>
-      <br/>
-      End minute:
-      <select onChange={(e)=>{this.setEndMin(e.target.value)}}name="" id="end_min_select" className="month_option">
-        <option value="">Select</option>
-        <option value="00">00</option>
-        <option value="15">15</option>
-        <option value="30">30</option>
-      </select>
-      <br/>      
-      Title:
-      <input onChange={(e)=>{this.setTitle(e.target.value)}} id="title_input" type="text"/>
-      
-      <br/>
-      <button onClick={()=>{this.createEvent()}}>create event</button>
+         
 
-      <div id="bottom_div"></div>
+        </div>
+
+        <div className="end-date">
+          <h2>End Date</h2>
+          {/* activeStartDate = {new Date(startDateNumericString)} */}
+          <Calendar onChange={date=> this.setState({endDate:date}) }/>
+          End hour:
+          <select onChange={(e)=>{this.setEndHour(e.target.value)}}name="" id="end_hours_select" className="month_option">
+          <option value="">Select</option>
+            {hoursOptions}
+          </select>
+          <br/>
+          End minute:
+          <select onChange={(e)=>{this.setEndMin(e.target.value)}}name="" id="end_min_select" className="month_option">
+            <option value="">Select</option>
+            <option value="00">00</option>
+            <option value="15">15</option>
+            <option value="30">30</option>
+          </select>
+
+
+        </div>
+      
+      </div>
+
+      <div className="buttons">
+        <button onClick={()=>{this.createEvent()}}>create event</button>
+        <button onClick={()=>this.refreshState()}>refresh state</button>
+      </div>
+
     </div>
   )}
 

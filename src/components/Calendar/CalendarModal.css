@@ -1,8 +1,57 @@
-#bottom_div{
-    height: 400px;
-   
+.add-event {
+  width: 95%;
 }
-#top_div{
-    height: 100px;
-   
+
+.add-event > .event-details {
+  float: left;
+  width: 50%;
+  margin-bottom: 25px;
+}
+
+.add-event > .event-details:nth-child(2) {
+  width: 46.5%;
+  margin-left: 3.5%;
+}
+
+.add-event > .event-details > span {
+  float: left;
+  margin-top: 5px;
+  font-size: 1.1em;
+}
+
+.add-event > .event-details > input[type="text"] {
+  display: block;
+  width: 200px;
+  margin-left: 115px;
+  padding: 4px;
+  font-size: 1em;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+}
+
+.add-event > .event-details > input[type="checkbox"] {
+  -ms-transform: scale(1.75); /* IE */
+  -moz-transform: scale(1.75); /* FF */
+  -webkit-transform: scale(1.75); /* Safari and Chrome */
+  -o-transform: scale(1.75); /* Opera */
+  margin: 8px 0 0 15px;
+  cursor: pointer;
+}
+
+.add-event > .calendars {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.add-event > .calendars h2 {
+  display: inline-block;
+  margin-bottom: 8px;
+  margin-right: 10px;
+  font-size: 1.25em;
+}
+
+.add-event > .calendars > .start-date > .start-date-time {
+  font-size: 0.9em;
+  color: rgb(0, 80, 199);
 }

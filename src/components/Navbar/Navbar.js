@@ -141,13 +141,15 @@ class Navbar extends Component {
                         </li>
                         : ''}
 
-                        {/*SHOW FOR ADMINISTATORS*/}
-                        {accountType === "Administrator" ? 
+                        {/*
+                        SHOW FOR ADMINISTATORS
+                        accountType === "Administrator" ? 
                         <li onClick={this.handleMobileCollapse}>
                             <Link to='/metrics' className={path === '/metrics' ? "selected" : null}
                             onClick={() => this.setState({secondaryNav: 'metrics'})}>Metrics</Link>
                         </li>
-                        : ''}
+                        : ''
+                        */}
 
                         {/*SHOW FOR ALL USERS*/}
                         <li onClick={this.handleMobileCollapse}>
@@ -204,12 +206,13 @@ class Navbar extends Component {
                         <li><Link to='/courses/create-course'>Create Course</Link></li>
                     </ul>}
 
-                    {/*METRICS VIEW FOR ADMINISTRATORS*/}
-                    {(document.location.pathname === '/metrics' && accountType === "Administrator") &&
+                    {/*
+                    METRICS VIEW FOR ADMINISTRATORS
+                    (document.location.pathname === '/metrics' && accountType === "Administrator") &&
                     <ul>
                         <li><Link to='/courses'>View Metrics</Link></li>
-                    </ul>}
-
+                    </ul>
+                    */}
 
 {/*======== TEACHER SECONDARY NAVIGATION OPTIONS ========*/}
                     {/*STUDENTS VIEW FOR TEACHERS*/}
