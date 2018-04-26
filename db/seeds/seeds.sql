@@ -28,9 +28,9 @@ last_updated DATE DEFAULT null
 )
 
 
-INSERT INTO assignment_templates (author_id, name, description, instructions, topic, possible_points, date_created, last_updated)
+INSERT INTO assignment_templates (author_id, assignment_template_name, assignment_template_description, assignment_template_instructions, assignment_template_topic, possible_points, assignment_template_date_created, assignment_template_last_updated)
 
-values (3, 'Assignment 1 test', 'This is the description of the assignment...', 'Instructions for the assignment here...','algebra 2', 100, '2018-04-11', '2018-04-11')
+values (3, 'Oxford Comma', 'This is the description of the assignment...', 'Instructions for the assignment here...','Grammar', 100, '2018-04-11', '2018-04-11')
 
 
 --courses
