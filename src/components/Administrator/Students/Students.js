@@ -107,8 +107,6 @@ class Students extends React.Component {
       )
     })
 
-    console.log(this.props.admin.students);
-
     return(
       <div>
         
