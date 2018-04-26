@@ -36,12 +36,15 @@ class TeachStudents extends Component {
         return (
             <div className="course-container">
                 <div className="left-column">
-                    <h1 className="course-title">Courses</h1>
+                    <div className="title-bar">Select a course</div>
+                    <section className="home-section">
                     {courses}
                     <button className="stud_button" onClick={()=>this.setState({selectedCourse:'',courseName:''})}>All Students</button>
+                    </section>
                     </div>
                 <div className="right-column">
-                <h1 className="course-title">{this.state.courseName === '' ? "All Students": `Students for ${this.state.courseName}`}</h1>
+                <section className="home-section">
+                <div className="title-bar">{this.state.courseName === '' ? "All Students": `Students for ${this.state.courseName}`}</div>
                 <div className="table-overflow">
                 <table className="table">
                   <thead>
@@ -56,9 +59,9 @@ class TeachStudents extends Component {
                   <tbody>
                     {this.state.selectedCourse === '' ? allStudents : currentCourse}
                   </tbody>
-                </table>
-               
-              </div>
+                  </table>
+                  </div>
+                  </section>
                 </div>
             </div>
         )

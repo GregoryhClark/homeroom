@@ -106,21 +106,31 @@ class Chart extends Component {
     return ( 
         <div className="course-container">            
             <div className="left-column">
-                <h1 className="course-title">{`Welcome to Homeroom`}</h1>
+                <div className="title-bar">{`Welcome to Homeroom`}</div>
+                <section className="home-section">
                 {"All schools in the Salt Lake City District use Homeroom as the Learning Management System (LMS), which means all of your online courses will be in Homeroom. The course content will be available by the first day of classes."}
-                <h1 className="course-title">{`Please select a chart type`}</h1>
+                </section>
+                <div className="title-bar">{`Please select a chart type`}</div>
+                <section className="home-section">
                 <div className="chartButtonsWrapper">{chartButtons}</div>
-                <h1 className="course-title">{`Homeroom Recommendations`}</h1>
+                </section>
+                <div className="title-bar">{`Homeroom Recommendations`}</div>
+                <section className="home-section">
                 {"Nothing to display"}
-                <h1 className="course-title">{`Teachers Recommendations`}</h1>
+                </section>
+                <div className="title-bar">{`Teachers Recommendations`}</div>
+                <section className="home-section">
                 {"Nothing to display"}
+                </section>
             </div>
             <div className="right-column">
-            <h1 className="course-title">{`Display ${this.props.user.first_name}'s grade averages`}</h1>
-                <div className="test_chart_wrapper">   
-                    {this.state.chartType === "Bar" ? barChart: this.state.chartType === "Line" ? lineChart:this.state.chartType === "Horizontal Bar" ? HorizontalBarChart : barChart}
-                    {this.state.chartType !== '' ? <div className="coursesButtonsWrapper">{courseButtons}</div>: null}      
-                </div>
+                <section className="home-section">
+                    <h1 className="course-title">{`Display ${this.props.user.first_name}'s grade averages`}</h1>
+                    <div className="test_chart_wrapper">   
+                        {this.state.chartType === "Bar" ? barChart: this.state.chartType === "Line" ? lineChart:this.state.chartType === "Horizontal Bar" ? HorizontalBarChart : barChart}
+                        {this.state.chartType !== '' ? <div className="coursesButtonsWrapper">{courseButtons}</div>: null}      
+                    </div>
+                </section>
             </div>
         </div>     
         )
