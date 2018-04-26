@@ -1,0 +1,29 @@
+.home-section{
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(228, 228, 228);
+    margin: 0 0 10px;
+    padding: 8px;
+    border-radius: 10px;
+}
+.title-bar{
+    display: block;
+    align-items: center;
+    box-shadow: 1px 1px 0 #ccc;
+    background: rgb(233, 233, 233);
+    border: 1px solid;
+    border-color: #C8C9CA #9E9E9E #9E9E9E #C8C9CA;
+    font-size: 23px;
+    border-radius: 10px;
+    font-weight: 500;
+    line-height: 30px;
+    padding-left: 8px;
+    margin-bottom: 10px;
+}
+.sub-title{
+    font-size: 20px;
+    padding:3px;
+}
+
+.padding{
+    padding:70px !important; 
+}

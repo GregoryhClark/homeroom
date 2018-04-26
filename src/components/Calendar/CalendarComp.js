@@ -68,7 +68,7 @@ class CalendarComp extends Component {
       let endDate = new Date(studentData.calendar[index].calendar_event_end_date)
       let afterSetHoursEnd = endDate.setHours(endHour, endMinutes);
       let endConverted = new Date(afterSetHoursEnd)
-      // console.log((this.state.slotStart))
+      // console.log()
 
       return {
         id: event.calendar_event_id,
@@ -113,7 +113,7 @@ class CalendarComp extends Component {
             <h1 className="horizontal-line">Add Event</h1>
 
             {/*ADD PHOTO PLACEHOLDER IF NO PHOTO IS AVAILABLE*/}
-            <CalendarModal slotInfo={this.state.slotStart}/>
+            <CalendarModal slotInfo={this.state.slotStart} currentUser={this.props.user.user_id}/>
 
           </div>
         </div>

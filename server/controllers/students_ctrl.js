@@ -56,7 +56,7 @@ module.exports = {
         if(req.user){
             const {user_id} = req.user
             db.run(`SELECT student_id, student_assignments.student_assignments_course_id, assignment_name, 
-                    student_assignment_topic, points_earned AS classmates_points_earned, possible_points
+                    student_assignment_topic, points_earned AS classmates_points_earned, possible_points, assignment_template_id
                     FROM student_assignments 
                     JOIN courses 
                     ON student_assignments.student_assignments_course_id = courses.course_id
