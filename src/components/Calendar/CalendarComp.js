@@ -1,39 +1,21 @@
 import React, { Component } from 'react';
 import BigCalendar from 'react-big-calendar';
+import CalendarModal from './CalendarModal'
 import { connect } from 'react-redux';
 import { getUser, getStudent } from '../../redux/user';
 import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css'
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import * as functions from '../../utils/functions'
+
 
 class CalendarComp extends Component {
-
-
-//This takes in the time passed in from the db and returns only the hours
-  getHours(time) {
-    let splitTime = time.split('')
-
-    let splitHours = []
-    if (splitTime[0] > 0) {
-      splitHours.push(splitTime[0])
-      splitHours.push(splitTime[1])
-    } else splitHours.push(splitTime[1])
-
-    let hours = parseInt((splitHours.join('')), 10)
-    hours = hours - 6
-    return hours
+  constructor(){
+    super()
+    this.state={
+      slotStart:''
+    }
   }
-  //This takes in the time passed in from the db and returns only the minutes
-  getMinutes(time) {
-    let splitTime = time.split('')
-
-    let splitMinutes = []
-    if (splitTime[3] > 0) {
-      splitMinutes.push(splitTime[3])
-      splitMinutes.push(splitTime[4])
-    } else splitMinutes.push(splitTime[4])
-    let minutes = parseInt(splitMinutes.join(''), 10)
-    return minutes
-  }
+ 
   handleSelectEvent(event) {
     //let eventTitle = event.title
     for (let value in event) {//This is where routing will take place
@@ -41,25 +23,27 @@ class CalendarComp extends Component {
     }
   }
   handleSelectSlot(slotInfo){
-    //This is where we will want to allow them to create a new event
-    alert(
-      `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
-      `\nend: ${slotInfo.end.toLocaleString()}` +
-      `\naction: ${slotInfo.action}`
-    )
-  }
+    
+    let startTime = functions.changeToString(slotInfo)
+    this.setState({
+      slotStart:startTime
+    })
+}
+
   render() {
+    
     let studentData = this.props.student
+    // console.log((studentData.calendar[0].calendar_event_start_time))
     let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
 
     BigCalendar.momentLocalizer(moment);
     let events = studentData.calendar.map((event, index) => {
 
-      let startHour = this.getHours(studentData.calendar[index].calendar_event_start_time);
-      let startMinutes = this.getMinutes(studentData.calendar[index].calendar_event_start_time);
+      let startHour = functions.getHours(studentData.calendar[index].calendar_event_start_time);
+      let startMinutes = functions.getMinutes(studentData.calendar[index].calendar_event_start_time);
 
-      let endHour = this.getHours(studentData.calendar[index].calendar_event_end_time);
-      let endMinutes = this.getMinutes(studentData.calendar[index].calendar_event_end_time);
+      let endHour = functions.getHours(studentData.calendar[index].calendar_event_end_time);
+      let endMinutes = functions.getMinutes(studentData.calendar[index].calendar_event_end_time);
 
       //convert string from db to date object
       let startDate = new Date(studentData.calendar[index].calendar_event_start_date)
@@ -71,6 +55,7 @@ class CalendarComp extends Component {
       let endDate = new Date(studentData.calendar[index].calendar_event_end_date)
       let afterSetHoursEnd = endDate.setHours(endHour, endMinutes);
       let endConverted = new Date(afterSetHoursEnd)
+      // console.log((this.state.slotStart))
 
       return {
         id: event.calendar_event_id,
@@ -82,19 +67,27 @@ class CalendarComp extends Component {
       }
     })
 
+
     return (
+      <div>
       <BigCalendar
         selectable
         events={events}
         views={allViews}
         step={15}
         showMultiDayTimes
-        onSelectEvent={(event) => this.handleSelectEvent(event)}
+        onSelectEvent={(event) => {
+          this.handleSelectEvent(event)
+          
+          }}
 
         defaultDate={new Date()}
         timeslots={1}
-        onSelectSlot={slotInfo => this.handleSelectSlot(slotInfo)}
+        onSelectSlot={slotInfo => {this.handleSelectSlot(slotInfo.start)}}
       />
+      <CalendarModal slotInfo={this.state.slotStart}
+        />
+      </div>
     )
   }
 }
