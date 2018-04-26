@@ -7,7 +7,19 @@ class TeachHome extends Component {
     render(){
         console.log(this.props.teacher)
         return (
-            <div>Teach Home</div>
+        <div className="course-container">            
+            <div className="left-column">
+                <h1 className="course-title">{`Welcome to Homeroom`}</h1>
+                {"All schools in the Salt Lake City District use Homeroom as the Learning Management System (LMS), which means all of your online courses will be in Homeroom. The course content will be available by the first day of classes."}
+                <h1 className="course-title">{`Homeroom Recommendations`}</h1>
+                {"Nothing to display"}
+                <h1 className="course-title">{`Teachers Recommendations`}</h1>
+                {"Nothing to display"}
+            </div>
+            <div className="right-column">
+            
+            </div>
+        </div> 
         )
     }
 }
