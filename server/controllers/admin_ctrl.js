@@ -55,8 +55,9 @@ module.exports= {
         if(req.user){
             const {user_id} = req.user
             db.run(`SELECT * 
-                    FROM courses 
-                    ORDER BY course_id`,
+                    FROM courses
+                    JOIN users on users.user_id = courses.teacher_id
+                    ORDER BY course_id;`,
                 function(err,res){
                     var courses = res;
                 }).then(courses=>{

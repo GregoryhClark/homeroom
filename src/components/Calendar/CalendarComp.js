@@ -6,6 +6,7 @@ import { getUser, getStudent } from '../../redux/user';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import * as functions from '../../utils/functions'
+import './CalendarComp.css';
 
 
 class CalendarComp extends Component {
@@ -25,10 +26,22 @@ class CalendarComp extends Component {
   handleSelectSlot(slotInfo){
     
     let startTime = functions.changeToString(slotInfo)
-    this.setState({
-      slotStart:startTime
-    })
+    
+    //UPDATE slotStart ON STATE
+    this.setState({slotStart:startTime})
+
+    //DISPLAY MODAL
+    this.handleShowModal()
 }
+
+  handleShowModal() {
+    document.getElementById('calendar-modal').style.display = "block";
+  }
+
+  handleCloseModal() {
+    //CLOSE MODAL
+    document.getElementById('calendar-modal').style.display = "none";
+  }
 
   render() {
     
@@ -67,26 +80,44 @@ class CalendarComp extends Component {
       }
     })
 
+    //REMOVE MODAL WHEN AREA OUTSIDE OF MODAL IS CLICKED
+    window.onclick = (e) => {
+      const modal = document.getElementById('calendar-modal');
+      if (e.target === modal) {
+        this.handleCloseModal();
+      }
+    }
 
     return (
       <div>
-      <BigCalendar
-        selectable
-        events={events}
-        views={allViews}
-        step={15}
-        showMultiDayTimes
-        onSelectEvent={(event) => {
-          this.handleSelectEvent(event)
-          
-          }}
+        <BigCalendar
+          selectable
+          events={events}
+          views={allViews}
+          step={15}
+          showMultiDayTimes
+          onSelectEvent={(event) => {
+            this.handleSelectEvent(event)
+            
+            }}
 
-        defaultDate={new Date()}
-        timeslots={1}
-        onSelectSlot={slotInfo => {this.handleSelectSlot(slotInfo.start)}}
-      />
-      <CalendarModal slotInfo={this.state.slotStart}
+          defaultDate={new Date()}
+          timeslots={1}
+          onSelectSlot={slotInfo => {this.handleSelectSlot(slotInfo.start)}}
         />
+      
+        {/*==========CODE FOR MODAL==========*/}
+        <div id="calendar-modal" className="calendar-modal">
+          <div className="calendar-modal-content">
+            <span className="close" onClick={this.handleCloseModal}>&#215;</span>
+            <h1 className="horizontal-line">Add Event</h1>
+
+            {/*ADD PHOTO PLACEHOLDER IF NO PHOTO IS AVAILABLE*/}
+            <CalendarModal slotInfo={this.state.slotStart}/>
+
+          </div>
+        </div>
+
       </div>
     )
   }
