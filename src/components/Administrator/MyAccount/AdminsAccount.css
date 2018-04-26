@@ -1,0 +1,47 @@
+/* ADMINS ACCOUNT CONTAINER */
+#admin-account {
+    max-width: 700px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(242, 242, 242) !important;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 0 3px 5px 2px rgb(220, 220, 220);
+    position: relative;
+}
+
+#admin-account-inner {
+  background-color: rgb(242, 242, 242) !important;
+}
+
+
+#admin-account .save-status {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 0 0 3px 3px;
+  text-align:center;
+  box-sizing: border-box;
+  animation: fade 0.25s linear;
+}
+
+#admin-account .pending {
+  background-color: rgb(225, 225, 225);
+  color: rgb(244, 147, 30);
+}
+
+#admin-account .successful {
+  background-color: rgb(0, 166, 237);
+  color: white;
+}
+
+@media(min-width:1024px){
+    #admin-account{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}

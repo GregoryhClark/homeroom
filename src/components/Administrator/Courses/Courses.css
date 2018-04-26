@@ -1,5 +1,4 @@
 /*===== Custom CSS For Courses Table =====*/
-
 .course-modal > .modal-content {
   width: 600px;
 }
@@ -14,4 +13,85 @@
 
 .course-modal .field > textArea {
   width: 340px !important;
+}
+
+/*===== Customize Column Width =====*/
+#courses-table {
+  min-width: auto !important;
+  max-width: 1200px;
+  margin: auto;
+}
+
+#courses-table thead > tr > th:nth-child(1) {
+  min-width: 95px;
+}
+
+#courses-table thead > tr > th:nth-child(2) {
+  min-width: 185px;
+}
+
+#courses-table thead > tr > th:nth-child(3) {
+  min-width: 65px;
+}
+
+#courses-table thead > tr > th:nth-child(4) {
+  min-width: 100px;
+}
+
+#courses-table thead > tr > th:nth-child(5) {
+  min-width: 75px !important;
+}
+
+#courses-table thead > tr > th:nth-child(6) {
+  min-width: 90px !important;
+}
+
+#courses-table thead > tr > th:nth-child(7) {
+  min-width: 90px !important;
+}
+
+#courses-table thead > tr > th:nth-child(8) {
+  min-width: 100px !important;
+}
+
+#courses-table thead > tr > th:nth-child(9) {
+  min-width: 75px !important;
+}
+
+#courses-table tbody > tr > td {
+  vertical-align: top;
+}
+
+#courses-table tbody > tr > td:nth-child(2) {
+  display: inline-block;
+  max-height: 79px;
+  margin-bottom: 15px;
+  margin-top: 8px;
+  padding: 0 12px 8px 12px !important;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/*===== Customize Modal Styling =====*/
+.course-modal .students-list, .date, .photo {
+  margin: 5px 0 22px 103px;
+}
+
+.course-modal .students-list > div {
+  margin-bottom: 7px;
+}
+
+.course-modal .students-list .drop {
+  display: inline-block;
+  font-size: 0.6em;
+  color: red;
+  margin-bottom:3px;
+  cursor: pointer;
+}
+
+.course-modal .students-list .add-student {
+  color: green;
+  text-decoration: underline;
+  font-size: 0.9em;
+  cursor: pointer;
 }
