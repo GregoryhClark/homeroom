@@ -1,6 +1,7 @@
 //MODULES
 import React from 'react';
 import axios from 'axios';
+import Moment from 'react-moment';
 import {connect} from 'react-redux';
 import {coursesForAdmin} from '../../../redux/user.js';
 
@@ -99,7 +100,10 @@ class Courses extends React.Component {
           <td>{e.course_name}</td>
           <td>{e.course_description}</td>
           <td>{e.department}</td>
-          <td>{e.email}</td>
+          <td>{`${e.first_name} ${e.last_name}`}</td>
+          <td>#</td>
+          <td><Moment format="MM-DD-YYYY">{e.start_date}</Moment></td>
+          <td><Moment format="MM-DD-YYYY">{e.end_date}</Moment></td>
           <td>{e.courses_photo === 'undefined' ? 'None' : <a href={e.courses_photo} target='_blank'>View</a>}</td>
           <td><button className="edit-button" onClick={() => this.handleEditCourse(i)}>Edit</button></td>
         </tr>
@@ -117,8 +121,11 @@ class Courses extends React.Component {
                 <th>Course Name</th>
                 <th>Course Description</th>
                 <th>Department</th>
-                <th>Email</th>
-                <th>Photo</th>
+                <th>Teacher</th>
+                <th>Students</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Course Photo</th>
                 <th>Action</th>
               </tr>
             </thead>
