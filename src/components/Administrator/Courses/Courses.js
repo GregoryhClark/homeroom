@@ -163,7 +163,6 @@ class Courses extends React.Component {
           <div className="modal-content">
             <span className="close" onClick={this.handleCloseModal}>&#215;</span>
             <h1 className="horizontal-line">Edit Course Details</h1>
-            {saveStatus === 'pending' ? <div className="save-status pending">Pending...</div> : saveStatus === true ? <div className="save-status successful">Save Successful</div> : null}
 
             <div className="field">
               <span>Course Name:</span>

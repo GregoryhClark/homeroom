@@ -16,6 +16,12 @@
 }
 
 /*===== Customize Column Width =====*/
+#courses-table {
+  min-width: auto !important;
+  max-width: 1200px;
+  margin: auto;
+}
+
 #courses-table thead > tr > th:nth-child(1) {
   min-width: 95px;
 }
