@@ -1,0 +1,10 @@
+.stud_button{
+    border: none;
+    margin: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    background-color: #eee;
+    -webkit-box-shadow: 1px 1px 1px #bbb;
+    box-shadow: 1px 1px 1px #bbb;
+}

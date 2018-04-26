@@ -56,13 +56,14 @@ class CalendarModal extends Component {
   }
   changeCheck(){
     if (!this.state.allDay){
-      this.setState({
-        allDay: true
-      })
+      this.setState({allDay: true})
+      document.getElementById('start-time').style.visibility = 'hidden';
+      document.getElementById('end-time').style.visibility = 'hidden';
     } else {
-      this.setState({
-        allDay: false
-      })
+      this.setState({allDay: false})
+
+      document.getElementById('start-time').style.visibility = 'visible';
+      document.getElementById('end-time').style.visibility = 'visible';
     }
   }
 
@@ -110,29 +111,28 @@ class CalendarModal extends Component {
   let hoursOptions = hours().map((hour, index)=>{
       return <option key = {index}>{hour}</option>
   })
-
  
   return(
     <div className="add-event">
 
       <div className="event-details">
-        <span className>Event Name:</span>
-        <input type="text" onChange={(e)=>{this.setTitle(e.target.value)}}/>
+        <span>Event Name:</span>
+        <input type="text" value={this.state.title} onChange={(e)=>{this.setTitle(e.target.value)}}/>
       </div>
 
       <div className="event-details">
-        <span className>All Day Event:</span>
-        <input onChange={()=>{this.changeCheck()}}id="all_day_checkBox" type="checkbox" />
+        <span>All Day Event:</span>
+        <input type="checkbox" onChange={()=>{this.changeCheck()}}id="all_day_checkBox"/>
       </div>
 
       <div className="calendars">
 
         <div className="start-date">
           <h2>State Date</h2>
-          <span className="start-date-time"><Moment format="MM-DD-YYYY h:mma">{timeSlotStartString}</Moment></span>
+          <span className="start-date-time"><Moment>{timeSlotStartString}</Moment></span>
           <Calendar onChange = {date => this.setState({startDate:date})}/>
 
-          <div className="time">
+          <div className="time" id="start-time">
 
             <div className="hour">
               <span>Start Hour:</span>
@@ -162,7 +162,7 @@ class CalendarModal extends Component {
           {/* <span className="end-date-time"><Moment format="MM-DD-YYYY h:mma">{this.state.endDate === ''? defaultEndDate:this.state.endDate}</Moment></span> */}
           <Calendar onChange={date=> this.setState({endDate:date}) }/>
 
-          <div className="time">
+          <div className="time" id="end-time">
 
             <div className="hour">
               <span>End Hour:</span>
