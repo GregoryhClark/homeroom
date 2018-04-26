@@ -14,6 +14,7 @@ class Chart extends Component {
             selectedCourse: '',
             windowWidth: -1,
             selectedAssignmentTemplateID:-1,
+            averagePeerScores:[],
             chartType:'Bar'
         }
         this.selectCourse = this.selectCourse.bind(this);
@@ -29,10 +30,33 @@ class Chart extends Component {
     }
 
     selectCourse(courseValues) {
+
         this.setState({
             selectedCourseID: courseValues[0],
             selectedCourse: courseValues[1]
         })
+        let assignmentTemplateIDs = this.props.student.getAssignments ? this.props.student.getAssignments.map(obj => {
+            if (obj.student_assignments_course_id === courseValues[0]){ return obj.assignment_template_id } else return null
+        }).filter(value => value):[] 
+
+
+        let peerScores = assignmentTemplateIDs.map(idToMap => {
+
+                return this.props.student.classAverage.map(obj => {
+                 
+                    if(obj.assignment_template_id === idToMap){
+                        return obj.classmates_points_earned
+                    }
+                }).filter(value => value)
+        })
+        let assigmentAverages = peerScores.map(scoreArray =>{
+            return scoreArray.length > 0 ? scoreArray.reduce((accu, curr) => accu + curr)/scoreArray.length : []
+        })
+        
+        this.setState({
+            averagePeerScores:assigmentAverages
+        })
+
     }
 
     render() {
@@ -48,17 +72,23 @@ class Chart extends Component {
         let studentAssignmentScores = studentData.getAssignments ? studentData.getAssignments.map(obj => {
             if (obj.student_assignments_course_id === this.state.selectedCourseID){ return (obj.points_earned / obj.possible_points)*100} else return null
         }).filter(value => value):[]
-// ============ FIND AVERAGE SCORES ============      
-        let averageScores = studentData.getAssignments ? studentData.classAverage.map(obj => {
-            if (obj.assignment_name === this.state.selectedAssignmentTemplateID){ return (obj.classmates_points_earned / obj.possible_points)*100} else return null
-        }).filter(value => value):[]
+
 // ============ FIND ASSIGNMENTS ID ============
         let assignmentIDs = studentData.getAssignments ? studentData.getAssignments.map(obj => {
             if (obj.student_assignments_course_id === this.state.selectedCourseID){ return obj.student_assignment_id } else return null
         }).filter(value => value):[]
+// ============ FIND ASSIGNMENT TEMPLATE IDs ============
+        let assignmentTemplateIDs = studentData.getAssignments ? studentData.getAssignments.map(obj => {
+            if (obj.student_assignments_course_id === this.state.selectedCourseID){ return obj.assignment_template_id } else return null
+        }).filter(value => value):[] 
+// ============ FIND AVERAGE SCORES ============      
+        let classmateScores = studentData.getAssignments ? studentData.classAverage.map(obj => {
+            if (assignmentTemplateIDs.indexOf(obj.assignment_template_id) >= 0){ return (obj.classmates_points_earned / obj.possible_points)*100} else return null
+        }).filter(value => value):[]
+        let averageScores = classmateScores.length > 0 ? (classmateScores.reduce((accu, curr) => accu + curr) )/classmateScores.length     :null
 // =========== FIND ASSIGNMENTS NAME ===========
         let assignmentNames = studentData.getAssignments ? (assignmentArray)=> studentData.getAssignments.map(obj => {
-            if (assignmentArray.indexOf(obj.student_assignment_id) > -1 ){ return obj.assignment_name} else return null
+            if (assignmentArray.indexOf(obj.student_assignment_id) > -1 && obj.points_earned){ return obj.assignment_name} else return null
         }).filter(value => value):(placeholder)=>{return []}
 // =========== FIND STUDENT COURSES ===========
         var studentCourses = studentData.getCourses ?             
@@ -67,6 +97,8 @@ class Chart extends Component {
         let courseButtons = _.uniq(studentCourses).map((element, index) => {
             return <button className="course_btn" key={index} value={element.courseID} onClick={(e) => {this.selectCourse([element.courseID, element.courseName])}}>{element.courseName}</button>
         })
+
+        console.log(studentData)
  // ================ CHART DATA ===============   
         let chartData = {
               labels: assignmentNames(assignmentIDs)
@@ -84,7 +116,7 @@ class Chart extends Component {
                 ],
             },{
                  label: 'Average Score'
-                , data: averageScores
+                , data: this.state.averagePeerScores
             }]
         }
  // ============= CHART OPTION DATA ============           
