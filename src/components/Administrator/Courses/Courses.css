@@ -65,3 +65,27 @@
   box-sizing: border-box;
   overflow-y: auto;
 }
+
+/*===== Customize Modal Styling =====*/
+.course-modal .students-list, .date, .photo {
+  margin: 5px 0 22px 103px;
+}
+
+.course-modal .students-list > div {
+  margin-bottom: 7px;
+}
+
+.course-modal .students-list .drop {
+  display: inline-block;
+  font-size: 0.6em;
+  color: red;
+  margin-bottom:3px;
+  cursor: pointer;
+}
+
+.course-modal .students-list .add-student {
+  color: green;
+  text-decoration: underline;
+  font-size: 0.9em;
+  cursor: pointer;
+}
