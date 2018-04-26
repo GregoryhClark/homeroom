@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Calendar from 'react-calendar';
 import Moment from 'react-moment';
-
+import * as functions from '../../utils/functions'
 //import { Link } from 'react-router-dom'
 import {getUser, getStudent, selectedCourse} from './../../redux/user';
 //CSS, ASSETS
@@ -17,35 +17,17 @@ class CalendarModal extends Component {
   constructor(props){
     super(props)
     this.state={
-      startDate:{},
+      startDate:'',
       startHour:'',
       startMin:'',
-      endDate:{},
+      endDate:'',
       endHour:'',
       endMin:'',
       allDay:false,
       title:''
     }
   }
-  componentDidMount(){
-    let defaultEndDate = moment(new Date(this.props.slotInfo)).add(30, 'm').toDate();
-    defaultEndDate = moment(defaultEndDate).add(30, 'm').toDate();
-    this.setState({
-    
-      startDate: new Date (this.props.slotInfo),
-      endDate:defaultEndDate
-    })
-    
-  }
-  refreshState(){
-    let defaultEndDate = moment(new Date(this.props.slotInfo)).add(30, 'm').toDate();
-    this.setState({
-    
-      startDate: new Date (this.props.slotInfo),
-      endDate:defaultEndDate
-    })
-    
-  }
+
   setStartHour(hour){
     this.setState({
       startHour:hour
@@ -83,26 +65,49 @@ class CalendarModal extends Component {
       })
     }
   }
+
   createEvent(){
-    let startDate = `${this.state.startDate.getFullYear()}-${this.state.startDate.getMonth()}-${this.state.startDate.getDate()}`
+    let startDate = functions.concatenateDate(this.state.startDate.getFullYear(),this.state.startDate.getMonth(),this.state.startDate.getDate())
+    // let startDate = `${this.state.startDate.getFullYear()}-${this.state.startDate.getMonth()}-${this.state.startDate.getDate()}`
     let startTime = `${this.state.startHour}:${this.state.startMin}:00`
 
     let endDate = `${this.state.endDate.getFullYear()}-${this.state.endDate.getMonth()}-${this.state.endDate.getDate()}`
     let endTime = `${this.state.endHour}:${this.state.endMin}:00`
 
-    console.log("startDate:", startDate, "startTime:",startTime, "endDate:",endDate, "endTime:",endTime)
-    console.log("All Day:",this.state.allDay)
-    console.log(this.state.title)
+    let newEventObj = {
+      startDate:startDate,
+      startTime:startTime,
+      endDate:endDate,
+      endTime:endTime,
+      title:this.state.title,
+      currentUser:this.props.currentUser
+    }
+    console.log(newEventObj);
+    return newEventObj;
+  }
+  handleButtonClick(){
+    if(this.state.startDate === '' ||  this.state.endDate === '' || this.state.title === ''){
+      alert('Please Fill Out All Fields')
+    }else if (!this.state.allDay){
+        if(this.state.startHour === '' || this.state.endHour === ''){
+          alert('Please Fill Out All Fields')
+        }
+      }else {
+      this.createEvent()
+    }
   }
     
  render() {
+  let timeSlotStartString = this.state.startDate === '' ? this.props.slotInfo : this.state.startDate;
+  // console.log(timeSlotStartString)
+  // let timeSlotStartString = this.props.slotInfo;
 
-  let timeSlotStartString = this.props.slotInfo;
+  let hours = functions.getHoursList
 
-
-  let hours = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+  let defaultEndDate = moment(new Date(timeSlotStartString)).add(30, 'm').toDate();
+ 
   
-  let hoursOptions = hours.map((hour, index)=>{
+  let hoursOptions = hours().map((hour, index)=>{
       return <option key = {index}>{hour}</option>
   })
 
@@ -154,6 +159,7 @@ class CalendarModal extends Component {
         <div className="end-date">
           <h2>End Date</h2>
           {/* activeStartDate = {new Date(startDateNumericString)} */}
+          {/* <span className="end-date-time"><Moment format="MM-DD-YYYY h:mma">{this.state.endDate === ''? defaultEndDate:this.state.endDate}</Moment></span> */}
           <Calendar onChange={date=> this.setState({endDate:date}) }/>
 
           <div className="time">
@@ -183,8 +189,7 @@ class CalendarModal extends Component {
       </div>
 
       <div className="buttons">
-        {/*<button onClick={()=>this.refreshState()}>refresh state</button> */}
-        <button onClick={()=>{this.createEvent()}}>Create Event</button>
+        <button onClick={()=>{this.handleButtonClick()}}>Create Event</button>
       </div>
 
     </div>

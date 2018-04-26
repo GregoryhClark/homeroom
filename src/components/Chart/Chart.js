@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Bar, Line, HorizontalBar } from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import { getUser, getStudent } from '../../redux/user';
-import LoadData from '../../components/LoadData/LoadData'
+import LoadData from '../../components/LoadData/LoadData';
+import * as functions from '../../utils/functions'
 import _ from 'underscore';
 //CSS, ASSETS
 import './Chart.css'
@@ -43,10 +44,12 @@ class Chart extends Component {
         let peerScores = assignmentTemplateIDs.map(idToMap => {
 
                 return this.props.student.classAverage.map(obj => {
+
+                    //if(functions.checkIsEqual(obj.assignment_template_id, idToMap))
                  
-                    if(obj.assignment_template_id === idToMap){
+                    if(functions.checkIsEqual(obj.assignment_template_id, idToMap)){
                         return obj.classmates_points_earned
-                    }
+                    } else return null
                 }).filter(value => value)
         })
         let assigmentAverages = peerScores.map(scoreArray =>{
@@ -77,15 +80,6 @@ class Chart extends Component {
         let assignmentIDs = studentData.getAssignments ? studentData.getAssignments.map(obj => {
             if (obj.student_assignments_course_id === this.state.selectedCourseID){ return obj.student_assignment_id } else return null
         }).filter(value => value):[]
-// ============ FIND ASSIGNMENT TEMPLATE IDs ============
-        let assignmentTemplateIDs = studentData.getAssignments ? studentData.getAssignments.map(obj => {
-            if (obj.student_assignments_course_id === this.state.selectedCourseID){ return obj.assignment_template_id } else return null
-        }).filter(value => value):[] 
-// ============ FIND AVERAGE SCORES ============      
-        let classmateScores = studentData.getAssignments ? studentData.classAverage.map(obj => {
-            if (assignmentTemplateIDs.indexOf(obj.assignment_template_id) >= 0){ return (obj.classmates_points_earned / obj.possible_points)*100} else return null
-        }).filter(value => value):[]
-        let averageScores = classmateScores.length > 0 ? (classmateScores.reduce((accu, curr) => accu + curr) )/classmateScores.length     :null
 // =========== FIND ASSIGNMENTS NAME ===========
         let assignmentNames = studentData.getAssignments ? (assignmentArray)=> studentData.getAssignments.map(obj => {
             if (assignmentArray.indexOf(obj.student_assignment_id) > -1 && obj.points_earned){ return obj.assignment_name} else return null
@@ -97,8 +91,6 @@ class Chart extends Component {
         let courseButtons = _.uniq(studentCourses).map((element, index) => {
             return <button className="course_btn" key={index} value={element.courseID} onClick={(e) => {this.selectCourse([element.courseID, element.courseName])}}>{element.courseName}</button>
         })
-
-        console.log(studentData)
  // ================ CHART DATA ===============   
         let chartData = {
               labels: assignmentNames(assignmentIDs)
@@ -106,17 +98,11 @@ class Chart extends Component {
             , datasets: [{
                   label: 'Student Score'
                 , data: studentAssignmentScores
-                , backgroundColor: [
-                    'rgba(255, 99, 132, .8)',
-                    'rgba(54, 162, 235, .8)',
-                    'rgba(255, 206, 86, .8)',
-                    'rgba(75, 192, 192, .8)',
-                    'rgba(153, 102, 255, .8)',
-                    'rgba(255, 159, 64, .8)'
-                ],
+                , backgroundColor:'rgba(75, 192, 192, .8)'               
             },{
                  label: 'Average Score'
                 , data: this.state.averagePeerScores
+                , backgroundColor: 'rgba(255, 206, 86, .8)'
             }]
         }
  // ============= CHART OPTION DATA ============           
