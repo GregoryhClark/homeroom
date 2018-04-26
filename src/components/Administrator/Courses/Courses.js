@@ -96,7 +96,6 @@ class Courses extends React.Component {
 
   render() {
     let {course_name, course_description, department, teacher, students, start_date, end_date, courses_photo} = this.state.editCourse;
-    let {saveStatus} = this.state;
 
     //REMOVE MODAL WHEN AREA OUTSIDE OF MODAL IS CLICKED
     window.onclick = (e) => {
@@ -115,7 +114,7 @@ class Courses extends React.Component {
           <td>{e.department}</td>
           <td>{`${e.first_name} ${e.last_name}`}</td>
           <td>
-          {this.props.admin.getStudentsPerCourse
+          {students
             .filter(s => s.course_id === e.course_id).length}
           </td>
           <td><Moment format="MM-DD-YYYY">{e.start_date}</Moment></td>
@@ -205,7 +204,7 @@ class Courses extends React.Component {
             <div className="field">
               <span>Course Photo:</span>
               <div className="photo">{courses_photo !== "undefined" ? <a href={courses_photo} target="_blank">View Photo</a>
-              : <a href="#">Add Photo</a>}</div>
+              : <a href="#/">Add Photo</a>}</div>
             </div>
 
 
