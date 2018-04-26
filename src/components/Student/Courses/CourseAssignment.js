@@ -53,18 +53,26 @@ class CourseAssignment extends Component {
 // =============== RETURN ==============   
     return (
       <div className="course-container">
-        <div className="left-column">
+        <div className="left-column">   
           {teacher.user_photo === 'undefined'|| null ? <div style={noPhoto}><img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gnome-stock_person.svg/500px-Gnome-stock_person.svg.png"} style={profilePicture} alt="User Profile"/></div> : <img src={teacher.user_photo} style={profilePicture} alt="User Profile"/>} 
-          <h1 className="course-title">{`Welcome to Professor ${teacher.last_name}'s class!`}</h1>
-          <h2>{`${course.course_description}`}</h2>
-          <h1 className="course-title">Upcoming Assignments</h1>
+          <div className="title-bar">{`Welcome to Professor ${teacher.last_name}'s class!`}</div>
+          <section className="home-section">
+          <div>{`${course.course_description}`}</div>
+          </section>
+          <div className="title-bar">Upcoming Assignments</div>
+          <section className="home-section">
           {filterCalendar.length ? filterCalendar:<div>No assignments due for the next week</div>}
-          <h1 className="course-title">Recent Feedback</h1>
+          </section>
+          <div className="title-bar">Recent Feedback</div>
+          <section className="home-section">
           {filterCalendar.length ? "Nothing for now" : "Nothing for now"}
+          </section>
         </div>  
-        <div className="right-column">   
+        <div className="right-column"> 
+        <section className="home-section">
+                
         <div className="align-assign">
-          <h1 className="course-title">{`Grades for ${course.course_name}`}</h1>
+          <div className="title-bar">{`Grades for ${course.course_name}`}</div>
         </div>
         <div className="table-overflow table-width">
           <table className="table align-table">
@@ -92,7 +100,8 @@ class CourseAssignment extends Component {
             <input type="checkbox" onClick={(e)=>this.handleClick(e.target.checked)}/>
             <h1>Calculate based only on graded assignments</h1>
           </div>
-        </div>
+        </div> 
+        </section> 
         </div> 
       </div>
     );
