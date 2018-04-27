@@ -4,7 +4,7 @@
 }
 
 #admin-home > .left-column {
-  width: 22%;
+  width: 21%;
   height: 100%;
   padding-top: 28px;
   background-color: rgb(230, 230, 230);
@@ -28,7 +28,7 @@
 }
 
 #admin-home > .right-column {
-  width: 78%;
+  width: 79%;
   padding: 45px 45px;
   box-sizing: border-box;
 }
