@@ -11,34 +11,9 @@
 .test_chart_wrapper {
     position: relative;
     margin: auto;
-    height: 50vh;
-    width: 80vh;  
+    min-height: 100%;
+    width: 90%;  
   }
-
-
-
-@media (min-width: 1100px){
-    .test_chart_wrapper{
-        height: 60vh;
-        width: 1000px;
-    }
-
-}
-@media (max-width: 768px){
-    .test_chart_wrapper{
-        height: 50vh;
-        width: 100%;
-    }
-
-}
-@media (max-width: 375px){
-    .test_chart{
-        height: 250px;
-        width: 400px; 
-    }
-
-}
-
 
   .coursesButtonsWrapper{
       display:flex;
@@ -49,7 +24,7 @@
       margin:20px;
   }
 
-  .coursesButtonsWrapper button{
+  .coursesButtonsWrapper button {
       border:none;
       margin:15px;
       padding:10px;
@@ -61,14 +36,22 @@
     background-color:rgb(0, 166, 237);
     color: white;
 }
-  .chartButtonsWrapper button{
+
+  .chartButtonsWrapper {
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+  }
+
+  .chartButtonsWrapper button {
       border:none;
-      margin:15px;
+      margin: 10px 0 50px 0;
       padding:10px;
       border-radius: 10px;
       outline:none;
-      background-color:#eee;
-      box-shadow: 1px 1px 1px #bbb
+      background-color:#cecece;
+      box-shadow: 1px 1px 1px #bbb;
+      color: black;
   }
   .chartButtonsWrapper button:hover{
     background-color:rgb(0, 166, 237);

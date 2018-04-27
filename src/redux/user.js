@@ -11,7 +11,7 @@ const initialState = {
         , parents:           []
         , courses:           []
         , calendar:          []
-        , studentsPerCourse: []} 
+        , getStudentsPerCourse: []} 
     // CONTAINS ALL CURRENT STUDENT INFO          
       , student:{
           courses:     []

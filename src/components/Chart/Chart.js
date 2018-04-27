@@ -67,7 +67,7 @@ class Chart extends Component {
 // =========== CURRENT STUDENT DATA ============
         let studentData = this.props.student;
 // ====== DISPLAY BUTTONS TO SELECT CHART ======
-        let buttonType = ["Bar", "Line", "Horizontal Bar"];
+        let buttonType = ["V-Bar", "Line", "H-Bar"];
         let chartButtons = buttonType.map((element, index) => {
             return <button className="course_btn" key={index} id={`course_button${index}`} onClick={() => {this.setState({chartType:element})}}>{element}</button>
         })
@@ -98,11 +98,11 @@ class Chart extends Component {
             , datasets: [{
                   label: 'Student Score'
                 , data: studentAssignmentScores
-                , backgroundColor:'rgba(75, 192, 192, .8)'               
+                , backgroundColor:'rgba(255, 206, 86, .8)'               
             },{
                  label: 'Average Score'
                 , data: this.state.averagePeerScores
-                , backgroundColor: 'rgba(255, 206, 86, .8)'
+                , backgroundColor: 'rgba(75, 192, 192, .8)'
             }]
         }
  // ============= CHART OPTION DATA ============           
@@ -122,33 +122,30 @@ class Chart extends Component {
         let HorizontalBarChart = <HorizontalBar className="test_chart" data={chartData} options={chartOptionData}/>
  // ============= RETURN ============      
     return ( 
-        <div className="course-container">            
-            <div className="left-column">
-                <div className="title-bar">{`Welcome to Homeroom`}</div>
-                <section className="home-section">
-                {"All schools in the Salt Lake City District use Homeroom as the Learning Management System (LMS), which means all of your online courses will be in Homeroom. The course content will be available by the first day of classes."}
-                </section>
-                <div className="title-bar">{`Please select a chart type`}</div>
-                <section className="home-section">
-                <div className="chartButtonsWrapper">{chartButtons}</div>
-                </section>
-                <div className="title-bar">{`Homeroom Recommendations`}</div>
-                <section className="home-section">
-                {"Nothing to display"}
-                </section>
-                <div className="title-bar">{`Teachers Recommendations`}</div>
-                <section className="home-section">
-                {"Nothing to display"}
-                </section>
-            </div>
+
+      <div id="admin-home" className="course-container">     
+
+              <div className="left-column">
+                  <h1 className="horizontal-line">Welcome to Homeroom</h1>
+                  <p>All schools in the Salt Lake City District use Homeroom as the Learning Management System (LMS), which means all of your online courses will be in Homeroom. The course content will be available by the first day of classes.</p>
+                  
+                  
+                  <h1 className="horizontal-line">Select Chart Type</h1>
+                  <div className="chartButtonsWrapper">{chartButtons}</div>
+
+                  <h1 className="horizontal-line">Recent Comments</h1>
+                  <p className="gray">No Comments.</p>
+                  <h1 className="horizontal-line">Recently Submitted</h1>
+                  <p className="gray">No Recent Submissions.</p>
+
+              </div>
+
+
             <div className="right-column">
-                <section className="home-section">
-                    <h1 className="course-title">{`Display ${this.props.user.first_name}'s grade averages`}</h1>
                     <div className="test_chart_wrapper">   
                         {this.state.chartType === "Bar" ? barChart: this.state.chartType === "Line" ? lineChart:this.state.chartType === "Horizontal Bar" ? HorizontalBarChart : barChart}
                         {this.state.chartType !== '' ? <div className="coursesButtonsWrapper">{courseButtons}</div>: null}      
                     </div>
-                </section>
             </div>
         </div>     
         )
