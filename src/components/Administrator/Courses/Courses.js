@@ -95,7 +95,7 @@ class Courses extends React.Component {
   }
 
   render() {
-    let {course_name, course_description, department, teacher, students, start_date, end_date, courses_photo} = this.state.editCourse;
+    let {course_name, course_description, department, teacher, start_date, end_date, courses_photo} = this.state.editCourse;
 
     //REMOVE MODAL WHEN AREA OUTSIDE OF MODAL IS CLICKED
     window.onclick = (e) => {
