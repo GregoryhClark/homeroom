@@ -2,15 +2,14 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Calendar from 'react-calendar';
-import Moment from 'react-moment';
+import axios from 'axios'
 import * as functions from '../../utils/functions'
 //import { Link } from 'react-router-dom'
 import {getUser, getStudent, selectedCourse} from './../../redux/user';
 //CSS, ASSETS
 import './CalendarModal.css';
 //import RenderToLayer from 'material-ui/internal/RenderToLayer'
-const moment = require('moment');
-;
+// const moment = require('moment');
 
 //COMPONENT
 class CalendarModal extends Component {
@@ -70,18 +69,18 @@ class CalendarModal extends Component {
   createEvent(){
     let startDate = functions.concatenateDate(this.state.startDate.getFullYear(),this.state.startDate.getMonth(),this.state.startDate.getDate())
     // let startDate = `${this.state.startDate.getFullYear()}-${this.state.startDate.getMonth()}-${this.state.startDate.getDate()}`
-    let startTime = `${this.state.startHour}:${this.state.startMin}:00`
+    let startTime = this.state.startHour + this.state.startMin ? this.state.startHour + this.state.startMin : '00:00:00'
 
-    let endDate = `${this.state.endDate.getFullYear()}-${this.state.endDate.getMonth()}-${this.state.endDate.getDate()}`
-    let endTime = `${this.state.endHour}:${this.state.endMin}:00`
+    let endDate = functions.concatenateDate(this.state.endDate.getFullYear(), this.state.endDate.getMonth(), this.state.endDate.getDate())
+    let endTime = this.state.endHour + this.state.endMin ? this.state.endHour + this.state.endMin : '00:00:00'
 
     let newEventObj = {
-      startDate:startDate,
-      startTime:startTime,
-      endDate:endDate,
-      endTime:endTime,
-      title:this.state.title,
-      currentUser:this.props.currentUser
+      calendar_event_start_date:startDate,
+      calendar_event_start_time:startTime,
+      calendar_event_end_date:endDate,
+      calendar_event_end_time:endTime,
+      calendar_event_title:this.state.title,
+      calendar_event_created_by_id:this.props.currentUser
     }
     console.log(newEventObj);
     return newEventObj;
@@ -93,25 +92,29 @@ class CalendarModal extends Component {
         if(this.state.startHour === '' || this.state.endHour === ''){
           alert('Please Fill Out All Fields')
         }
-      }else {
-      this.createEvent()
     }
+    
+    axios.post('/postCalendar',this.createEvent()).then(res=>{
+      this.props.getStudent()
+    }).catch(err=>console.log(err))
   }
     
  render() {
   let timeSlotStartString = this.state.startDate === '' ? this.props.slotInfo : this.state.startDate;
+  let timeSlotEndString = this.state.endDate === '' ? this.props.slotInfo : this.state.endDate;
   // console.log(timeSlotStartString)
   // let timeSlotStartString = this.props.slotInfo;
 
   let hours = functions.getHoursList
 
-  let defaultEndDate = moment(new Date(timeSlotStartString)).add(30, 'm').toDate();
- 
+  // let defaultEndDate = moment(new Date(timeSlotStartString)).add(30, 'm').toDate();
+  let timeStartDate = new Date(timeSlotStartString)
+  let timeEndDate = new Date(timeSlotEndString)
   
   let hoursOptions = hours().map((hour, index)=>{
       return <option key = {index}>{hour}</option>
   })
- 
+
   return(
     <div className="add-event">
 
@@ -128,8 +131,8 @@ class CalendarModal extends Component {
       <div className="calendars">
 
         <div className="start-date">
-          <h2>State Date</h2>
-          <span className="start-date-time"><Moment>{timeSlotStartString}</Moment></span>
+          <h2>Start Date</h2>
+          <span className="start-date-time">{timeStartDate.toDateString()=== "Invalid Date"?"Please select a date":timeStartDate.toDateString()}</span>
           <Calendar onChange = {date => this.setState({startDate:date})}/>
 
           <div className="time" id="start-time">
@@ -159,7 +162,7 @@ class CalendarModal extends Component {
         <div className="end-date">
           <h2>End Date</h2>
           {/* activeStartDate = {new Date(startDateNumericString)} */}
-          {/* <span className="end-date-time"><Moment format="MM-DD-YYYY h:mma">{this.state.endDate === ''? defaultEndDate:this.state.endDate}</Moment></span> */}
+          <span className="end-date-time">{timeEndDate.toDateString()=== "Invalid Date"?"Please select a date":timeEndDate.toDateString()}</span>
           <Calendar onChange={date=> this.setState({endDate:date}) }/>
 
           <div className="time" id="end-time">
