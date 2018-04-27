@@ -67,7 +67,7 @@
 }
 
 
-.add-event > .calendars > .start-date > .start-date-time {
+.add-event > .calendars > .start-date > .start-date-time , .end-date-time{
   font-size: 0.9em;
   color: rgb(0, 80, 199);
 }

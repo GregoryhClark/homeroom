@@ -19,9 +19,7 @@ class CalendarComp extends Component {
  
   handleSelectEvent(event) {
     //let eventTitle = event.title
-    for (let value in event) {//This is where routing will take place
-      console.log(`${event[value]}`)
-    }
+    document.getElementById('calendar-modal').style.display = "block";
   }
   handleSelectSlot(slotInfo){
     
