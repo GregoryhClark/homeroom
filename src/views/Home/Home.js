@@ -5,6 +5,7 @@ import ParHome from '../../components/Parent/Home/ParHome';
 import AdminHome from '../../components/Administrator/Home/AdminHome';
 import {connect} from 'react-redux';
 import {getUser} from '../../redux/user';
+import LoadData from '../../components/LoadData/LoadData.js';
 
 class Home extends Component {
 
