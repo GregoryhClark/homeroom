@@ -82,9 +82,10 @@ class CalendarModal extends Component {
       calendar_event_title:this.state.title,
       calendar_event_created_by_id:this.props.currentUser
     }
-    console.log(newEventObj);
+    document.getElementById('calendar-modal').style.display = "none";
     return newEventObj;
   }
+
   handleButtonClick(){
     if(this.state.startDate === '' ||  this.state.endDate === '' || this.state.title === ''){
       alert('Please Fill Out All Fields')

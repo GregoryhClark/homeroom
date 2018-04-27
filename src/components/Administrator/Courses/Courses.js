@@ -114,8 +114,7 @@ class Courses extends React.Component {
           <td>{e.department}</td>
           <td>{`${e.first_name} ${e.last_name}`}</td>
           <td>
-          {students
-            .filter(s => s.course_id === e.course_id).length}
+          {this.props.admin.getStudentsPerCourse.filter(s => s.course_id === e.course_id).length}
           </td>
           <td><Moment format="MM-DD-YYYY">{e.start_date}</Moment></td>
           <td><Moment format="MM-DD-YYYY">{e.end_date}</Moment></td>

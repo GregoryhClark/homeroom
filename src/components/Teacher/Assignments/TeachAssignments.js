@@ -18,14 +18,19 @@ class TeachAssignments extends Component {
         let topics  = teacher ? teacher.template.filter((e,i)=> e.template_course_id === courseSelection).map((e,i)=>{return <div key={i}>{e.assignment_template_topic}</div>}): ''
 
         return (
-        <div className="course-container">            
-            <div className="left-column">
-            <p>Select a course</p>
-                {courses}
-              
-            </div>
+          
+
+          <div id="admin-home" className="course-container">     
+
+              <div className="left-column">
+                <h1 className="horizontal-line" style={{textAlign: 'center', width: '100%'}}>Select a course</h1>
+                  <div style={{display: 'flex', flexDirection: 'column'}}>
+                    {courses}
+                  </div>
+              </div>
+       
             <div className="right-column">
-                <h1>View Assignments for {this.state.courseName}</h1>
+                <h1 className="horizontal-line">View Assignments for {this.state.courseName}</h1>
                 {topics}
             </div>
         </div> 

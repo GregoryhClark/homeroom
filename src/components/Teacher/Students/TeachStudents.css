@@ -1,4 +1,4 @@
-.stud_button{
+.stud_button {
     border: none;
     margin: 15px;
     padding: 10px;
@@ -7,4 +7,10 @@
     background-color: #eee;
     -webkit-box-shadow: 1px 1px 1px #bbb;
     box-shadow: 1px 1px 1px #bbb;
+    font-size: 0.9em;
+}
+
+.stud_button:hover {
+  background-color: rgb(0, 166, 237);
+  color: white;
 }

@@ -7,14 +7,16 @@ class AssignAssignments extends Component {
     render(){
               
         return (
-        <div className="course-container">            
+          <div id="admin-home" className="course-container">     
             <div className="left-column">
               
             </div>
+
             <div className="right-column">
-                <h1>Assign</h1>
+            <h1 className="horizontal-line">Assign</h1>
+  
             </div>
-        </div> 
+          </div>  
         )
     }
 }

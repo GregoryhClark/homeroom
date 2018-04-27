@@ -75,6 +75,7 @@ const noPhoto ={
 , margin: "auto"
 , backgroundColor:"#EEE"
 }
+
 const profilePicture ={
   width:"100%"
 , maxWidth:"250px"

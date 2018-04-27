@@ -114,8 +114,8 @@ class Navbar extends Component {
                         </li>
                         : ''}
 
-                        {/*SHOW FOR TEACHERS, STUDENTS*/}
-                        {accountType === "Student" || accountType === "Teacher" ? 
+                        {/*SHOW FOR STUDENTS*/}
+                        {accountType === "Student" ? 
                         <li onClick={this.handleMobileCollapse}>
                             <a className={path === '/courses' ? "selected" : null}
                             onClick={() => {
