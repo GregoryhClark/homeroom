@@ -111,6 +111,9 @@ app.post('/createUser', createUser);
 // ****************** CALENDAR *****************
 const {getUsersCalendar} = calendar_ctrl
 app.get('/getUserCalendar', getUsersCalendar);
+//      ========== UPDATE CALENDAR ========
+const {postCalendar} = calendar_ctrl
+app.post('/postCalendar', postCalendar);
 
 // ****************** ADMINS *******************
 //        ========== Teachers ========
@@ -133,8 +136,12 @@ app.get('/getStudentsPerCourse', getStudentsPerCourse);
 // ****************** TEACHERS ******************
 const {getStudentsForTeacher} = teachers_ctrl
 app.get('/getStudentTeacher', getStudentsForTeacher);
+//        ========== Courses =========
 const {getCoursesForTeacher} = teachers_ctrl
 app.get('/getCoursesTeacher', getCoursesForTeacher);
+//        ========== Templates =======
+const {getTemplates} = teachers_ctrl
+app.get('/getTemplates', getTemplates);
 
 
 // ****************** PARENTS *******************

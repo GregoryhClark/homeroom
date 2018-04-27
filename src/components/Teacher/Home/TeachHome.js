@@ -6,7 +6,7 @@ import './TeachHome.css'
 
 class TeachHome extends Component {
     render(){
-        console.log(this.props.teacher)
+        // console.log(this.props.teacher)
         return (
         <div className="course-container">            
             <div className="left-column">

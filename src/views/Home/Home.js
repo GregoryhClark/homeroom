@@ -6,22 +6,24 @@ import AdminHome from '../../components/Administrator/Home/AdminHome';
 import {connect} from 'react-redux';
 import {getUser} from '../../redux/user';
 
-
 class Home extends Component {
-    render(){
-    let accountType = this.props.user.account_type;
-        return (
-            accountType === "Administrator" ? <AdminHome/>:
-            accountType === "Teacher" ? <TeachHome/>:
-            accountType === "Parent"? <ParHome/>: 
-            accountType === "Student" ? <Chart/>: ''
-        )
-    }
+
+  render(){
+      const accountType = this.props.user.account_type;
+
+      return (
+        accountType === "Administrator" ? <AdminHome/>:
+        accountType === "Teacher" ? <TeachHome/>:
+        accountType === "Parent"? <ParHome/>: 
+        accountType === "Student" ? <Chart/>: <LoadData/>
+      )
+  }
 }
 
 function mapStateToProps(state){
     return{
-        user: state.user
+          user: state.user
     }
 }
+
 export default connect(mapStateToProps, {getUser})(Home);

@@ -32,5 +32,19 @@ module.exports= {
         }else{
             res.status(401).send('Please Sign-in.')
         }
+    }),
+    getTemplates:((req,res,next)=>{
+        const db = req.app.get('db')
+        if(req.user){
+            const {user_id} = req.user
+            db.run(`SELECT * FROM assignment_templates WHERE author_id = ${user_id}`,
+                function(err,res){
+                    var templates = res;
+                }).then(templates=>{
+                    res.status(200).send(templates)
+                })
+        }else{
+            res.status(401).send('Please Sign-in.')
+        }
     })
 }

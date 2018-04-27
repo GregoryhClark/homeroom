@@ -18,7 +18,7 @@
  }
 
 .table > thead > tr > th {
-  min-width: 160px;
+  min-width: 135px;
   padding: 10px 15px 10px 10px;
   text-align: left;
   font-weight: 600;
@@ -72,6 +72,19 @@
 
 .table > tbody > tr > td > .edit-button:active {
   opacity: 0.6;
+}
+
+.table > tfoot > tr {
+  background-color:#454545;
+}
+
+.table > tfoot > tr > td {
+  padding: 6px;
+  color: white;
+}
+
+.table > tfoot > tr > td:nth-child(1) {
+  padding: 6px 6px 6px 20px;
 }
 
 /*=====MODAL STYLING=====*/

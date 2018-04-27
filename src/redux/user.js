@@ -11,7 +11,7 @@ const initialState = {
         , parents:           []
         , courses:           []
         , calendar:          []
-        , studentsPerCourse: []} 
+        , getStudentsPerCourse: []} 
     // CONTAINS ALL CURRENT STUDENT INFO          
       , student:{
           courses:     []
@@ -28,7 +28,8 @@ const initialState = {
       , teacher:{
           students:    []
         , courses:     []
-        , calendar:    []}
+        , calendar:    []
+        , template:   []}
       , currentCourseID:{}   
 }
 // ======= ACTION TYPES ===========
@@ -180,11 +181,13 @@ export function getTeacher(){
     let getTeachers     = axios.get('/getStudentTeacher');
     let getCourses      = axios.get('/getCoursesTeacher');
     let getUserCalendar = axios.get('/getUserCalendar');
-    let teacher = Promise.all([getTeachers, getCourses, getUserCalendar]).then(res=>{
+    let getTemplates    = axios.get('/getTemplates');
+    let teacher = Promise.all([getTeachers, getCourses, getUserCalendar, getTemplates]).then(res=>{
         return {
               getStudent:res[0].data
             , getCourses:res[1].data
             , calendar:  res[2].data
+            , template:  res[3].data
         }
     }).catch(err=>console.log(err))
     return{

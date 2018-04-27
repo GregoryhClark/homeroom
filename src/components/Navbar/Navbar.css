@@ -28,7 +28,7 @@ nav {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: rgb(220, 220, 220);
+  background-color: rgb(230, 230, 230);
   text-align: center;
   font-weight: 300;
   font-size: 1.05em;
@@ -128,7 +128,7 @@ top: 0;
   width: 100%;
   height: 45px;
   display: flex;
-  background-color: rgb(220, 220, 220);
+  background-color: rgb(230, 230, 230);
   box-shadow: 1px 1px 4px 0 rgba(0,0,0,.2);
   overflow-x: auto;
 }
@@ -192,7 +192,7 @@ top: 0;
   }
 
   .header li .selected {
-    background: rgb(220, 220, 220);
+    background-color: rgb(230, 230, 230);
     color:black;
   }
 

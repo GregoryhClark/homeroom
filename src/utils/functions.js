@@ -41,7 +41,7 @@ getMinutes(time) {
       return (param1 === param2)
   },
   concatenateDate(year, month, day){
-      return `${year}-${month}-${day}`
+      return `${year}-${month+1}-${day}`
   },
   filterSorted(sorted){
     return sorted.filter(e=> Date.parse(e.due_date) >= new Date().getTime())

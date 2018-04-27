@@ -27,37 +27,36 @@ class Courses extends Component {
     })
 // =============== RETURN ==========
     return (
-      <div className="course-container">
+
+      <div id="admin-home" className="course-container course">     
         <div className="left-column">
         {teacher.user_photo === 'undefined'|| null ? <div style={noPhoto}><img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gnome-stock_person.svg/500px-Gnome-stock_person.svg.png"} style={profilePicture} alt="User Profile"/></div> : <img src={teacher.user_photo} style={profilePicture} alt="User Profile"/>}
-          <div className="title-bar">{`Welcome to Professor ${teacher.last_name}'s class!`}</div>
-          <section className="home-section">
-          {`${course.course_description}`}
-          </section>
-          <div className="title-bar">Upcoming Assignments</div>
-          <section className="home-section">
-          {filterCalendar.length ? filterCalendar: "No assignments due for the next week"}
-          </section>
-          <div className="title-bar">Recent Feedback</div>
-          <section className="home-section">
-          {filterCalendar.length ? "Nothing for now" : "Nothing for now"}
-          </section>
+          <h1 className="horizontal-line">{`Welcome to Professor ${teacher.last_name}'s class!`}</h1>
+            <p>{`${course.course_description}`}</p>
+            <h1 className="horizontal-line">Upcoming Assignments</h1>
+            <p>{filterCalendar.length ? filterCalendar: "No assignments due for the next week"}</p>
+            <h1 className="horizontal-line">Recent Feedback</h1>
+            <p className="gray">{filterCalendar.length ? "Nothing for now" : "Nothing for now"}</p>
         </div>
+
+
         <div className="right-column">
-        <section className="home-section">
-          <div className="title-bar">{`${course.course_name}`}</div>
-          <div>Instructor Contact Information</div>
-          <p>{`Name: ${teacher.first_name}`}</p>
-          <p>{`Office:`}</p>
-          <p>{`Office Hours:`}</p>
-          <p>{`Email: ${teacher.email}`}</p>
-          <div className="title-bar">{`Course Syllabus`}</div> 
-          </section>
+          <h1 className="horizontal-line">{`${course.course_name}`}</h1>
+          <span>Instructor Contact Information</span>
+          <span>{`Name: ${teacher.first_name}`}</span>
+          <span>{`Office: B14-2`}</span>
+          <span>{`Office Hours: MWF 3:00pm - 5:00pm`}</span>
+          <span>Email: <a href={`mailto:${teacher.email}`}>{teacher.email}</a></span>
+          
+          <h1 className="horizontal-line space">Course Syllabus</h1>
+          <p className='gray'>None</p>
         </div>
+
       </div>
-    );
+    )
   }
 }
+
 function mapStateToProps(state){  
   return{
         user: state.user
@@ -84,4 +83,5 @@ const profilePicture ={
 , margin: "auto"
 , backgroundColor:"#EEE"
 , boxShadow:"1px 1px 15px #CCC"
+, marginBottom: '20px'
 }

@@ -13,7 +13,6 @@
 @media(min-width: 1024px) {
   .course-container {
     display: flex;
-    height: calc(100vh - 97px);
     margin: -33px -60px -100px -60px;
   }
 
@@ -56,4 +55,13 @@
         flex-direction: row;
         justify-content: space-around;
     }
+}
+
+/* COURSE ASSIGNMENTS */
+.course > .left-column {
+  width: 30% !important;
+}
+
+.space {
+  margin-top: 70px;
 }

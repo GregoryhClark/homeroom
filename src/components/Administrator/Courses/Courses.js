@@ -17,9 +17,12 @@ class Courses extends React.Component {
       editCourse: {
           course_name: ''
         , course_description: ''
-        , username: ''
-        , email: ''
-        , user_photo: ''
+        , department: ''
+        , teacher: ''
+        , students: []
+        , start_date: ''
+        , end_date: ''
+        , courses_photo: ''
       },
       saveStatus: ''
     }
@@ -32,7 +35,14 @@ class Courses extends React.Component {
 
   handleEditCourse(index) {
     // LOAD COURSE INFO INTO STATE
-    this.setState({ editCourse: this.props.admin.courses[index] })
+    // this.setState({ editCourse: this.props.admin.courses[index]})
+    const editCourse = this.props.admin.courses[index];
+    editCourse.teacher = `${this.props.admin.courses[index].first_name} ${this.props.admin.courses[index].last_name}`;
+    editCourse.students = this.props.admin.getStudentsPerCourse.filter(e => e.course_id === this.props.admin.courses[index].course_id)
+
+
+    this.setState({editCourse});
+
     
     //SHOW MODAL
     document.getElementById('modal').style.display = "block";
@@ -46,11 +56,14 @@ class Courses extends React.Component {
     const editCourse = {
         course_name: ''
       , course_description: ''
-      , username: ''
-      , email: ''
-      , user_photo: ''
-      , user_id: ''
+      , department: ''
+      , teacher: ''
+      , students: []
+      , start_date: ''
+      , end_date: ''
+      , courses_photo: ''
     };
+
     this.setState({editCourse});
 
     //RESET saveStatus ON STATE
@@ -82,8 +95,7 @@ class Courses extends React.Component {
   }
 
   render() {
-    let {course_name, course_description, username, email, user_photo} = this.state.editCourse;
-    let {saveStatus} = this.state;
+    let {course_name, course_description, department, teacher, students, start_date, end_date, courses_photo} = this.state.editCourse;
 
     //REMOVE MODAL WHEN AREA OUTSIDE OF MODAL IS CLICKED
     window.onclick = (e) => {
@@ -101,12 +113,23 @@ class Courses extends React.Component {
           <td>{e.course_description}</td>
           <td>{e.department}</td>
           <td>{`${e.first_name} ${e.last_name}`}</td>
-          <td>#</td>
+          <td>
+          {students
+            .filter(s => s.course_id === e.course_id).length}
+          </td>
           <td><Moment format="MM-DD-YYYY">{e.start_date}</Moment></td>
           <td><Moment format="MM-DD-YYYY">{e.end_date}</Moment></td>
-          <td>{e.courses_photo === 'undefined' ? 'None' : <a href={e.courses_photo} target='_blank'>View</a>}</td>
+          {/* <td>{e.courses_photo === 'undefined' ? 'None' : <a href={e.courses_photo} target='_blank'>View</a>}</td> */}
           <td><button className="edit-button" onClick={() => this.handleEditCourse(i)}>Edit</button></td>
         </tr>
+      )
+    })
+
+
+    //GENERATE STUDENTS LIST
+    const Students = this.state.editCourse.students.map((e, i) => {
+      return (
+        <div>{e.first_name} {e.last_name} - <span className="drop">DROP</span></div>
       )
     })
 
@@ -114,18 +137,17 @@ class Courses extends React.Component {
       <div>
         
         {/*==========Courses TABLE==========*/}
-        <div className="table-overflow">
+        <div id="courses-table" className="table-overflow">
           <table className="table">
             <thead>
               <tr>
                 <th>Course Name</th>
                 <th>Course Description</th>
-                <th>Department</th>
+                <th>Dept</th>
                 <th>Teacher</th>
                 <th>Students</th>
                 <th>Start Date</th>
                 <th>End Date</th>
-                <th>Course Photo</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -140,21 +162,6 @@ class Courses extends React.Component {
           <div className="modal-content">
             <span className="close" onClick={this.handleCloseModal}>&#215;</span>
             <h1 className="horizontal-line">Edit Course Details</h1>
-            {saveStatus === 'pending' ? <div className="save-status pending">Pending...</div> : saveStatus === true ? <div className="save-status successful">Save Successful</div> : null}
-
-            {/*ADD PHOTO PLACEHOLDER IF NO PHOTO IS AVAILABLE*/}
-            {user_photo === 'undefined' ? 
-              <div className="photo-container">
-                <div className="photo">
-                  <a href="" className="add-photo">Add Photo</a>
-                </div>
-              </div>
-              : 
-              <div className="photo-container">
-                <img src={user_photo} className="photo" alt="profile"/>
-                <span className="remove-photo" onClick={this.handleRemovePhoto}>&#215;</span>
-              </div>
-            }
 
             <div className="field">
               <span>Course Name:</span>
@@ -167,15 +174,40 @@ class Courses extends React.Component {
             </div>
 
             <div className="field">
-              <span>Username:</span>
-              <input type='text' value={username} onChange={(e) => this.handleUpdateState(e, 'username')}/>
+              <span>Department:</span>
+              <input type='text' value={department} onChange={(e) => this.handleUpdateState(e, 'department')}/>
             </div>
 
             <div className="field">
-              <span>Email:</span>
-              <input type='text' value={email} onChange={(e) => this.handleUpdateState(e, 'email')}/>
+              <span>Teacher:</span>
+              <input type='text' value={teacher} onChange={(e) => this.handleUpdateState(e, 'teacher')}/>
             </div>
-                
+
+            <div className="field">
+              <span>Students:</span>
+              <div className="students-list">
+                {Students}
+                <div className="add-student">Add New Student +</div>
+              </div>
+            </div>
+
+            <div className="field">
+              <span>Start Date:</span>
+              <div className="date"><Moment format="MM-DD-YYYY">{start_date}</Moment></div>
+            </div>
+
+            <div className="field">
+              <span>End Date:</span>
+              <div className="date"><Moment format="MM-DD-YYYY">{end_date}</Moment></div>
+            </div>
+
+            <div className="field">
+              <span>Course Photo:</span>
+              <div className="photo">{courses_photo !== "undefined" ? <a href={courses_photo} target="_blank">View Photo</a>
+              : <a href="#/">Add Photo</a>}</div>
+            </div>
+
+
             <div className="buttons">
               <button className="cancel" onClick={this.handleCloseModal}>Cancel</button>
               <button className="save" onClick={this.handleSave}>Save</button>

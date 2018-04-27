@@ -53,27 +53,24 @@ class CourseAssignment extends Component {
     });
 // =============== RETURN ==============   
     return (
-      <div className="course-container">
-        <div className="left-column">   
-          {teacher.user_photo === 'undefined'|| null ? <div style={noPhoto}><img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gnome-stock_person.svg/500px-Gnome-stock_person.svg.png"} style={profilePicture} alt="User Profile"/></div> : <img src={teacher.user_photo} style={profilePicture} alt="User Profile"/>} 
-          <div className="title-bar">{`Welcome to Professor ${teacher.last_name}'s class!`}</div>
-          <section className="home-section">
-          <div>{`${course.course_description}`}</div>
-          </section>
-          <div className="title-bar">Upcoming Assignments</div>
-          <section className="home-section">
-          {filterCalendar.length ? filterCalendar:<div>No assignments due for the next week</div>}
-          </section>
-          <div className="title-bar">Recent Feedback</div>
-          <section className="home-section">
-          {filterCalendar.length ? "Nothing for now" : "Nothing for now"}
-          </section>
-        </div>  
+      <div id="admin-home" className="course-container course">     
+
+        <div className="left-column">
+        {teacher.user_photo === 'undefined'|| null ? <div style={noPhoto}><img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gnome-stock_person.svg/500px-Gnome-stock_person.svg.png"} style={profilePicture} alt="User Profile"/></div> : <img src={teacher.user_photo} style={profilePicture} alt="User Profile"/>}
+          <h1 className="horizontal-line">{`Welcome to Professor ${teacher.last_name}'s class!`}</h1>
+            <p>{`${course.course_description}`}</p>
+            <h1 className="horizontal-line">Upcoming Assignments</h1>
+            <p>{filterCalendar.length ? filterCalendar: "No assignments due for the next week"}</p>
+            <h1 className="horizontal-line">Recent Feedback</h1>
+            <p className="gray">{filterCalendar.length ? "Nothing for now" : "Nothing for now"}</p>
+        </div>
+
+
         <div className="right-column"> 
-        <section className="home-section">
                 
         <div className="align-assign">
-          <div className="title-bar">{`Grades for ${course.course_name}`}</div>
+          <h1 className="horizontal-line">{`Grades for ${course.course_name}`}</h1>
+
         </div>
         <div className="table-overflow table-width">
           <table className="table align-table">
@@ -88,21 +85,20 @@ class CourseAssignment extends Component {
               <tbody>
                 {studentGrades}
               </tbody>
-              <thead>
+              <tfoot>
                 <tr>
-                    <th>Total</th>
-                    <th></th>
-                    <th>{gradeAvg ? gradeAvg.toFixed(2):null}%</th>
-                    <th>{gradeSubmitAverage} / {gradePossibleTotal}</th>
+                    <td>Total</td>
+                    <td></td>
+                    <td>{gradeAvg ? gradeAvg.toFixed(2):null}%</td>
+                    <td>{gradeSubmitAverage} / {gradePossibleTotal}</td>
                 </tr>
-              </thead>  
+              </tfoot>  
           </table>
           <div className="check-total">
             <input type="checkbox" onClick={(e)=>this.handleClick(e.target.checked)}/>
-            <h1>Calculate based only on graded assignments</h1>
+            <span>Calculate based only on graded assignments</span>
           </div>
         </div> 
-        </section> 
         </div> 
       </div>
     );
@@ -135,4 +131,5 @@ const profilePicture ={
 , margin: "auto"
 , backgroundColor:"#EEE"
 , boxShadow:"1px 1px 15px #CCC"
+, marginBottom: '20px'
 }
