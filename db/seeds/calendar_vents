@@ -1,0 +1,13 @@
+calendar_event_id	integer	NOT NULL	DEFAULT nextval('calendar_events_calendar_event_id_seq'::regclass)		
+calendar_event_assignment_id	integer				
+calendar_event_created_by_id	integer				
+calendar_event_course_id	integer				
+calendar_event_title	character varying (104)				
+calendar_event_start_date	date				
+calendar_event_start_time	time without time zone				
+calendar_event_end_date	date				
+calendar_event_end_time	time without time zone				
+calendar_event_all_day	boolean				
+calendar_event_visible	boolean		DEFAULT true		
+calendar_event_id_deleted	boolean		DEFAULT false		
+CONSTRAINT calendar_events_pkey PRIMARY KEY (calendar_event_id)

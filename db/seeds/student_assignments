@@ -1,0 +1,19 @@
+student_assignment_id	integer	NOT NULL	DEFAULT nextval('student_assignments_student_assignment_id_seq'::regclass)		
+student_id	integer				
+student_assignments_course_id	integer				
+assignment_name	character varying (54)	NOT NULL			
+student_assignment_description	character varying (254)	NOT NULL			
+student_assignment_instructions	character varying (2504)	NOT NULL			
+student_assignment_topic	character varying (54)	NOT NULL			
+points_earned	integer				
+possible_points	integer	NOT NULL			
+submitted	date				
+completed	date				
+........pg.dropped.12........	- (504)				
+........pg.dropped.13........	- (504)				
+feedback	character varying (504)		DEFAULT NULL::character varying		
+comments	character varying (504)		DEFAULT NULL::character varying		
+due_date	date				
+subject	character varying (64)				
+assignment_template_id	integer				
+CONSTRAINT student_assignments_pkey PRIMARY KEY (student_assignment_id)

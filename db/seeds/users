@@ -1,0 +1,15 @@
+user_id	integer	NOT NULL	DEFAULT nextval('users_user_id_seq'::regclass)		
+account_type	character varying (54)	NOT NULL			
+username	character varying (54)	NOT NULL			
+password	character varying (84)	NOT NULL			
+first_name	character varying (54)	NOT NULL			
+last_name	character varying (54)	NOT NULL			
+email	character varying (54)	NOT NULL			
+user_photo	character varying (504)		DEFAULT NULL::character varying		
+phone_number	integer				
+display_name	character varying (54)				
+CONSTRAINT users_pkey PRIMARY KEY (user_id)
+
+UNIQUE INDEX users_username_key btree (username)
+
+UNIQUE INDEX users_email_key btree (email)

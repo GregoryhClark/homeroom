@@ -1,0 +1,6 @@
+attachement_id	integer	NOT NULL	DEFAULT nextval('student_attachments_attachement_id_seq'::regclass)		
+student_assignment_id	integer				
+name	character varying (54)	NOT NULL			
+url	character varying (504)	NOT NULL			
+upload_time	date	NOT NULL			
+CONSTRAINT student_attachments_pkey PRIMARY KEY (attachement_id)

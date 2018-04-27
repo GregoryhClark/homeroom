@@ -1,0 +1,12 @@
+course_id	integer	NOT NULL	DEFAULT nextval('classes_class_id_seq'::regclass)		
+teacher_id	integer				
+course_name	character varying (54)	NOT NULL			
+........pg.dropped.4........	- (54)				
+start_date	date	NOT NULL			
+end_date	date	NOT NULL			
+course_description	character varying (1004)	NOT NULL			
+courses_photo	character varying (504)		DEFAULT NULL::character varying		
+period	integer				
+time	character varying (24)				
+department	character varying (54)				
+CONSTRAINT classes_pkey PRIMARY KEY (class_id)

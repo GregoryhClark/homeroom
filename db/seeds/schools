@@ -1,0 +1,10 @@
+school_id	integer	NOT NULL	DEFAULT nextval('schools_school_id_seq'::regclass)		
+name	character varying (254)	NOT NULL			
+district	character varying (254)	NOT NULL			
+street_address	character varying (204)	NOT NULL			
+city	character varying (79)	NOT NULL			
+state	character varying (29)	NOT NULL			
+zip	integer	NOT NULL			
+phone	integer	NOT NULL			
+grades	character varying (29)	NOT NULL			
+CONSTRAINT schools_pkey PRIMARY KEY (school_id)

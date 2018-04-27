@@ -1,0 +1,3 @@
+assignment_topic_id	integer	NOT NULL	DEFAULT nextval('assignment_topics_assignment_topic_id_seq'::regclass)		
+topic_name	character varying (104)				
+CONSTRAINT assignment_topics_pkey PRIMARY KEY (assignment_topic_id)

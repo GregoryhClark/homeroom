@@ -1,0 +1,4 @@
+roster_id	integer	NOT NULL	DEFAULT nextval('roster_roster_id_seq'::regclass)		
+roster_course_id	integer				
+roster_user_id	integer				
+CONSTRAINT roster_pkey PRIMARY KEY (roster_id)

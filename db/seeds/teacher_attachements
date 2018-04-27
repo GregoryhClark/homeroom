@@ -1,0 +1,5 @@
+attachement_id	integer	NOT NULL	DEFAULT nextval('teacher_attachments_attachement_id_seq'::regclass)		
+assignment_template_id	integer				
+name	character varying (54)	NOT NULL			
+url	character varying (504)	NOT NULL			
+upload_time	date	NOT NULL	
