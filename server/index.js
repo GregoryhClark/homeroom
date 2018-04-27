@@ -111,6 +111,9 @@ app.post('/createUser', createUser);
 // ****************** CALENDAR *****************
 const {getUsersCalendar} = calendar_ctrl
 app.get('/getUserCalendar', getUsersCalendar);
+//      ========== UPDATE CALENDAR ========
+const {postCalendar} = calendar_ctrl
+app.post('/postCalendar', postCalendar);
 
 // ****************** ADMINS *******************
 //        ========== Teachers ========
