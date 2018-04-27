@@ -7,7 +7,7 @@ class AdminHome extends Component {
     render(){
 
         return (
-            <div id="admin-home" className="course-container">     
+            <div id="admin-home" className="course-container clearfix">     
 
               <div className="left-column">
                 <h1 className="horizontal-line">Welcome to Homeroom</h1>

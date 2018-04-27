@@ -4,8 +4,8 @@
 }
 
 #admin-home > .left-column {
-  width: 22%;
-  height: 100%;
+  width: 21%;
+  min-height: calc(100vh - 97px);
   padding-top: 28px;
   background-color: rgb(230, 230, 230);
 }
@@ -28,7 +28,7 @@
 }
 
 #admin-home > .right-column {
-  width: 78%;
+  width: 79%;
   padding: 45px 45px;
   box-sizing: border-box;
 }
@@ -55,4 +55,10 @@
   #admin-home > .right-column {
     width: 100%;
   }
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
