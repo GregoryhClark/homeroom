@@ -23,7 +23,7 @@
 }
 
 #courses-table thead > tr > th:nth-child(1) {
-  min-width: 95px;
+  min-width: 100px;
 }
 
 #courses-table thead > tr > th:nth-child(2) {
@@ -64,12 +64,13 @@
 
 #courses-table tbody > tr > td:nth-child(2) {
   display: inline-block;
-  max-height: 79px;
+  max-height: 85px;
   margin-bottom: 15px;
   margin-top: 8px;
   padding: 0 12px 8px 12px !important;
   box-sizing: border-box;
   overflow-y: auto;
+  line-height: 17px;
 }
 
 /*===== Customize Modal Styling =====*/

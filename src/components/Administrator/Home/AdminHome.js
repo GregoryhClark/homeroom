@@ -1,47 +1,35 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getUser} from '../../../redux/user';
-
+import './AdminHome.css';
 
 class AdminHome extends Component {
     render(){
 
         return (
-            <div className="course-container">            
-            <div className="left-column">
-            <div className="title-bar">Welcome to Homeroom</div>
-                <section className="home-section">
-                {"All schools in the Salt Lake City District use Homeroom as the Learning Management System (LMS), which means all of your online courses will be in Homeroom. The course content will be available by the first day of classes."}
-                </section>
-                <div className="title-bar">{`Recent Comments`}</div>
-                <section className="home-section">
-                {"Nothing to display"}
-                </section>
-                <div className="title-bar">{`Recent Submitted Assignments`}</div>
-                <section className="home-section">
-                {"Nothing to display"}
-                </section>
-            </div>
+            <div id="admin-home" className="course-container">     
+
+              <div className="left-column">
+                <h1 className="horizontal-line">Welcome to Homeroom</h1>
+                  <p>All schools in the Salt Lake City District use Homeroom as the Learning Management System (LMS), which means all of your online courses will be in Homeroom. The course content will be available by the first day of classes.</p>
+                  <h1 className="horizontal-line">Recent Comments</h1>
+                  <p className="gray">No Comments.</p>
+                  <h1 className="horizontal-line">Recently Submitted</h1>
+                  <p className="gray">No Recent Submissions.</p>
+              </div>
+
             <div className="right-column">
-                <section className="home-section">
-                    <div className="title-bar ">Coming up</div>
-                    <div style={{textAlign:"center", padding:"3px"}}>Nothing for the next week</div>
-                </section>
-                <section className="home-section">
-                    <div className="title-bar">Announcements</div>
-                    <div style={{textAlign:"center", padding:"3px"}}>No current announcements</div>
-                </section>
-                <section className="home-section">
-                    <div className="title-bar">Technical Support Resources</div>
-                    <div style={{textAlign:"center", padding:"3px"}}>Technical support provides answers to your technical questions here at Homeroom</div>
-                    <ul className="sub-title">Phone based Support</ul>
-                    <li>{"555-123-4567"}</li>
-                    <div className="sub-title">E-mail based Support</div>
-                    <li><a href={`mailto:helpdesk@homeroom.com`}>helpdesk@homeroom.com</a></li>
-                    <div className="sub-title">Homeroom Support Hours:</div>
-                    <li>Mon-Fri: 8:00am -12:00am	Sat- Sun: 12:00pm - 9:00pm</li>
-                    <li>Campus helpdesk hours: 8:00am - 5:00pm</li>
-                </section>
+                <h1 className="horizontal-line">Coming Up</h1>
+                <p>Nothing for the next week</p>
+                
+                <h1 className="horizontal-line">Announcements</h1>
+                <p>No current announcements</p>
+
+                <h1 className="horizontal-line">Technical Support</h1>
+                <span>Phone: 555-123-4567</span>
+                <span>Email Support: <a href="helpdesk@homeroom.com">helpdesk@homeroom.com</a></span>
+                <span>Support Hours: Mon-Fri: 8:00am - 12:00am   Sat-Sun: 12:00pm - 9:00pm</span>
+
             </div>
         </div>  
         )
