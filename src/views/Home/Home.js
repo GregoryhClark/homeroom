@@ -15,7 +15,7 @@ class Home extends Component {
         accountType === "Administrator" ? <AdminHome/>:
         accountType === "Teacher" ? <TeachHome/>:
         accountType === "Parent"? <ParHome/>: 
-        accountType === "Student" ? <Chart/>: null
+        accountType === "Student" ? <Chart/>: <LoadData/>
       )
   }
 }

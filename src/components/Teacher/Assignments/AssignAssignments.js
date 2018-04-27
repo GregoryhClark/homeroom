@@ -5,7 +5,7 @@ import {getUser, getTeacher} from '../../../redux/user';
 
 class AssignAssignments extends Component {
     render(){
-        console.log(this.props.teacher)
+              
         return (
         <div className="course-container">            
             <div className="left-column">
