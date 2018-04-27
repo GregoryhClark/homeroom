@@ -96,14 +96,14 @@ class Chart extends Component {
               labels: assignmentNames(assignmentIDs)
             , type: 'polarArea'
             , datasets: [{
-                  label: 'Student Score'
-                , data: studentAssignmentScores
-                , backgroundColor:'rgba(75, 192, 192, .8)'               
-            },{
                  label: 'Average Score'
                 , data: this.state.averagePeerScores
                 , backgroundColor: 'rgba(255, 206, 86, .8)'
-            }]
+            },{
+                label: 'Student Score'
+              , data: studentAssignmentScores
+              , backgroundColor:'rgba(75, 192, 192, .8)'               
+          }]
         }
  // ============= CHART OPTION DATA ============           
         let chartOptionData = {
