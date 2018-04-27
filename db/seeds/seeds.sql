@@ -202,3 +202,18 @@ insert into assignment_templates
 (author_id, assignment_template_name, assignment_template_description, assignment_template_instructions, assignment_template_topic, possible_points, assignment_template_date_created, assignment_template_last_updated)
 values
 (9, 'Math Test 3', 'description here for the template description','instructions go here okay', 'Algebra 1', 100, '2018-04-11', '2018-04-11');
+
+
+
+calendar_event_id 
+calendar_event_assignment_id 
+calendar_event_created_by_id
+calendar_event_course_id 
+calendar_event_title 
+calendar_event_start_date
+calendar_event_start_time 
+calendar_event_end_date 
+calendar_event_end_time 
+calendar_event_all_day
+calendar_event_visible
+calendar_event_id_deleted
