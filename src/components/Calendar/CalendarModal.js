@@ -2,7 +2,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Calendar from 'react-calendar';
-import Moment from 'react-moment';
 import axios from 'axios'
 import * as functions from '../../utils/functions'
 //import { Link } from 'react-router-dom'
@@ -10,7 +9,7 @@ import {getUser, getStudent, selectedCourse} from './../../redux/user';
 //CSS, ASSETS
 import './CalendarModal.css';
 //import RenderToLayer from 'material-ui/internal/RenderToLayer'
-const moment = require('moment');
+// const moment = require('moment');
 
 //COMPONENT
 class CalendarModal extends Component {
@@ -102,18 +101,20 @@ class CalendarModal extends Component {
     
  render() {
   let timeSlotStartString = this.state.startDate === '' ? this.props.slotInfo : this.state.startDate;
+  let timeSlotEndString = this.state.endDate === '' ? this.props.slotInfo : this.state.endDate;
   // console.log(timeSlotStartString)
   // let timeSlotStartString = this.props.slotInfo;
 
   let hours = functions.getHoursList
 
-  let defaultEndDate = moment(new Date(timeSlotStartString)).add(30, 'm').toDate();
- 
+  // let defaultEndDate = moment(new Date(timeSlotStartString)).add(30, 'm').toDate();
+  let timeStartDate = new Date(timeSlotStartString)
+  let timeEndDate = new Date(timeSlotEndString)
   
   let hoursOptions = hours().map((hour, index)=>{
       return <option key = {index}>{hour}</option>
   })
- 
+
   return(
     <div className="add-event">
 
@@ -130,8 +131,8 @@ class CalendarModal extends Component {
       <div className="calendars">
 
         <div className="start-date">
-          <h2>State Date</h2>
-          <span className="start-date-time"><Moment>{timeSlotStartString}</Moment></span>
+          <h2>Start Date</h2>
+          <span className="start-date-time">{timeStartDate.toDateString()=== "Invalid Date"?"Please select a date":timeStartDate.toDateString()}</span>
           <Calendar onChange = {date => this.setState({startDate:date})}/>
 
           <div className="time" id="start-time">
@@ -161,7 +162,7 @@ class CalendarModal extends Component {
         <div className="end-date">
           <h2>End Date</h2>
           {/* activeStartDate = {new Date(startDateNumericString)} */}
-          {/* <span className="end-date-time"><Moment format="MM-DD-YYYY h:mma">{this.state.endDate === ''? defaultEndDate:this.state.endDate}</Moment></span> */}
+          <span className="end-date-time">{timeEndDate.toDateString()=== "Invalid Date"?"Please select a date":timeEndDate.toDateString()}</span>
           <Calendar onChange={date=> this.setState({endDate:date}) }/>
 
           <div className="time" id="end-time">
