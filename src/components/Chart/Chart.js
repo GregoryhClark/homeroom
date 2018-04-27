@@ -96,14 +96,14 @@ class Chart extends Component {
               labels: assignmentNames(assignmentIDs)
             , type: 'polarArea'
             , datasets: [{
-                  label: 'Student Score'
-                , data: studentAssignmentScores
-                , backgroundColor:'rgba(255, 206, 86, .8)'               
-            },{
                  label: 'Average Score'
                 , data: this.state.averagePeerScores
-                , backgroundColor: 'rgba(75, 192, 192, .8)'
-            }]
+                , backgroundColor: 'rgba(255, 206, 86, .8)'
+            },{
+                label: 'Student Score'
+              , data: studentAssignmentScores
+              , backgroundColor:'rgba(75, 192, 192, .8)'               
+          }]
         }
  // ============= CHART OPTION DATA ============           
         let chartOptionData = {
@@ -137,10 +137,7 @@ class Chart extends Component {
                   <p className="gray">No Comments.</p>
                   <h1 className="horizontal-line">Recently Submitted</h1>
                   <p className="gray">No Recent Submissions.</p>
-
               </div>
-
-
             <div className="right-column">
                     <div className="test_chart_wrapper">   
                         {this.state.chartType === "V-Bar" ? barChart: this.state.chartType === "Line" ? lineChart:this.state.chartType === "H-Bar" ? HorizontalBarChart : barChart}

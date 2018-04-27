@@ -66,7 +66,7 @@ class CalendarComp extends Component {
       let endDate = new Date(studentData.calendar[index].calendar_event_end_date)
       let afterSetHoursEnd = endDate.setHours(endHour, endMinutes);
       let endConverted = new Date(afterSetHoursEnd)
-      // console.log()
+      console.log(typeof(studentData.calendar[index].calendar_event_start_time))
 
       return {
         id: event.calendar_event_id,
