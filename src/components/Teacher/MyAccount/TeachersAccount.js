@@ -38,12 +38,12 @@ class TeachersAccount extends Component{
         let {saveStatus} = this.state;
         let currentTeacher = this.props.user;
         return(
-            <div className="student-account">
+            <div id="admin-account" className="student-account">
                 <Container type="container">
                     <Titles type="titles">{`${currentTeacher.first_name}'s Settings`}</Titles>
                     <InnerContainer type="innerContainer">
                         {this.props.user.user_photo === 'undefined' ? <div style={noPhoto}><span style={addPhoto}>Add Photo</span></div> : <img src={this.props.user.user_photo} style={profilePicture} alt="User Profile"/>}
-                        {saveStatus === 'pending' ? <div className="save-status-pending">Pending...</div> : saveStatus === true ? <div className="save-status-successful">Save Successful</div> : null}
+                        {saveStatus === 'pending' ? <div className="save-status pending">Pending...</div> : saveStatus === true ? <div className="save-status successful">Save Successful</div> : null}
                         <InnerTitle type="innerTitle">Display Name:</InnerTitle>
                             <InputText type="inputText" stateValue={first_name} field={'first_name'} update={this.handleUpdateState}/>
                         <InnerTitle type="innerTitle">Email:</InnerTitle>
@@ -59,11 +59,12 @@ class TeachersAccount extends Component{
                         </select>
                         <ButtonContainer type="buttonContainer">
                         
-                            <Button type="cancel">Cancel</Button>
                             <Button type="save" save={this.handleAccountSave}>Save</Button>
                         </ButtonContainer>
                     </InnerContainer>
                 </Container>
+
+                {/*
                 <Container type="container">
                     <Titles type="titles">Notification Preferences</Titles>
                     <InnerContainer type="innerContainer">
@@ -72,6 +73,9 @@ class TeachersAccount extends Component{
                         <InnerTitle type="innerTitle">Scheduling:</InnerTitle>
                     </InnerContainer>
                 </Container>
+
+                */}
+
             </div>
         )
     }
@@ -124,7 +128,8 @@ function Button(props){
 // ************** STYLES ***************
 // ========= CONTAINER STYLE ===========
 const containerStyle={
-      boxSizing: "border-box"
+padding: '20px'
+    , boxSizing: "border-box"
     , margin:"0 20px"
     , flex:"1"
 }
@@ -138,10 +143,10 @@ const titleStyle={
 }
 // =======INNER CONTAINER STYLE ========
 const innerContainerStyle={
-      backgroundColor:"#FFF"
+      backgroundColor:"rgb(242, 242, 242)"
     , marginTop:"10px"
     , padding:"10px"
-    , marginBottom:"15px"
+    , marginBottom:"5px"
     , boxSizing: "border-box"
 }
 // ======= INNER TITLE STYLE ===========
@@ -152,15 +157,15 @@ const innerTitleStyle={
 }
 // ============ BUTTON STYLES ==========
 const buttonContainer={
-      width:"180px"
+      width:"80px"
     , display:"block"
-    , margin:" 15px 10px 5px auto"
+    , margin:" 35px 10px 5px auto"
 }
 const buttonStyle={
       width:"80px"
     , margin:" 0px 5px 0px"
-    , padding:"5px"
-    , fontSize:"0.85em"
+    , padding:"8px"
+    , fontSize:"0.9em"
     , border:"none"
     , borderRadius:"3px"
     , outline:"none"
@@ -179,7 +184,7 @@ const inputTextStyle={
     , padding:"5px"
     , marginRight:'10px'
     , marginLeft:'10px'
-    , border:"1px solid #eee"
+    , border: "1px solid lightgray"
     , borderRadius:"3px"
     , width:"calc(100% - (20px))"
     , boxSizing:"border-box"
