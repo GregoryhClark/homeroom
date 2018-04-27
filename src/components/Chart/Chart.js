@@ -143,7 +143,7 @@ class Chart extends Component {
 
             <div className="right-column">
                     <div className="test_chart_wrapper">   
-                        {this.state.chartType === "Bar" ? barChart: this.state.chartType === "Line" ? lineChart:this.state.chartType === "Horizontal Bar" ? HorizontalBarChart : barChart}
+                        {this.state.chartType === "V-Bar" ? barChart: this.state.chartType === "Line" ? lineChart:this.state.chartType === "H-Bar" ? HorizontalBarChart : barChart}
                         {this.state.chartType !== '' ? <div className="coursesButtonsWrapper">{courseButtons}</div>: null}      
                     </div>
             </div>

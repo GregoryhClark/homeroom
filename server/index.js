@@ -136,8 +136,12 @@ app.get('/getStudentsPerCourse', getStudentsPerCourse);
 // ****************** TEACHERS ******************
 const {getStudentsForTeacher} = teachers_ctrl
 app.get('/getStudentTeacher', getStudentsForTeacher);
+//        ========== Courses =========
 const {getCoursesForTeacher} = teachers_ctrl
 app.get('/getCoursesTeacher', getCoursesForTeacher);
+//        ========== Templates =======
+const {getTemplates} = teachers_ctrl
+app.get('/getTemplates', getTemplates);
 
 
 // ****************** PARENTS *******************
