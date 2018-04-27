@@ -10,7 +10,7 @@ import {getUser, getStudent, selectedCourse} from './../../redux/user';
 //CSS, ASSETS
 import './CalendarModal.css';
 //import RenderToLayer from 'material-ui/internal/RenderToLayer'
-const moment = require('moment');
+// const moment = require('moment');
 
 //COMPONENT
 class CalendarModal extends Component {
@@ -107,7 +107,7 @@ class CalendarModal extends Component {
 
   let hours = functions.getHoursList
 
-  let defaultEndDate = moment(new Date(timeSlotStartString)).add(30, 'm').toDate();
+  // let defaultEndDate = moment(new Date(timeSlotStartString)).add(30, 'm').toDate();
  
   
   let hoursOptions = hours().map((hour, index)=>{
