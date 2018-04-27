@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {getUser, getStudent, selectedCourse} from '../../../redux/user';
 import Moment from 'react-moment';
 import './Courses.css'
+import * as functions from '../../../utils/functions'
 
 class CourseAssignment extends Component {
   constructor(){
@@ -36,7 +37,7 @@ class CourseAssignment extends Component {
     let teacher              = teachers ? findTeacher[0] : null;
     let sorted               = assignments.sort((a,b)=>{return a.student_assignment_id - b.student_assignment_id})
 // ===== GET UPCOMING ASSIGNMENTS ======
-    let filterCalendar = sorted.filter(e=> Date.parse(e.due_date) >= new Date().getTime()).map((e,i)=>{
+    let filterCalendar = functions.filterSorted(sorted).map((e,i)=>{
       return (
       <div className="assignment-list" key={i}>{`Next Assignments ${e.assignment_name} is due on `}<Moment format='MM-DD-YYYY'>{e.due_date}</Moment></div>
       )
