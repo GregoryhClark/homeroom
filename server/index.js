@@ -33,6 +33,8 @@ massive(CONNECTION_STRING).then(db => {
    app.listen(SESSION_PORT, () => console.log(`Listening on port ${SESSION_PORT}`))
 })
 
+app.use(express.static(path.join(__dirname, 'build')));
+
 // =============== AUTH / MIDDLEWARE ===========
 app.use(bodyParser.json());
 app.use( session({
